@@ -1,15 +1,15 @@
 ### Eclipse files ###
 .metadata
-bin/
-tmp/
-*.tmp
-*.bak
-*.swp
-*~.nib
-local.properties
+#bin/
+#tmp/
+#*.tmp
+#*.bak
+#*.swp
+#*~.nib
+#local.properties
 .settings/
-.loadpath
-.recommenders
+#.loadpath
+#.recommenders
 
 # Eclipse Core
 # .project
