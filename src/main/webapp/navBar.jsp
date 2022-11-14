@@ -100,8 +100,8 @@
 		<div style="margin: 20px;">
 			<a href="">마이 페이지</a>
 		</div>
-		<div style="margin: 20px;">
-			<a href="index.jsp">로그아웃</a>
+		<div id="logoutBtn" style="margin: 20px;">
+			<a href="logOut_proc.jsp">로그아웃</a>
 		</div>
 		<%} %>
 
@@ -110,7 +110,9 @@
 
 <body>
 
+<script>
 
+</script>
 
 </body>
 
