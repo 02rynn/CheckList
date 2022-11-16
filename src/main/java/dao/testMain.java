@@ -79,8 +79,8 @@ public class testMain {
 			
 			BookDao dao = new BookDao();
 			
-			System.out.println(dao.getAladinItemForDetail("K112830296").get("isbn"));
-			
+			System.out.println(dao.getAladinItemList("ItemNewAll").size());
+			System.out.println(dao.getAladinItemList_ItemEditorChoice().size());
 			
 			
 

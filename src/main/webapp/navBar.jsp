@@ -64,6 +64,7 @@
 				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="category_show.jsp" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false"> Category </a>
 					<ul class="dropdown-menu">
+						<li><a class="dropdown-item" href="Category_show.jsp?category=전체">전체</a></li>
 						<li><a class="dropdown-item" href="Category_show.jsp?category=경제경영">경제경영</a></li>
 						<li><a class="dropdown-item" href="Category_show.jsp?category=만화">만화</a></li>
 						<li><a class="dropdown-item" href="Category_show.jsp?category=소설/시/희곡">소설/시/희곡</a></li>
