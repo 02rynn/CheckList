@@ -1,4 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@page import="dao.BookDao" %>
+<%@page import="org.json.simple.JSONObject" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,29 +18,26 @@
 <body>
 <%
 
-//String user = (String)session.getAttribute("userId");
-
-
 String nail = request.getParameter("isbn");
-String title = request.getParameter("title");
-/* int price = Integer.parseInt((request.getParameter("price")).toString()); */
+BookDao dao = new BookDao();
 
- 
+JSONObject item = dao.getAladinItemForDetail(nail);
+
+
+
+
+
 
 %>
 
-    <div class="bookDetail" style="display: flex; align-items: center; margin-top:50px;">
+    <div class="bookDetail" style="display: flex; align-items: center;">
         <div class="bookImg" style="width: 60%; margin-left: 50px; ">
             <div id="shopProductImgsDiv" class="content mainImg productImgType_thumbnails ratio_default loading"
                 imgSrc="/uploadedFiles/95268/product/image_1668245931868.jpg">
                 <!--데이터베이스에서 이미지-->
                 <div id='shopProductImgsMainDiv' class='main img-div img'>
                     <div class='shopProductImgMainWrapper type_thumbnails sequence_0 on' data-shopproductsequence='0'>
-                        <img data-shopProductSequence=' 0' imgSrc='/uploadedFiles/95268/product/image_1668245931868.jpg'
-                            class='shopProductImgMain thumbnails' style="width: 60%; margin: 30px"
-                             src=<%=nail %>> 
-                            
-                            <!-- 썸네일바꾸기  -->
+                        <img  style="width: 50%; margin: 30px" src=<%=item.get("cover")%> />
 
                     </div>
                 </div>
@@ -50,13 +50,13 @@ String title = request.getParameter("title");
 
         <div class="bookDetailInfo" style="margin-right: 70px; width:40%">
             <div id="shopProductNameWrapper" class="row">
-                <h1 id="shopProductName" class="row name designSettingElement productName"><%=title %></h1>
+                <h1 id="shopProductName" class="row name designSettingElement productName"><%=item.get("title") %></h1>
                 <div id="shopProductReviewElem" class="designSettingElement text-body hide"
                     data-product-rating-value=0.0></div>
             </div>
 
             <div id="shopProductPrice" class="price row designSettingElement">
-                <span class="productPriceSpan">999</span>
+                <span class="productPriceSpan"><%=item.get("priceSales") %>원</span>
             </div>
 
             <div id="shopProductCaptionDiv" class="row caption designSettingElement text-body">
@@ -189,7 +189,7 @@ String title = request.getParameter("title");
                     </tr>
                 </tbody>
             </table>
-            <a href="write.jsp" class="btn btn-primary" style="width: 100px; position: relative; 
+            <a href="Write.jsp" class="btn btn-primary" style="width: 100px; position: relative; 
             left: 90%;">글쓰기 </a>
         </div>
     </div>

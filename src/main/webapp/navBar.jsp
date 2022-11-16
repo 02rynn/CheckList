@@ -61,25 +61,25 @@
 		<div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="about.jsp">About</a></li>
-				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" role="button"
+				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="category_show.jsp" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false"> Category </a>
 					<ul class="dropdown-menu">
-						<li><a class="dropdown-item" href="#">에세이</a></li>
-						<li><a class="dropdown-item" href="#">국내소설 action</a></li>
-						<li><a class="dropdown-item" href="#">중국소설 </a></li>
-						<li><a class="dropdown-item" href="#">일본소설 </a></li>
-						<li><a class="dropdown-item" href="#">미국소설 </a></li>
-						<li><a class="dropdown-item" href="#">시</a></li>
-						<li><a class="dropdown-item" href="#">여행</a></li>
-						<li><a class="dropdown-item" href="#">예술</a></li>
-						<li><a class="dropdown-item" href="#">인문</a></li>
+						<li><a class="dropdown-item" href="Category_show.jsp?category=경제경영">경제경영</a></li>
+						<li><a class="dropdown-item" href="Category_show.jsp?category=만화">만화</a></li>
+						<li><a class="dropdown-item" href="Category_show.jsp?category=소설/시/희곡">소설/시/희곡</a></li>
+						<li><a class="dropdown-item" href="Category_show.jsp?category=수험서/자격증">수험서/자격증</a></li>
+						<li><a class="dropdown-item" href="Category_show.jsp?category=어린이">어린이</a></li>
+						<li><a class="dropdown-item" href="Category_show.jsp?category=에세이">에세이</a></li>
+						<li><a class="dropdown-item" href="Category_show.jsp?category=외국어">외국어</a></li>
+						<li><a class="dropdown-item" href="Category_show.jsp?category=인문학">인문학</a></li>
+						<li><a class="dropdown-item" href="Category_show.jsp?category=자기계발">자기계발</a></li>
 					</ul>
 				</li>
 			</ul>
 		</div>
-		<form class="d-flex" role="search" style="width: 60%">
-			<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-			<button class="btn btn-outline-success" type="submit">Search</button>
+		<form id="searckBox" class="d-flex" role="search" style="width: 60%" action="search.jsp">
+			<input name="value" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+			<button id="searckBoxBtn" class="btn btn-outline-success" type="submit">Search</button>
 		</form>
 
 		<%
@@ -111,6 +111,13 @@
 <body>
 
 <script>
+const searckBox = document.getElementById("searckBox");
+const searckBoxBtn = document.getElementById("searckBoxBtn");
+
+searckBoxBtn.addEventListener("click", () => {
+	searckBox.action = "search.jsp";
+	searckBox.submit();
+});
 
 </script>
 
