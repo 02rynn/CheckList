@@ -74,7 +74,7 @@
 			Book bk = bookList.get(i);
 %>
 				<div class="swiper-slide">
-					<a href=""><img src=<%=bk.getThumbnail()%>></a>
+					<a href="bookDetail.jsp?isbn= <%=bk.getThumbnail() %>>"><img src=<%=bk.getThumbnail()%>></a>
 				</div>
 				<%} %>
 			</div>

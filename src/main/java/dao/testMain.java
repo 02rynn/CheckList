@@ -35,7 +35,7 @@ public class testMain {
 				urlBuilder.append("&" + URLEncoder.encode("MaxResults", "UTF-8") + "="
 						+ URLEncoder.encode("100", "UTF-8")); /* 한글 국가명 */
 				urlBuilder.append("&" + URLEncoder.encode("start", "UTF-8") + "="
-						+ URLEncoder.encode("2", "UTF-8")); /* ISO 2자리코드 */
+						+ URLEncoder.encode("10", "UTF-8")); /* ISO 2자리코드 */
 				urlBuilder.append("&" + URLEncoder.encode("SearchTarget", "UTF-8") + "="
 						+ URLEncoder.encode("Book", "UTF-8"));
 				urlBuilder.append("&" + URLEncoder.encode("output", "UTF-8") + "="
@@ -43,9 +43,9 @@ public class testMain {
 				urlBuilder.append("&" + URLEncoder.encode("Version", "UTF-8") + "="
 						+ URLEncoder.encode("20131101", "UTF-8"));
 				urlBuilder.append("&" + URLEncoder.encode("cover", "UTF-8") + "="
-						+ URLEncoder.encode("midBig", "UTF-8"));
-				urlBuilder.append("&" + URLEncoder.encode("CategoryId", "UTF-8") + "="
-						+ URLEncoder.encode("656", "UTF-8"));
+						+ URLEncoder.encode("Big", "UTF-8"));
+//				urlBuilder.append("&" + URLEncoder.encode("categoryName", "UTF-8") + "="
+//						+ URLEncoder.encode("인문학", "UTF-8"));
 				URL url = new URL(urlBuilder.toString());
 				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 				conn.setRequestMethod("GET"); 
@@ -77,7 +77,7 @@ public class testMain {
 
 		public static void main(String[] args) {
 			
-
+			System.out.println(getAladinItem());
 
 			DataDao  dao = new DataDao();
 			
@@ -104,7 +104,7 @@ public class testMain {
 					bk.setIsbn((String)target.get("isbn"));
 					bk.setPrice(Integer.parseInt(target.get("priceSales").toString()));
 					bk.setStatus((String)target.get("stockStatus"));
-					bk.setCategory_id(Integer.parseInt(target.get("categoryId").toString()));
+					bk.setCategory_name(target.get("categoryName").toString());
 					bk.setThumbnail((String)target.get("cover"));
 					bk.setTitle ((String)target.get("title")); //book에다가 set해서 데이터 넣어줌 
 					
@@ -112,7 +112,7 @@ public class testMain {
 					//System.out.println(bookList);
 				}
 				
-				dao.insert_book_info( bookList); //리스트를 메소드에 보냄 
+//				dao.insert_book_info( bookList); //리스트를 메소드에 보냄 
 				
 
 			} catch (Exception e) {
@@ -121,5 +121,7 @@ public class testMain {
 			}
 
 		}
+		
+
 
 }

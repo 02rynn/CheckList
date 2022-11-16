@@ -26,7 +26,7 @@
 	border-radius: 7px;
 	box-shadow: 0 0 20px #ccc inset;
 }
-
+ 
 .swiper-slide {
 	text-align: center;
 	display: flex;
