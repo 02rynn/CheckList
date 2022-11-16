@@ -2,6 +2,7 @@ package dao;
 
 
 import java.sql.Connection;
+
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,7 +15,11 @@ import java.util.List;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-class DataDao{
+
+
+
+
+public class DataDao{
 	
 	Connection conn = null;
 	PreparedStatement psmt = null;
@@ -80,13 +85,13 @@ class DataDao{
 				
 						psmt.setString(2, book.getTitle());
 						//System.out.println(book.getTitle());
-						psmt.setString(3, book.getAuthors());
-						psmt.setString(4, book.getContent());
-						psmt.setString(5, book.getThumbnail());
+						psmt.setString(3, book.getContent());
+						psmt.setString(4, book.getDate_time());
+						psmt.setString(5, book.getAuthors());
 						psmt.setInt(6, book.getPrice());
-						psmt.setString(7, book.getDate_time());
+						psmt.setString(7, book.getThumbnail());
 						psmt.setString(8, book.getStatus());
-						psmt.setInt(9,book.getCategory_id());
+						psmt.setString(9,book.getCategory_name());
 						int resultCnt = psmt.executeUpdate();
 						System.out.println(resultCnt);
 					}
@@ -104,5 +109,119 @@ class DataDao{
 		
 		
 	}
+	public List<Book> selectBookByCategory(String name)  {
+
+		try {
+			connect();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		List<Book> bookList = null;
+	String sqlQuery = "select * from book where category_name like '국내도서>'||?||'>%' order by date_time desc";
+		try {
+			psmt = conn.prepareStatement(sqlQuery);
+			psmt.setString(1,name);
+			rs = psmt.executeQuery();
+
+			
+
+			
+			bookList = new ArrayList<Book>();
+			while (rs.next()) {
+				Book ai = new Book();
+
+				ai.price = rs.getInt("price");
+				ai.title = rs.getString("Title");
+				ai.thumbnail = rs.getString("thumbnail");
+
+				bookList.add(ai);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConnect();
+		}
+
+		return bookList;
+	}
+	
+	public List<Book> selectBuyBookList(String id)  {
+
+		try {
+			connect();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		List<Book> bookList = null;
+	String sqlQuery = "select title from book where isbn = (select book_num from buy_book where id = ? )";
+		try {
+			psmt = conn.prepareStatement(sqlQuery);
+			psmt.setString(1,id);
+			rs = psmt.executeQuery();
+			bookList = new ArrayList<Book>();
+			while (rs.next()) {
+				Book ai = new Book();
+
+				ai.title = rs.getString("Title");
+	
+
+				bookList.add(ai);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConnect();
+		}
+
+		return bookList;
+	}
+	
+	public List<Book> selectBookforSearch(String value)  {
+
+		try {
+			connect();
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		List<Book> bookList = null;
+	String sqlQuery = "select * from book where title like '%'||?||'%'  order by date_time desc";
+		try {
+			psmt = conn.prepareStatement(sqlQuery);
+			psmt.setString(1,value);
+			rs = psmt.executeQuery();
+
+			
+
+			
+			bookList = new ArrayList<Book>();
+			while (rs.next()) {
+				Book ai = new Book();
+
+				ai.price = rs.getInt("price");
+				ai.title = rs.getString("Title");
+				ai.thumbnail = rs.getString("thumbnail");
+
+				bookList.add(ai);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConnect();
+		}
+
+		return bookList;
+	}
+	
+	
+
 	
 }

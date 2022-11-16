@@ -1,6 +1,7 @@
 package dao;
 
 import java.io.BufferedReader;
+
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -8,6 +9,7 @@ import java.net.URLEncoder;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -35,7 +37,7 @@ public class testMain {
 				urlBuilder.append("&" + URLEncoder.encode("MaxResults", "UTF-8") + "="
 						+ URLEncoder.encode("100", "UTF-8")); /* 한글 국가명 */
 				urlBuilder.append("&" + URLEncoder.encode("start", "UTF-8") + "="
-						+ URLEncoder.encode("2", "UTF-8")); /* ISO 2자리코드 */
+						+ URLEncoder.encode("10", "UTF-8")); /* ISO 2자리코드 */
 				urlBuilder.append("&" + URLEncoder.encode("SearchTarget", "UTF-8") + "="
 						+ URLEncoder.encode("Book", "UTF-8"));
 				urlBuilder.append("&" + URLEncoder.encode("output", "UTF-8") + "="
@@ -43,9 +45,8 @@ public class testMain {
 				urlBuilder.append("&" + URLEncoder.encode("Version", "UTF-8") + "="
 						+ URLEncoder.encode("20131101", "UTF-8"));
 				urlBuilder.append("&" + URLEncoder.encode("cover", "UTF-8") + "="
-						+ URLEncoder.encode("midBig", "UTF-8"));
-				urlBuilder.append("&" + URLEncoder.encode("CategoryId", "UTF-8") + "="
-						+ URLEncoder.encode("656", "UTF-8"));
+						+ URLEncoder.encode("Big", "UTF-8"));
+
 				URL url = new URL(urlBuilder.toString());
 				HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 				conn.setRequestMethod("GET"); 
@@ -77,48 +78,66 @@ public class testMain {
 
 		public static void main(String[] args) {
 			
-
-
-			DataDao  dao = new DataDao();
+			BookDao dao = new BookDao();
+			
+			System.out.println(dao.getAladinItemForDetail("K112830296").get("isbn"));
+			
+			
 			
 
-			try {
-				JSONParser jsonParser = new JSONParser();
 
-				JSONObject jsonObject = (JSONObject) jsonParser.parse(getAladinItem());
-
-				JSONArray itemArr = (JSONArray) jsonObject.get("item");
-				//item 객체가 배열로 들어옴 
-				ArrayList<Book> bookList = new ArrayList<Book>();
-
-				
-				for(int i = 0 ; i < itemArr.size();i++) {
-					
-					JSONObject target = (JSONObject)itemArr.get(i); //배열을 하나씩  target에 저장하고
-					
-					Book bk = new Book(); //객체를 새로 만들어서 
-					
-					bk.setAuthors((String)target.get("author"));
-					bk.setContent((String)target.get("description"));
-					bk.setDate_time((String)target.get("pubDate"));
-					bk.setIsbn((String)target.get("isbn"));
-					bk.setPrice(Integer.parseInt(target.get("priceSales").toString()));
-					bk.setStatus((String)target.get("stockStatus"));
-					bk.setCategory_id(Integer.parseInt(target.get("categoryId").toString()));
-					bk.setThumbnail((String)target.get("cover"));
-					bk.setTitle ((String)target.get("title")); //book에다가 set해서 데이터 넣어줌 
-					
-					bookList.add(bk); //넣어준 book객체를 다시 리스트에 넣어줌 
-					//System.out.println(bookList);
-				}
-				
-				dao.insert_book_info( bookList); //리스트를 메소드에 보냄 
-				
-
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			DataDao  dao = new DataDao();
+//			
+//
+//			try {
+//				JSONParser jsonParser = new JSONParser();
+//
+//				JSONObject jsonObject = (JSONObject) jsonParser.parse(getAladinItem());
+//
+//				JSONArray itemArr = (JSONArray) jsonObject.get("item");
+//				//item 객체가 배열로 들어옴 
+//				ArrayList<Book> bookList = new ArrayList<Book>();
+//
+//				
+//				for(int i = 0 ; i < itemArr.size();i++) {
+//					
+//					JSONObject target = (JSONObject)itemArr.get(i); //배열을 하나씩  target에 저장하고
+//					
+//					Book bk = new Book(); //객체를 새로 만들어서 
+//					
+//					bk.setAuthors((String)target.get("author"));
+//					bk.setContent((String)target.get("description"));
+//					bk.setDate_time((String)target.get("pubDate"));
+//					bk.setIsbn((String)target.get("isbn"));
+//					bk.setPrice(Integer.parseInt(target.get("priceSales").toString()));
+//					bk.setStatus((String)target.get("stockStatus"));
+//					bk.setCategory_name(target.get("categoryName").toString());
+//					bk.setThumbnail((String)target.get("cover"));
+//					bk.setTitle ((String)target.get("title")); //book에다가 set해서 데이터 넣어줌 
+//					
+//					bookList.add(bk); //넣어준 book객체를 다시 리스트에 넣어줌 
+//					//System.out.println(bookList);
+//				}
+//				
+//				dao.insert_book_info( bookList); //리스트를 메소드에 보냄 
+//				
+//
+//			} catch (Exception e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			
+//			DataDao dao = new DataDao();
+//			
+//			String name = "asd";
+//			List<Book> asd = dao.selectBuyBookList(name);
+//			
+//	
+//			System.out.println(asd.get(0).getTitle());
+			
+			
+			
+			
 
 		}
 

@@ -291,9 +291,9 @@
                 <input name="upPw" type="password" placeholder="Password" class="input" />
                 <input name="upEmail" type="email" placeholder="Email" class="input"  />
        
-               <input name="upAddress" type="password" placeholder="Address" class="input" />
-               <input name="upPhoneNum" type="password" placeholder="PhoneNumber" class="input" />
-                <input name="upName" type="password" placeholder="name" class="input" />
+               <input name="upAddress" type="text" placeholder="Address" class="input" />
+               <input name="upPhoneNum" type="text" placeholder="PhoneNumber" class="input" />
+                <input name="upName" type="text" placeholder="name" class="input" />
                 <button id= "signbbtn" class="btn">Sign Up</button>
             </form>
         </div>

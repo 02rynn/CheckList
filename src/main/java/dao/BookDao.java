@@ -13,7 +13,6 @@ import org.json.simple.parser.JSONParser;
 
 public class BookDao {
 
-
 	public  ArrayList<Book> getAladinItemList(String type) {// type에 따라서 알라딘 api 에서 책 리스트를 가지고 오는 메소드
 
 		String jsonStr = "";
@@ -72,6 +71,7 @@ public class BookDao {
 				
 				Book asd1 = new Book();
 				asd1.setThumbnail((String)jsonO2ject.get("cover"));
+				asd1.setIsbn((String)jsonO2ject.get("isbn"));
 				asd.add(asd1);
 			}
 		} catch (Exception e) {
@@ -154,6 +154,70 @@ public class BookDao {
 	
 
 		return arr;
+
+	}
+	
+	public JSONObject getAladinItemForDetail(String isbn) { //isbn에 따라 api에서 값을 가지고오는 메소드
+
+		String jsonStr = "";
+		ArrayList<Book> arr = null;
+		JSONObject jsonObject22 = null;
+		try {
+			StringBuilder urlBuilder = new StringBuilder(
+					"http://www.aladin.co.kr/ttb/api/ItemLookUp.aspx"); /* URL */
+			urlBuilder.append("?" + URLEncoder.encode("ttbkey", "UTF-8")
+					+ "=ttbzxzx050501758001"); /*
+																																 * Service
+																																 * Key
+																																 */
+			urlBuilder.append("&" + URLEncoder.encode("Cover", "UTF-8") + "="
+					+ URLEncoder.encode("Big", "UTF-8"));
+			urlBuilder.append("&" + URLEncoder.encode("itemIdType", "UTF-8") + "="
+					+ URLEncoder.encode("isbn", "UTF-8")); /* 한글 국가명 */
+			urlBuilder.append("&" + URLEncoder.encode("ItemId", "UTF-8") + "="
+					+ URLEncoder.encode( isbn , "UTF-8")); /* ISO 2자리코드 */
+			urlBuilder.append("&" + URLEncoder.encode("output", "UTF-8") + "="
+					+ URLEncoder.encode("js", "UTF-8"));
+			
+			
+			URL url = new URL(urlBuilder.toString());
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("GET");
+			conn.setRequestProperty("Content-type", "application/json");
+//			System.out.println("Response code: " + conn.getResponseCode());
+			BufferedReader rd;
+			if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+				rd = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+			} else {
+				rd = new BufferedReader(new InputStreamReader(conn.getErrorStream(), "UTF-8"));
+			}
+			StringBuilder sb = new StringBuilder();
+			String line;
+			while ((line = rd.readLine()) != null) {
+				sb.append(line);
+			}
+			rd.close();
+			conn.disconnect();
+			jsonStr = sb.toString();
+			JSONParser jsonParser = new JSONParser();
+			jsonStr = jsonStr.replaceAll(";", "");
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(jsonStr);
+			
+			;
+			JSONArray jsonapiObj = (JSONArray) jsonObject.get("item");
+			
+			jsonObject22 = (JSONObject)jsonapiObj.get(0);
+			
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	
+
+		
+		return jsonObject22;
 
 	}
 	
