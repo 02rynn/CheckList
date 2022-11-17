@@ -169,14 +169,29 @@ public class DataDao{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+		String sqlQuery = null;
+		if(name.equals("전체")) {
+			sqlQuery = "select * from book order by date_time desc";
+		}else {
+			sqlQuery = "select * from book where category_name like '국내도서>'||?||'>%' order by date_time desc";
+		}
+		System.out.println(sqlQuery);
 		List<Book> bookList = null;
-	String sqlQuery = "select * from book where category_name like '국내도서>'||?||'>%' order by date_time desc";
+		
 		try {
 			psmt = conn.prepareStatement(sqlQuery);
-			psmt.setString(1,name);
-			rs = psmt.executeQuery();
+			
+			if(name.equals("전체")) {
+				rs = psmt.executeQuery();
+			}else {
+				psmt.setString(1,name);
+				rs = psmt.executeQuery();
 
+			}
+			
+			
+			
+			
 			
 
 			

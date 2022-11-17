@@ -69,10 +69,10 @@
 				<%
 		BookDao dao = new BookDao();
 		List<Book> bookList = dao.getAladinItemList("ItemNewAll");
-		
+
 		for(int i = 0 ; i < bookList.size();i++){
 			Book bk = bookList.get(i);
-%>
+		%>
 				<div class="swiper-slide">
 					<a href="bookDetailByAPI.jsp?isbn=<%=bk.getIsbn() %>"><img src=<%=bk.getThumbnail()%>></a>
 					
