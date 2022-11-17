@@ -3,7 +3,7 @@ package dao;
 public class cart {
 	
 	int CUSTOMER_NO ;
-	String ID ;
+	String id ;
 	String isbn; 
 	int shop_cnt;
 	
@@ -13,11 +13,11 @@ public class cart {
 	public void setCUSTOMER_NO(int cUSTOMER_NO) {
 		CUSTOMER_NO = cUSTOMER_NO;
 	}
-	public String getID() {
-		return ID;
+	public String getId() {
+		return id;
 	}
-	public void setID(String iD) {
-		ID = iD;
+	public void setId(String iD) {
+		id = id;
 	}
 	public String getIsbn() {
 		return isbn;

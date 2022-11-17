@@ -302,7 +302,7 @@
         <div class="container__form container--signin">
             <form action="" class="form" id="form2">
                 <h2 class="form__title">Sign In</h2>
-                <input name="inid" type="email" placeholder="Email" class="input" />
+                <input name="inid" type="text" placeholder="ID" class="input" />
                 <input name="inpw" type="password" placeholder="Password" class="input" />
                 <button id="ininbtn" class="btn">Sign In</button>
             </form>

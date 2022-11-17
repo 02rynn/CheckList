@@ -21,7 +21,7 @@ public class BookDao {
 			StringBuilder urlBuilder = new StringBuilder(
 					"http://www.aladin.co.kr/ttb/api/ItemList.aspx"); /* URL */
 			urlBuilder.append("?" + URLEncoder.encode("ttbkey", "UTF-8")
-					+ "=ttbzxzx050501758001"); 
+					+ "=ttbzxzx050501758001"); 																							 
 			urlBuilder.append("&" + URLEncoder.encode("QueryType", "UTF-8") + "="
 					+ URLEncoder.encode( type, "UTF-8")); /* 한 페이지 결과 수 */
 			urlBuilder.append("&" + URLEncoder.encode("MaxResults", "UTF-8") + "="

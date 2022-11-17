@@ -78,6 +78,7 @@ public class CustomerDao {
 				result = psmt.executeUpdate();
 			}catch(Exception e) {
 				e.printStackTrace();
+				return -1;
 			}finally {
 				disconnect();
 			}
@@ -85,7 +86,7 @@ public class CustomerDao {
 		}
 
 	   public Customer selectCustomerInfo(String id){
-			String sql = "SELECT id ,password   FROM customer where id = '"+id+"'";
+			String sql = "SELECT * FROM customer where id = '"+id+"'";
 			Customer cs = null;
 			try {
 				connect();
@@ -94,10 +95,15 @@ public class CustomerDao {
 				cs = new Customer();
 
 				if(rs.next()) {
+					cs.setAddress(rs.getString("address	"));
+					cs.setEmail(rs.getString("email"));
+					cs.setPhone_num(rs.getString("phone_num"));
+					cs.setCustomer_name(rs.getString("customer_name"));
 					cs.setId(rs.getString("id"));
 					cs.setPassword(rs.getString("password"));
+					cs.setCustomer_no(rs.getInt("customer_mo"));
 				}
-				System.out.println(cs.toString());
+			
 				return cs;
 			}catch(Exception e) {
 				e.printStackTrace();

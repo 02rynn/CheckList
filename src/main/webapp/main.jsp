@@ -66,10 +66,10 @@
 				<%
 		BookDao dao = new BookDao();
 		List<Book> bookList = dao.getAladinItemList("ItemNewAll");
-		
+
 		for(int i = 0 ; i < bookList.size();i++){
 			Book bk = bookList.get(i);
-%>
+		%>
 				<div class="swiper-slide">
 					<a href="bookDetailByAPI.jsp?isbn=<%=bk.getIsbn() %>"><img src=<%=bk.getThumbnail()%>></a>
 					
@@ -91,21 +91,25 @@
 				<p class="" style="text-align: center; font-size: 20px;">
 					<span text-style-option="fontStyleBold"
 						style="color: rgb(34, 34, 34);"><span
-						text-style-option="color">BOOKSHOP</span></span>
+						text-style-option="color">BOOKSHOP</span>
+						<br/>충청남도 천안시 동남구 대흥동 134</span>
 				</p>
 			</div>
 			<div style="float: left; width: 33%;">
 				<p class="" style="text-align: center; font-size: 20px;">
 					<span text-style-option="fontStyleBold"
 						style="color: rgb(34, 34, 34);"><span
-						text-style-option="color">OPENING HOUR</span></span>
+						text-style-option="color">OPENING HOUR</span>
+						<br/>A.M 09:00 ~ P.M 10:00
+						</span>
 				</p>
 			</div>
 			<div style="float: left; width: 33%;">
 				<p class="" style="text-align: center; font-size: 20px;">
 					<span text-style-option="fontStyleBold"
 						style="color: rgb(34, 34, 34);"><span
-						text-style-option="color">BANK ACCOUNT</span></span>
+						text-style-option="color">BANK ACCOUNT</span>
+						<br/>신협 132-079-103357</span>
 				</p>
 			</div>
 		</div>

@@ -169,14 +169,29 @@ public class DataDao{
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+		String sqlQuery = null;
+		if(name.equals("전체")) {
+			sqlQuery = "select * from book order by date_time desc";
+		}else {
+			sqlQuery = "select * from book where category_name like '국내도서>'||?||'>%' order by date_time desc";
+		}
+		System.out.println(sqlQuery);
 		List<Book> bookList = null;
-	String sqlQuery = "select * from book where category_name like '국내도서>'||?||'>%' order by date_time desc";
+		
 		try {
 			psmt = conn.prepareStatement(sqlQuery);
-			psmt.setString(1,name);
-			rs = psmt.executeQuery();
+			
+			if(name.equals("전체")) {
+				rs = psmt.executeQuery();
+			}else {
+				psmt.setString(1,name);
+				rs = psmt.executeQuery();
 
+			}
+			
+			
+			
+			
 			
 
 			
@@ -418,6 +433,7 @@ public class DataDao{
 			if(rs.next()) {
 				cus.setId(rs.getString("id"));
 				cus.setEmail(rs.getString("email"));
+				cus.setPassword(rs.getString("password"));
 				cus.setCustomer_name(rs.getString("customer_name"));
 				cus.setPhone_num(rs.getString("phone_num"));
 				cus.setAddress(rs.getString("address"));
@@ -489,6 +505,57 @@ public class DataDao{
 		}
 		return result;
 	}
+	
+	//회원 탈퇴 
+	public int deleteCustomer(String id) {
+		String sql = " delete from customer "
+				   + " where id = ? ";
+		int result = 0; 
+		try {
+			connect();
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			
+			
+			result = psmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeConnect();
+		}
+		return result;
+	}
+	
+	
+	//회원 탈퇴하면 그 회원이 장바구니에 담았던 데이터도 같이 삭제
+	public int deleteDataInCart(String id) {
+		String sql = " delete from shop_bskt "
+				   + " where id = ? ";
+		int result = 0; 
+		try {
+			connect();
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			
+			
+			result = psmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeConnect();
+		}
+		return result;
+	}
+	
+	
 	
 }
 	
