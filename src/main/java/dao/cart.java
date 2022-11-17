@@ -16,8 +16,8 @@ public class cart {
 	public String getId() {
 		return id;
 	}
-	public void setId(String iD) {
-		id = id;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getIsbn() {
 		return isbn;

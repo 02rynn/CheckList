@@ -111,13 +111,18 @@ JSONObject item = dao.getAladinItemForDetail(nail);
                         <button id="btn_buyNow" class="btn btn-primary
                                           " data-is-mini-cart-available="false"
                             onclick="require('v2/mall/service/product').detail.handlePurchase('buyNow', event)">
-                            구매하기</button>
+                            구매<a href="buyNowCartNo.jsp?isbn=<%=item.get("isbn")%>&price=<%=item.get("price")%>&thumbnail=<%=item.get("thumbnail")%>&title=<%=item.get("title")%>">구매구매</a></button>
+                             
+                            
                     </div>
+                    
                     <div class="btn-wrapper cartButton " style="margin-left: 10px;">
+                    
                         <button id="btn_addToCart" class="btn btn-primary
                                           " data-is-mini-cart-available="false"
                             onclick="require('v2/mall/service/product').detail.handlePurchase('', event)">
                             장바구니에 담기</button>
+                            
                             <form action="insertBookInCart_proc.jsp" method="post">
                             	<input type="submit"  value=<%=item.get("isbn")%> name="isbn" onclick="alert('상품이 장바구니에 담겼습니다.')"/>
                             </form>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
+    <%@ page import="dao.Customer" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,6 +79,24 @@
 </style>
 </head>
 <body>
+<%@ include file = "navBar.jsp" %>
+
+<% 
+String thumbnail = request.getParameter("cover");
+String title = request.getParameter("title");
+// int price = Integer.parseInt(request.getParameter("priceSales"));
+
+Customer cs = new Customer();
+cs.setId(user.toString());
+
+
+
+
+
+
+%>
+
+
 	<div class="PaymentOrder" style="width: 750px;">
 		<div class="card collapsed">
 			<div class="card-title-wrapper">
@@ -92,11 +111,16 @@
 					<div class="card-body-wrapper">
 						<div class="order-item-list">
 							<div class="order-item">
+<%-- 							<img src=<%=thumbnail %>> --%>
 								<img class="order-item-thumnail"
 									src=https://contents.sixshop.com/uploadedFiles/95268/product/image_1666966301464.jpg>
 								<div class="order-item-info-wrapper">
-									<span class="item-title">눈을 감고 걷기</span>
-									<div class="item-qty-and-price-wrapper">1개 / 13,000원</div>
+									<span class="item-title"><%=title %></span>
+									<div class="item-qty-and-price-wrapper">1개 / 
+<%-- 									<%=price %> --%>
+									0
+									</div>
+									
 								</div>
 							</div>
 						</div>
@@ -105,7 +129,8 @@
 							<div class="order-total-price-wrapper"
 								style="display: block; text-align: right;">
 								<span class="order-total-price"
-									style="color: blue; font-weight: bold;">13,000</span><span
+									style="color: blue; font-weight: bold;">0</span>
+									<span
 									class="order-total-unit"
 									style="color: blue; font-weight: bold;">원</span>
 							</div>

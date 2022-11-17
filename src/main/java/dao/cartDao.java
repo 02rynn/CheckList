@@ -98,6 +98,7 @@ public class cartDao {
 			
 			
 			result = psmt.executeUpdate();
+		
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
