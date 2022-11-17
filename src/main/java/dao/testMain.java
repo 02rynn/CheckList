@@ -78,19 +78,17 @@ public class testMain {
 		public static void main(String[] args) {
 			
 
+	CustomerDao dao = new CustomerDao();
 	
+	
+	System.out.println(dao.selectCustomerInfo("asd").getId());
+	System.out.println(dao.selectCustomerInfo("asd").getPassword());
 			
 			
 			
 			
 			
-			
-			bBsDAO dao = new bBsDAO();
-			
-			
-			
-			System.out.println(dao.insert_review_contents("첵제먹", 3, "꿀잼", "진짜 완전 재밌었어요 감사합니다", "dlarbwls","1234"));
-			
+	
 			
 //			System.out.println(dao.getAladinItemList("ItemNewAll").size());
 //			System.out.println(dao.getAladinItemList_ItemEditorChoice().size());

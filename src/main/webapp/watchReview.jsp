@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-    <%@ page import="bbs.jsp" %>
-     <%@ page import="dao.bBsDAO" %>
+<%@ page import="bbs.jsp" %>
+<%@ page import="dao.bBsDAO" %>
 <!DOCTYPE html>
 <html>
 <head>
