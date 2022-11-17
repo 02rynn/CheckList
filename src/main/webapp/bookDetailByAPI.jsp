@@ -25,7 +25,7 @@ BookDao dao = new BookDao();
 
 JSONObject item = dao.getAladinItemForDetail(isbn);
 
-
+out.print(user);
 
 
 
