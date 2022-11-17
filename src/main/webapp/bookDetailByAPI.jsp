@@ -16,12 +16,13 @@
 </head>
 
 <body>
+<%@ include file="navBar.jsp" %>
 <%
 
-String nail = request.getParameter("isbn");
+String isbn = request.getParameter("isbn");
 BookDao dao = new BookDao();
 
-JSONObject item = dao.getAladinItemForDetail(nail);
+JSONObject item = dao.getAladinItemForDetail(isbn);
 
 
 
@@ -56,7 +57,7 @@ JSONObject item = dao.getAladinItemForDetail(nail);
             </div>
 
             <div id="shopProductPrice" class="price row designSettingElement">
-                <span class="productPriceSpan"><%=item.get("priceSales") %>원</span>
+                <span class="productPriceSpan"><%=item.get("priceSales")%>원</span>
             </div>
 
             <div id="shopProductCaptionDiv" class="row caption designSettingElement text-body">
@@ -79,27 +80,9 @@ JSONObject item = dao.getAladinItemForDetail(nail);
             </div>
 
 
-            <div id="shopProductQuantityDiv" class="productQuantityDiv row designSettingElement text-body ">
-                <span class="text">수량</span> <input type="number" id="productQuantity"
-                    class="productQuantity designSettingElement shape" value="1" min="1" data-initialQuantity="7">
-            </div>
+    
 
-            <div class="product-order-summary-wrapper designSettingElement text-body ">
-                <div class="product-order-summary-info designSettingElement shape">
-                    <div class="product-order-summary-row">
-                        <span class="title">주문 수량</span> <span class="row-content">
-                            <i class="ico-info-triangle no-ico-hover-effect hide"></i>&nbsp;
-                            <span id="product-order-total-quantity">0개</span>
-                        </span>
-                    </div>
-                    <div class="product-order-summary-row">
-                        <span class="title">총 상품 금액</span> <span class="row-content">
-                            <span id="product-order-total-price">0원</span>
-                        </span>
-                    </div>
-                </div>
-            </div>
-
+     
 
 
 
@@ -160,39 +143,7 @@ JSONObject item = dao.getAladinItemForDetail(nail);
         </div>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd;margin-top: 20px; width: 100%;
-            maxlength:50;">
-                <thead>
-                    <!--테이블의 제목 -->
-                    <tr>
-                        <th style="background-color: #eeeeee;   text-align:  center;">번호</th>
-                        <th style="background-color: #eeeeee; text-align: center;">상품이름</th>
-                        <th style="background-color: #eeeeee; text-align: center;">제목</th>
-                        <th style="background-color: #eeeeee; text-align: center;">글쓴이</th>
-                        <th style="background-color: #eeeeee; text-align: center;">등록일</th>
-                        <th style="background-color: #eeeeee; text-align: center;">평점 </th>
-                    </tr>
-                </thead>
 
-                <h1 style="margin-top: 30px;">독자님들의 후기</h1>
-                <tbody style="background-color:#eeeeee;">
-                    <!-- 데이터베이스에서 글번호, 책이름, 책제목, 글쓴이, 등록일, 평점 가지고와서 보여지도록  -->
-                    <tr>
-                        <td>1</td>
-                        <td>sql재밌어요 책</td>
-                        <td>책이 어렵네요</td>
-                        <td>홍길동</td>
-                        <td>오늘</td>
-                        <td>3점</td>
-                    </tr>
-                </tbody>
-            </table>
-            <a href="Write.jsp" class="btn btn-primary" style="width: 100px; position: relative; 
-            left: 90%;">글쓰기 </a>
-        </div>
-    </div>
 
 
 </body>
