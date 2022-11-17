@@ -1,13 +1,12 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="dao.DataDao"%>
+<%@ page import="dao.bBsDAO"%>
 <%@ page import="dao.Book"%>
 <%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -17,28 +16,27 @@
 </head>
 <body>
 
+<%@ include file = "navBar.jsp" %>
+	<%
+	
+	
+// 	String user = session.getAttribute("userId").toString();
+
+	bBsDAO dao = new bBsDAO();
+	
+   
+
+	List<Book> buyItems = dao.selectBuyBookList((String)user);
+	
+	//로그인 안되어잇으면 로그인 페이지로 이동
+	%>
 
 
-
-
-<%@ include file="navBar.jsp"%>
-<% 
-
-DataDao dao = new DataDao();
-
-
-List<Book> buyItems = dao.selectBuyBookList(user.toString());
-
-
-
-//로그인 안되어잇으면 로그인 페이지로 이동 
-%>
-
+	
 
 	<div class="container">
 		<div class="row">
-			<form id="writeForm" method="get" accept-charset="utf-8"
-				action="writeAction2.jsp">
+			<form method="get" action="writeAction2.jsp">
 				<!--action페이지로 보낼수 있도록 -->
 				<!--post 메소드로 숨기면서 전송, 액션페이지에서 처리할 수 있도록 전송함  -->
 
@@ -51,21 +49,18 @@ List<Book> buyItems = dao.selectBuyBookList(user.toString());
 								글쓰기 양식</th>
 						</tr>
 						<tr>
-							<th><span>상품목록</span> <select name="title">
-									<%			
- 					for(Book bk : buyItems){
- 						%>
-									<option value="<%=bk.getTitle() %>">
-
-										<%=bk.getTitle() %>
-									</option>
-
-
-									<%
- 							}
- 						%>
-
-
+							<th><span>상품목록</span> 
+							<select name="select">
+										<%
+											for(Book bk : buyItems){
+												%>
+													<option id="option" value=<%=bk.getTitle() %>>	
+												<%=bk.getTitle() %>
+												</option>`
+										<% 		
+											}
+										%>
+									
 
 							</select>
 							<th />
@@ -86,12 +81,10 @@ List<Book> buyItems = dao.selectBuyBookList(user.toString());
 					</tbody>
 				</table>
 
-				<div  class="bbs"
+				<div class="bbs"
 					style="display: flex; align-items: center; justify-content: flex-end">
-					<div id="submit"><input id="" type="submit" class="btn btn-outline-primary" value="저장하기"
+					<input id="saveBtn" type="submit" class="btn btn-outline-primary" value="저장하기"
 						style="width: 100px;">
-					</div>
-					
 
 					<div class="customSelectDiv designSettingElement shape "
 						id="selectPostReviewRateDiv" style="margin-left: 10px;"
@@ -99,7 +92,7 @@ List<Book> buyItems = dao.selectBuyBookList(user.toString());
 
 
 
-						<select id="rvrate" name="rvrate" class="btn btn-outline-primary"
+						<select name="rvrate" class="btn btn-outline-primary"
 							onchange="require('common/common').customSelectBoxClickEvent(this)"
 							id="selectPostReviewRate">
 							<option value="0" selected="selected">평점 주기</option>
@@ -109,9 +102,6 @@ List<Book> buyItems = dao.selectBuyBookList(user.toString());
 							<option value="2">★★☆☆☆</option>
 							<option value="1">★☆☆☆☆</option>
 						</select>
-
-
-
 
 					</div>
 				</div>
@@ -125,18 +115,34 @@ List<Book> buyItems = dao.selectBuyBookList(user.toString());
 			class="btn btn-outline-dark" style="margin-left: 40px;"
 			onclick="history.back()">목록으로 가기</button>
 	</div>
+	</div>
 
-	<script>
-	const writeForm = document.getElementById("writeForm");
-	const submit = document.getElementById("submit");
-	
-	
-		submit.addEventListener("click", (e) => { 
-		e.preventDefault();
-        writeForm.action = "Write2.jsp";
-        writeForm.submit();
+<script>
+/* document.getElementById("updateBtn").addEventListener("click", (e) => {
+    e.preventDefault();
+    const form = document.personDetailForm;
+    if (form.personName.value == "") { // 이름이 없는 경우
+      alert("이름은 필수입니다.");
+      form.personName.focus();
+      return false;
+    } else { // 이름이 있는 경우
+      if (confirm("수정하시겠습니까?")) {
+        form.action = "updatePerson_proc.jsp";
+        form.submit();
+      }
+    }
+  }); */
   
-      });
+  
+  document.getElementById("saveBtn").addEventListener("click", (e) => {
+	    e.preventDefault();
+	    
+	    //정보를 writeAction2로 보내도록
+	    location.href = "writeAction2.jsp"
+	    		
+	    form.action = "writeAction2.jsp";
+        form.submit();
+  }
 
 
 </script>
