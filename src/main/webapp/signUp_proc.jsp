@@ -38,6 +38,12 @@ if(result == 1){
     script.println("location.href = 'index.jsp';");
     script.println("</script>");
     script.close();
+}else if(result == -1){
+    script.println("<script>");
+    script.println("alert('아이디중복 다시 해주세요');");
+    script.println("location.href = 'login.jsp';");
+    script.println("</script>");
+    script.close();
 }else{
     script.println("<script>");
     script.println("alert('실패');");

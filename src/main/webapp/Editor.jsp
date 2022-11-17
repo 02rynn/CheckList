@@ -57,6 +57,7 @@
 				
 				%>
 					<div class="row">
+						
 						<div class="col"
 							style="width: 23.75%; display: inline-block; padding: 15px;">
 							<img src=<%=bk2.getThumbnail() %> class="card-img-top" alt="...">

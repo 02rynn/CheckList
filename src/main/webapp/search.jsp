@@ -36,7 +36,7 @@
 	%>
 
 	<div
-		style="height: 15vh; backGround-color: #75b5e6; text-align: center; font-size: 4vh; line-height: 15vh;">
+		style="height: 15vh; backGround-color: rgb(151, 200, 237); text-align: center; font-size: 4vh; line-height: 15vh;">
 		<span> "<%=value %>" 의 검색 결과입니다
 		</span>
 

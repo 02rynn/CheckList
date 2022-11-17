@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" %>
 <%@ page import="dao.Book"%>
 <%@ page import="dao.BookDao"%>
 <%@ page import="java.util.*"%>
@@ -56,10 +56,7 @@
 <body>
 <%@ include file="navBar.jsp"%>
 
-	<%
-
-    
-    %>
+	
 	<div style="position: absolute; left: 2.5%; width: 95%;">
 		<div
 			style="text-align: center; font-size: 30px; font-weight: 200; background-color: #CEE4F5; height: 60px;">
@@ -94,21 +91,25 @@
 				<p class="" style="text-align: center; font-size: 20px;">
 					<span text-style-option="fontStyleBold"
 						style="color: rgb(34, 34, 34);"><span
-						text-style-option="color">BOOKSHOP</span></span>
+						text-style-option="color">BOOKSHOP</span>
+						<br/>충청남도 천안시 동남구 대흥동 134</span>
 				</p>
 			</div>
 			<div style="float: left; width: 33%;">
 				<p class="" style="text-align: center; font-size: 20px;">
 					<span text-style-option="fontStyleBold"
 						style="color: rgb(34, 34, 34);"><span
-						text-style-option="color">OPENING HOUR</span></span>
+						text-style-option="color">OPENING HOUR</span>
+						<br/>A.M 09:00 ~ P.M 10:00
+						</span>
 				</p>
 			</div>
 			<div style="float: left; width: 33%;">
 				<p class="" style="text-align: center; font-size: 20px;">
 					<span text-style-option="fontStyleBold"
 						style="color: rgb(34, 34, 34);"><span
-						text-style-option="color">BANK ACCOUNT</span></span>
+						text-style-option="color">BANK ACCOUNT</span>
+						<br/>신협 132-079-103357</span>
 				</p>
 			</div>
 		</div>
@@ -132,35 +133,37 @@
 				%>
 					<div class="row">
 						<div class="col"
-							style="width: 15% display: inline-block; padding: 15px;">
-							<img src=<%=bk2.getThumbnail() %> class="card-img-top" alt="...">
+							style="width: 15%; display: inline-block; padding: 15px;">
+							<a href="bookDetail2.jsp?isbn=<%=bk2.getIsbn()%>&title=<%=bk2.getTitle()%>&imgUrl=<%=bk2.getThumbnail()%>&price=<%=bk2.getPrice()%>"><img src=<%=bk2.getThumbnail() %> class="card-img-top" alt="..."></a>
 							<div class="card-body">
 								<p class="card-text"><%=bk2.getContent().substring(0,40)+"..." %> </p>
 							</div>
 						</div>
+					
+								
 						<div class="col"
 							style="width: 15%; display: inline-block; padding: 15px">
-							<img src=<%=bk3.getThumbnail() %> class="card-img-top" alt="...">
+							<a href="bookDetail2.jsp?isbn=<%=bk3.getIsbn()%>&title=<%=bk3.getTitle()%>&imgUrl=<%=bk3.getThumbnail()%>&price=<%=bk3.getPrice()%>"><img src=<%=bk3.getThumbnail() %> class="card-img-top" alt="..."></a>
 							<div class="card-body">
 								<p class="card-text"><%=bk3.getContent().substring(0,40)+"..." %> </p>
 							</div>
 						</div>
 						<div class="col"
 							style="width: 15%; display: inline-block; padding: 15px">
-							<img src=<%=bk4.getThumbnail() %> class="card-img-top" alt="...">
+							<a href="bookDetail2.jsp?isbn=<%=bk4.getIsbn()%>&title=<%=bk4.getTitle()%>&imgUrl=<%=bk4.getThumbnail()%>&price=<%=bk4.getPrice()%>"><img src=<%=bk4.getThumbnail() %> class="card-img-top" alt="..."></a>
 							<div class="card-body">
 								<p class="card-text"><%=bk4.getContent().substring(0,40)+"..." %> </p>
 							</div>
 						</div>
 							<div class="col"
 							style="width: 15%; display: inline-block; padding: 15px">
-							<img  src=<%=bk5.getThumbnail() %> class="card-img-top" alt="...">
+								<a href="bookDetail2.jsp?isbn=<%=bk5.getIsbn()%>&title=<%=bk5.getTitle()%>&imgUrl=<%=bk5.getThumbnail()%>&price=<%=bk5.getPrice()%>"><img src=<%=bk5.getThumbnail() %> class="card-img-top" alt="..."></a>
 							<div class="card-body">
 								<p class="card-text"><%=bk5.getContent().substring(0,40)+"..." %> </p>
 							</div>
 						</div>	<div class="col"
 							style="width: 15%; display: inline-block; padding: 15px">
-							<img  src=<%=bk6.getThumbnail() %> class="card-img-top" alt="...">
+								<a href="bookDetail2.jsp?isbn=<%=bk6.getIsbn()%>&title=<%=bk6.getTitle()%>&imgUrl=<%=bk6.getThumbnail()%>&price=<%=bk6.getPrice()%>"><img src=<%=bk6.getThumbnail() %> class="card-img-top" alt="..."></a>
 							<div class="card-body">
 								<p class="card-text"><%=bk6.getContent().substring(0,40)+"..." %> </p>
 							</div>
@@ -169,7 +172,7 @@
 					<%
 					
 				}
-					
+			
 					
 					%>
 					
