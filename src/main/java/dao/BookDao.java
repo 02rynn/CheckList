@@ -88,7 +88,7 @@ public class BookDao {
 			StringBuilder urlBuilder = new StringBuilder(
 					"http://www.aladin.co.kr/ttb/api/ItemList.aspx"); /* URL */
 			urlBuilder.append("?" + URLEncoder.encode("ttbkey", "UTF-8")
-					+ "=ttbzxzx050501758001"); /*
+					+ "=ttbzxzx050501758001"); 
 	
 			urlBuilder.append("&" + URLEncoder.encode("QueryType", "UTF-8") + "="
 					+ URLEncoder.encode("BlogBest", "UTF-8")); /* 한 페이지 결과 수 */
@@ -139,6 +139,7 @@ public class BookDao {
 				asd1.setThumbnail((String)jsonO2ject.get("cover"));
 				asd1.setTitle((String)jsonO2ject.get("title"));
 				asd1.setContent((String)jsonO2ject.get("description"));
+				
 				arr.add(asd1);
 			}
 
