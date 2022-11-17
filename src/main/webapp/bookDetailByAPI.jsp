@@ -94,6 +94,9 @@ JSONObject item = dao.getAladinItemForDetail(isbn);
                                           " data-is-mini-cart-available="false"
                             onclick="require('v2/mall/service/product').detail.handlePurchase('buyNow', event)">
                             구매하기</button>
+                             <form action="Purchase_proc.jsp" method="post">
+                            	<input type="submit"  value=<%=item.get("isbn")%> name="isbn" />
+                            </form>
                     </div>
                     <div class="btn-wrapper cartButton " style="margin-left: 10px;">
                         <button id="btn_addToCart" class="btn btn-primary
