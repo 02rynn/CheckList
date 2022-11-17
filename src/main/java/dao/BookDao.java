@@ -87,10 +87,6 @@ public class BookDao {
 					"http://www.aladin.co.kr/ttb/api/ItemList.aspx"); /* URL */
 			urlBuilder.append("?" + URLEncoder.encode("ttbkey", "UTF-8")
 					+ "=ttbzxzx050501758001"); 
-<<<<<<< HEAD
-
-=======
->>>>>>> 59523c31d9a0e7be5c767b7134d22e20c944b8a2
 			urlBuilder.append("&" + URLEncoder.encode("QueryType", "UTF-8") + "="
 					+ URLEncoder.encode("BlogBest", "UTF-8")); 
 			urlBuilder.append("&" + URLEncoder.encode("MaxResults", "UTF-8") + "="
