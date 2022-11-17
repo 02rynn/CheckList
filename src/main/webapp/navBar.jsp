@@ -98,9 +98,13 @@
 		}else{
 		
 		%>
-		<div style="margin: 20px;">
-			<a href="">마이 페이지</a>
+			<div style="margin: 20px;">
+			<a href="cart.jsp?id=user">장바구니</a>
 		</div>
+		<div style="margin: 20px;">
+			<a href="myPage.jsp?id=user">마이 페이지</a>
+		</div>
+		
 		<div id="logoutBtn" style="margin: 20px;">
 			<a href="logOut_proc.jsp">로그아웃</a>
 		</div>

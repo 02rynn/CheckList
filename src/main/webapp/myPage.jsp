@@ -247,7 +247,7 @@ body .designSettingElement.button {
 	<%@ include file="navBar.jsp"%>
 
 
-
+	<form name="personDetailForm" id="personDetailForm" action="updateCustomerInfo_proc.jsp" method="get">
 	<div id="myPage" class="myPage wrapper">
 		<div class="column-wrapper two-column">
 			<div class="infoList field">
@@ -299,25 +299,22 @@ body .designSettingElement.button {
 
 
 			</div>
+
 			<div class="memberInfo field">
 				<div class="header designSettingElement text-title">
 					<span class="title">회원 정보</span>
 				</div>
+				
+			
+			
 				<div class="content designSettingElement text-body">
-					<div class="function logout">
-						<form action="/_shop/customer/logout" method="POST">
-							<a class="text designSettingElement text-assi"
-								onclick="this.parentNode.submit()">로그아웃</a> <input type="hidden"
-								name="memberNo" value="95268"> <input type="hidden"
-								name="customerNo" value="10315853">
-						</form>
-					</div>
+
 
 					<%
 					
 					DataDao dao = new DataDao();
 					Customer cus = new Customer();
-					cus = dao.selectCustomerInfoInMypage("asd");
+					cus = dao.selectCustomerInfoInMypage((String)user);
 // 					out.println(cus.getId());
 // 					out.println(cus.getEmail());
 // 					out.println(cus.getCustomer_name());
@@ -327,25 +324,25 @@ body .designSettingElement.button {
 
 					%>
 
+
 					<div class="row">
 						<label for="customerId" class="title">아이디</label> <input
-							type="text" id="customerId" class="designSettingElement shape"
+							type="text" name="customerId" class="designSettingElement shape"
 							readonly value="<%=cus.getId()%>">
-					
+
 					</div>
-					
+
 					<div class="row">
 						<label for="customerId" class="title">비밀번호</label> <input
-							type="text" id="customerId" class="designSettingElement shape"
-							readonly value="<%=cus.getPassword()%>">
-					
+							type="text" name="customerPw" class="designSettingElement shape"
+							 value="<%=cus.getPassword()%>">
+
 					</div>
 
 					<div class="row">
 						<label for="customerEmail" class="title">이메일</label> <input
-							type="email" id="customerEmail"
-							class="designSettingElement shape"
-							value="<%=cus.getEmail()%>">
+							type="email" name="customerEmail"
+							class="designSettingElement shape" value="<%=cus.getEmail()%>">
 					</div>
 
 
@@ -353,7 +350,7 @@ body .designSettingElement.button {
 
 
 
-						<span class="title">이름</span> <input id="customerName" type="text"
+						<span class="title">이름</span> <input name="customerName" type="text"
 							class="designSettingElement shape" readonly
 							value="<%=cus.getCustomer_name()%>">
 
@@ -366,10 +363,9 @@ body .designSettingElement.button {
 
 
 						<label for="customerPhone1" class="title">휴대폰 번호</label> <input
-							type="tel" id="customerPhone1"
+							type="tel" name="customerPhone1"
 							class="designSettingElement shape phoneNumber js-inputOnlyNumber"
-							maxlength="11"
-							value="<%=cus.getPhone_num()%>">
+							maxlength="11" value="<%=cus.getPhone_num()%>">
 
 
 
@@ -383,63 +379,70 @@ body .designSettingElement.button {
 
 
 
-					<label class="title">주소</label> <input type="text" id="post2"
-						class="designSettingElement shape addressInfo" readonly="readonly"
+					<label class="title">주소</label> <input type="text" name="post2"
+						class="designSettingElement shape addressInfo"
 						value="<%=cus.getAddress()%>">
 
 
 				</div>
+				
+		
+				
+				
 
 				<br />
 
 
 				<div class="function">
 
-<!-- 					<a href="/changePassword" -->
-<!-- 						class="text designSettingElement text-assi">비밀번호 변경하기</a>  -->
-					
-							<a href="/withdrawal" class="text designSettingElement text-assi">탈퇴하기</a>
+					<!-- 					<a href="/changePassword" -->
+					<!-- 						class="text designSettingElement text-assi">비밀번호 변경하기</a>  -->
+
+					<a id=deleteBtn href="deleteCustomer_proc.jsp"
+						class="text designSettingElement text-assi">탈퇴하기</a>
 
 
 				</div>
-				<br />
-				
-					<input type="submit" id="updateBtn" class="designSettingElement button"
-						onclick="location.href='updateCustomerInfo_proc.jsp?id=asd'" value="수정"/>
-						
-			
-				<input type="hidden" name="member_name_cert_flag"
-					id="member_name_cert_flag" val="N" /> <input type="hidden"
-					name="customerDi" id="customerDi" /> <input type="hidden"
-					name="customerCi" id="customerCi" />
+				<br /> <input type="submit" id="updateBtn"
+					class="designSettingElement button"
+					
+					value="수정" /> 
 			</div>
 		</div>
 	</div>
 	</div>
-
+	</form>
 
 	<script
-	
-	document.getElementById('updateBtn').addEventListener('click',(e)=>{
+		document.getElementById('deleteBtn').addEventListener('click',(e)=>{
 e.preventDefault();
-let form = document.personDetailForm;
-if(form.personName.value == ""){ //이름이없는경우
-alert('이름은 필수입니다.');
-form.personName.focus();
-return false;
-}
-
-else { //이름이 있는 경우
-if(confirm('수정하시겠습니까?')){
-form.action = "updatePerson_proc.jsp";
+let form = document.getElementById('personDetailForm');
+if(confirm('삭제하시겠습니까?')){
+form.action = "deleteCustomer_proc.jsp";
 form.submit();
 }
-}
+
 });
+	document.getElementById('updateBtn').addEventListener('click',(e)=>{
+		e.preventDefault();
+		let form = document.getElementById('personDetailForm');
+		
+		form.action = "updateCustomerInfo_proc.jsp";
+		form.submit();
+		
+
+		});
+	
+
+
+
 	
 	
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-		crossorigin="anonymous"></script>
+		crossorigin="anonymous">
+		
+		console.log(form);
+		</script>
 </body>
 </html>

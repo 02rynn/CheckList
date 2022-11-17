@@ -67,7 +67,7 @@ public class cartDao {
 			cartInfo = new cart();
 			if(rs.next()) {
 				
-				cartInfo.setID(rs.getString("id"));
+				cartInfo.setId(rs.getString("id"));
 			}
 			
 		}catch (Exception e) {
@@ -78,5 +78,39 @@ public class cartDao {
 		
 		return cartInfo;
 	}
+	
+	
+	
+	
+	public int insertBookInCart(cart ct) { // 장바구니 담기 
+
+		   
+		String sql = "insert into shop_bskt values(?,?,1)";
+				
+		int result = 0;
+		
+
+		try {
+			connect();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, ct.getId());
+			psmt.setString(2, ct.getIsbn());
+			
+			
+			result = psmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			disConnect();
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 }

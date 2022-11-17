@@ -221,8 +221,10 @@ div {
 			<div class="header designSettingElement text-titleWithFontSize">
 				<span class="title">장바구니<span id="cartSize"></span></span>
 			</div>
-			<% DataDao dao=new DataDao(); 
-			List<Book> bk = dao.selectBuyBookInfo("asd");
+			<% 
+			out.print(user);
+			DataDao dao=new DataDao(); 
+			List<Book> bk = dao.selectBuyBookInfo((String)user);
 
 
                                             //out.print(bk);
