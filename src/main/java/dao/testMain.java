@@ -77,9 +77,20 @@ public class testMain {
 
 		public static void main(String[] args) {
 			
-			BookDao dao = new BookDao();
+
+	
 			
-			System.out.println(dao.getAladinItemForDetail("K112830296").get("isbn"));
+			
+			
+			
+			
+			
+			bBsDAO dao = new bBsDAO();
+			
+			
+			System.out.println(dao.insert_review_contents("첵제먹", 3, "꿀잼", "진짜 완전 재밌었어요 감사합니다", "dlarbwls","1234"));
+			
+			
 			
 			
 			

@@ -16,6 +16,10 @@
 </head>
 
 <body>
+<%@ include file="navBar.jsp"%>
+
+
+
 <%
 
 String nail = request.getParameter("isbn");
@@ -23,7 +27,7 @@ BookDao dao = new BookDao();
 
 JSONObject item = dao.getAladinItemForDetail(nail);
 
-
+out.print(user);
 
 
 

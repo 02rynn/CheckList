@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="EUC-KR"%>
     <%@ page import = "dao.bBsDAO" %>
        <%@ page import = "dao.Bbs" %>
@@ -8,6 +8,7 @@
 	request.setCharacterEncoding("utf-8");
    %>
    
+   <%@ include file = "navBar.jsp" %>
    
 <%
 request.setCharacterEncoding("UTF-8");
@@ -24,13 +25,14 @@ String title =request.getParameter("select");
 String rvTitle =request.getParameter("review_title");
 String rvContents =request.getParameter("review_contents");
 int rvRate =Integer.parseInt (request.getParameter("rvrate"));
+String isbn =request.getParameter("isbn");
 //String isbn = request.getParameter("book_num");
 
 
-Bbs bbs = new Bbs();
-bBsDAO dao = new bBsDAO();
+Bbs bbs = new Bbs(); 
+bBsDAO dao = new bBsDAO(); 
 
-int result = dao.insert_review_contents(title, rvRate, rvTitle,  rvContents);
+int result = dao.insert_review_contents(title, rvRate, rvTitle,  rvContents, (String)user, isbn);
 
 //bbs.setReview_title(title);
 // bbs.setReview_title(rvTitle);

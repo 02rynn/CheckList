@@ -21,9 +21,7 @@ public class BookDao {
 			StringBuilder urlBuilder = new StringBuilder(
 					"http://www.aladin.co.kr/ttb/api/ItemList.aspx"); /* URL */
 			urlBuilder.append("?" + URLEncoder.encode("ttbkey", "UTF-8")
-					+ "=ttbzxzx050501758001"); /*
-																								 */
-		
+					+ "=ttbzxzx050501758001"); 
 			urlBuilder.append("&" + URLEncoder.encode("QueryType", "UTF-8") + "="
 					+ URLEncoder.encode( type, "UTF-8")); /* 한 페이지 결과 수 */
 			urlBuilder.append("&" + URLEncoder.encode("MaxResults", "UTF-8") + "="
@@ -88,12 +86,11 @@ public class BookDao {
 			StringBuilder urlBuilder = new StringBuilder(
 					"http://www.aladin.co.kr/ttb/api/ItemList.aspx"); /* URL */
 			urlBuilder.append("?" + URLEncoder.encode("ttbkey", "UTF-8")
-					+ "=ttbzxzx050501758001"); /*
-	
+					+ "=ttbzxzx050501758001"); 
 			urlBuilder.append("&" + URLEncoder.encode("QueryType", "UTF-8") + "="
-					+ URLEncoder.encode("BlogBest", "UTF-8")); /* 한 페이지 결과 수 */
+					+ URLEncoder.encode("BlogBest", "UTF-8")); 
 			urlBuilder.append("&" + URLEncoder.encode("MaxResults", "UTF-8") + "="
-					+ URLEncoder.encode("20", "UTF-8")); /* 한글 국가명 */
+				+ URLEncoder.encode("20", "UTF-8")); 
 			urlBuilder.append("&" + URLEncoder.encode("start", "UTF-8") + "="
 					+ URLEncoder.encode("1", "UTF-8")); /* ISO 2자리코드 */
 			urlBuilder.append("&" + URLEncoder.encode("SearchTarget", "UTF-8") + "="
@@ -135,10 +132,12 @@ public class BookDao {
 			for(int i = 0 ; i < jsonapiObj.size();i++) {
 				JSONObject jsonO2ject = (JSONObject)jsonapiObj.get(i);
 				
-				Book asd1 = new Book();
+				Book  asd1 = new Book();
 				asd1.setThumbnail((String)jsonO2ject.get("cover"));
 				asd1.setTitle((String)jsonO2ject.get("title"));
 				asd1.setContent((String)jsonO2ject.get("description"));
+				asd1.setIsbn((String)jsonO2ject.get("isbn"));
+				asd1.setPrice(Integer.parseInt(jsonO2ject.get("priceStandard").toString()));
 				arr.add(asd1);
 			}
 

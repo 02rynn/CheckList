@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="EUC-KR" %>
     <%@ page import = "dao.bBsDAO" %>
     <%@ page import = "dao.Review" %>
     <%@ page import="java.util.*"%>
@@ -11,52 +11,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">checkList</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Dropdown link
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-        <div style="margin: 35px;">
-            <a href="">My Page</a>
-        </div>
-        <div style="margin: 35px;">
-            <a href="">LOGIN</a>
-        </div>
-    </div>
-</nav>
+
+
+<%@ include file ="navBar.jsp" %>
 
 
     <div class="container">
         <div class="row">
                     
      <%
+     
+    
  	 bBsDAO dao = new bBsDAO();
  	 List<Review> rvList = dao.select_bbs_contents(); //데이터베이스에서 받아온 결과를 리스트에 넣을거아니냐고...
       %>
@@ -65,7 +30,7 @@
                 <thead> <!--테이블의 제목 -->
                     <tr>
                         <th style="background-color: #eeeeee; text-align: center;">번호</th>
-                        <th style="background-color: #eeeeee; text-align: center;">상품이름</th>
+                       <th style="background-color: #eeeeee; text-align: center;">상품이름</th>
                         <th style="background-color: #eeeeee; text-align: center;">제목</th>
                         <th style="background-color: #eeeeee; text-align: center;">글쓴이</th>
                         <th style="background-color: #eeeeee; text-align: center;">등록일</th>
@@ -84,8 +49,8 @@
       			<tr>
       			
       			 <td><%= r.getReview_num() %></td>
-      			  <td><%= r.getTitle() %></td>
-      			   <td><%= r.getReview_title() %></td>
+      			<td><a href="watchReview.jsp"><%= r.getTitle() %></a></td> <!-- 상세페이지로 가도록  -->
+      			   <td><a href="watchReview.jsp"><%= r.getReview_title() %></a></td>
       			    <td><%= r.getId() %></td>
       			     <td><%= r.getReveiw_date() %></td>
       			      <td><%
@@ -109,16 +74,11 @@
       	}
       %>
      
-      
-
-                  
-                  
-                  
-                  
+ 
                   
                 </tbody>
             </table>
-             <a href="write.jsp" class="btn btn-primary" style="width: 100px; position: relative; 
+             <a href="Write.jsp" class="btn btn-primary" style="width: 100px; position: relative; 
             left: 90%;">글쓰기 </a>
            
         </div>

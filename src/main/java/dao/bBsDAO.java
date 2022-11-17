@@ -71,7 +71,7 @@ public class bBsDAO {// 정보를 빼올 수 있도록 해주는 클래스
 				rv.setReview_rate(rs.getInt("review_rate"));
 				rv.setReview_title(rs.getString("review_title"));
 				rv.setTitle(rs.getString("title"));
-				
+
 				rvList.add(rv); //위에서 저장한 값들을 리스트에 담아서
 			}
 
@@ -84,9 +84,9 @@ public class bBsDAO {// 정보를 빼올 수 있도록 해주는 클래스
 			return rvList;
 	}
 	
-	public int insert_review_contents(String title ,  int review_rate, String review_title,  //완성본임 건들지마셈
-			String review_contents) {
-		String sql = "INSERT INTO review VALUES('asd',?,?,SYSDATE,?,?,(SELECT NVL(MAX(review_num),0)+1 FROM REVIEW))";
+	public int insert_review_contents(
+			String title , int review_rate, String review_title, String review_contents, String user, String isbn) {
+		String sql = "INSERT INTO review VALUES('"+user+"',?,?,SYSDATE,?,?,(SELECT NVL(MAX(review_num),0)+1 FROM REVIEW),'"+isbn+"')";
 		// 사용자들이 후기를 쓰면 그걸 데이터베이스에 INSERT하기 위한 함수
 		int result = 0;
 	
@@ -134,6 +134,7 @@ public class bBsDAO {// 정보를 빼올 수 있도록 해주는 클래스
 				Book ai = new Book();
 
 				ai.title = rs.getString("Title");
+				ai.isbn = rs.getString("isbn");
 
 				bookList.add(ai);
 			}
@@ -146,5 +147,84 @@ public class bBsDAO {// 정보를 빼올 수 있도록 해주는 클래스
 
 		return bookList;
 	}
+	
+	public List<Review> select_bbs_contents_by_title(String title) {
+		String sql = "SELECT * FROM REVIEW WHERE title = ? order by review_num";
+		// 사용자들이 후기를 쓰면 그걸 게시판 형태로 보여주기 위한 함수
 
+		List<Review> rvList = null; //리뷰클래스를 갖는 리스트 
+		try {
+			connect();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1,title);
+			rs = psmt.executeQuery(); //sql문 결과 담겨잇음 
+			
+			rvList = new ArrayList<Review>();
+
+			while(rs.next()) {
+				Review rv = new Review();
+				rv.setId(rs.getString("id"));
+				rv.setReveiw_date(rs.getDate("review_date"));
+				rv.setReview_contents(rs.getString("review_contents"));
+				rv.setReview_num(rs.getInt("review_num"));
+				rv.setReview_rate(rs.getInt("review_rate"));
+				rv.setReview_title(rs.getString("review_title"));
+				rv.setTitle(rs.getString("title"));
+				
+				rvList.add(rv); //위에서 저장한 값들을 리스트에 담아서
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeConnect();
+		}
+
+			return rvList;
+	}
+	
+	
+	public int updateBbs(int review_num, String review_title, String review_contents, int review_rate) { //게시글의 글제목과 평점, 글 내용을 수정할 수 있는 기능 
+		String sql = " UPDATE  review SET review_rate =?, review_title=?, review_contents=? where review_num=?";
+				
+		int result = 0;
+		
+		try {
+			connect();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1,review_rate);
+			psmt.setString(2, review_title);
+			psmt.setString(3,review_contents);
+			psmt.setInt(1,review_num);
+			
+			 result = psmt.executeUpdate()	;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConnect();
+		}
+		return result;
+	}
+	
+	
+	public int deleteBbs(int review_num) {
+		String sql = " DELETE review "
+				+" WHERE id=? ";
+		int result = 0;
+		
+		try {
+			connect();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, review_num);
+			 result = psmt.executeUpdate()	;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			closeConnect();
+		}
+		return result;
+	}
+	
 }

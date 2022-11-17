@@ -1,6 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<%@ page import="dao.bBsDAO"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="dao.DataDao"%>
 <%@ page import="dao.Book"%>
 <%@ page import="java.util.*"%>
 <!DOCTYPE html>
@@ -12,99 +13,59 @@
 	rel="stylesheet"
 	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
 	crossorigin="anonymous">
-<title>ÈÄ±âÀÛ¼º ÆäÀÌÁö</title>
+<title>í›„ê¸°ì‘ì„± í˜ì´ì§€</title>
 </head>
 <body>
 
-	<%
-// 	String user = session.getAttribute("userId").toString();
-
-	bBsDAO dao = new bBsDAO();
-	
-
-	String name = "asd";
-	List<Book> buyItems = dao.selectBuyBookList(name);
-	
-	//·Î±×ÀÎ ¾ÈµÇ¾îÀÕÀ¸¸é ·Î±×ÀÎ ÆäÀÌÁö·Î ÀÌµ¿
-	%>
 
 
-	<nav class="navbar navbar-expand-lg bg-light">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">checkList</a>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-				aria-controls="navbarNavDropdown" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNavDropdown">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
-					</li>
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" role="button"
-						data-bs-toggle="dropdown" aria-expanded="false"> Dropdown link
-					</a>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#">Action</a></li>
-							<li><a class="dropdown-item" href="#">Another action</a></li>
-							<li><a class="dropdown-item" href="#">Something else
-									here</a></li>
-							<li><a class="dropdown-item" href="#">Something else
-									here</a></li>
-							<li><a class="dropdown-item" href="#">Something else
-									here</a></li>
-							<li><a class="dropdown-item" href="#">Something else
-									here</a></li>
-							<li><a class="dropdown-item" href="#">Something else
-									here</a></li>
-							<li><a class="dropdown-item" href="#">Something else
-									here</a></li>
-							<li><a class="dropdown-item" href="#">Something else
-									here</a></li>
-							<li><a class="dropdown-item" href="#">Something else
-									here</a></li>
-						</ul></li>
-				</ul>
-			</div>
-			<div style="margin: 35px;">
-				<a href="">My Page</a>
-			</div>
-			<div style="margin: 35px;">
-				<a href="">LOGIN</a>
-			</div>
-		</div>
-	</nav>
+
+
+<%@ include file="navBar.jsp"%>
+<% 
+
+DataDao dao = new DataDao();
+
+
+List<Book> buyItems = dao.selectBuyBookList(user.toString());
+
+
+
+//ë¡œê·¸ì¸ ì•ˆë˜ì–´ì‡ìœ¼ë©´ ë¡œê·¸ì¸ í˜ì´ì§€ë¡œ ì´ë™ 
+%>
 
 
 	<div class="container">
 		<div class="row">
-			<form method="get" action="writeAction2.jsp">
-				<!--actionÆäÀÌÁö·Î º¸³¾¼ö ÀÖµµ·Ï -->
-				<!--post ¸Ş¼Òµå·Î ¼û±â¸é¼­ Àü¼Û, ¾×¼ÇÆäÀÌÁö¿¡¼­ Ã³¸®ÇÒ ¼ö ÀÖµµ·Ï Àü¼ÛÇÔ  -->
+			<form id="writeForm" method="get" accept-charset="utf-8"
+				action="writeAction2.jsp">
+				<!--actioní˜ì´ì§€ë¡œ ë³´ë‚¼ìˆ˜ ìˆë„ë¡ -->
+				<!--post ë©”ì†Œë“œë¡œ ìˆ¨ê¸°ë©´ì„œ ì „ì†¡, ì•¡ì…˜í˜ì´ì§€ì—ì„œ ì²˜ë¦¬í•  ìˆ˜ ìˆë„ë¡ ì „ì†¡í•¨  -->
 
 				<table class="table table-striped"
 					style="text-align: center; border: 1px solid #dddddd; margin-top: 20px; width: 100%;">
 					<thead>
-						<!--Å×ÀÌºíÀÇ Á¦¸ñ -->
+						<!--í…Œì´ë¸”ì˜ ì œëª© -->
 						<tr>
-							<th style="background-color: #eeeeee; text-align: center;">°Ô½ÃÆÇ
-								±Û¾²±â ¾ç½Ä</th>
+							<th style="background-color: #eeeeee; text-align: center;">ê²Œì‹œíŒ
+								ê¸€ì“°ê¸° ì–‘ì‹</th>
 						</tr>
 						<tr>
-							<th><span>»óÇ°¸ñ·Ï</span> 
-							<select name="select">
-										<%
-											for(Book bk : buyItems){
-												%>
-													<option id="option" value=<%=bk.getTitle() %>>	
-												<%=bk.getTitle() %>
-												</option>
-										<% 		
-											}
-										%>
-									
+							<th><span>ìƒí’ˆëª©ë¡</span> <select name="title">
+									<%			
+ 					for(Book bk : buyItems){
+ 						%>
+									<option value="<%=bk.getTitle() %>">
+
+										<%=bk.getTitle() %>
+									</option>
+
+
+									<%
+ 							}
+ 						%>
+
+
 
 							</select>
 							<th />
@@ -114,38 +75,43 @@
 					<tbody style="background-color: #eeeeee">
 						<tr>
 							<td><input type="text" class="form-control"
-								placeholder="±Û Á¦¸ñ" name="review_title" maxlength="50"></td>
+								placeholder="ê¸€ ì œëª©" name="review_title" maxlength="50"></td>
 						</tr>
 						<tr>
 							<td><textarea type="text" class="form-control"
-									placeholder="±Û ³»¿ë" name="review_contents" maxlength="2048"
+									placeholder="ê¸€ ë‚´ìš©" name="review_contents" maxlength="2048"
 									style="height: 350px;"></textarea></td>
 							<!---->
 						</tr>
 					</tbody>
 				</table>
 
-				<div class="bbs"
+				<div  class="bbs"
 					style="display: flex; align-items: center; justify-content: flex-end">
-					<input id="saveBtn" type="submit" class="btn btn-outline-primary" value="ÀúÀåÇÏ±â"
+					<div id="submit"><input id="" type="submit" class="btn btn-outline-primary" value="ì €ì¥í•˜ê¸°"
 						style="width: 100px;">
+					</div>
+					
 
 					<div class="customSelectDiv designSettingElement shape "
 						id="selectPostReviewRateDiv" style="margin-left: 10px;"
-						data-text="ÆòÁ¡ ÁÖ±â">
+						data-text="í‰ì  ì£¼ê¸°">
 
 
 
-						<select name="rvrate" class="btn btn-outline-primary"
+						<select id="rvrate" name="rvrate" class="btn btn-outline-primary"
 							onchange="require('common/common').customSelectBoxClickEvent(this)"
 							id="selectPostReviewRate">
-							<option value="0" selected="selected">ÆòÁ¡ ÁÖ±â</option>
-							<option value="5">¡Ú¡Ú¡Ú¡Ú¡Ú</option>
-							<option value="4">¡Ú¡Ú¡Ú¡Ú¡Ù</option>
-							<option value="3">¡Ú¡Ú¡Ú¡Ù¡Ù</option>
-							<option value="2">¡Ú¡Ú¡Ù¡Ù¡Ù</option>
-							<option value="1">¡Ú¡Ù¡Ù¡Ù¡Ù</option>
+							<option value="0" selected="selected">í‰ì  ì£¼ê¸°</option>
+							<option value="5">â˜…â˜…â˜…â˜…â˜…</option>
+							<option value="4">â˜…â˜…â˜…â˜…â˜†</option>
+							<option value="3">â˜…â˜…â˜…â˜†â˜†</option>
+							<option value="2">â˜…â˜…â˜†â˜†â˜†</option>
+							<option value="1">â˜…â˜†â˜†â˜†â˜†</option>
 						</select>
+
+
+
 
 					</div>
 				</div>
@@ -157,36 +123,20 @@
 	<div class="btn-wrapper save-post-wrapper field">
 		<button id="goListReviewInBoardProduct" type="button"
 			class="btn btn-outline-dark" style="margin-left: 40px;"
-			onclick="history.back()">¸ñ·ÏÀ¸·Î °¡±â</button>
-	</div>
+			onclick="history.back()">ëª©ë¡ìœ¼ë¡œ ê°€ê¸°</button>
 	</div>
 
-<script>
-/* document.getElementById("updateBtn").addEventListener("click", (e) => {
-    e.preventDefault();
-    const form = document.personDetailForm;
-    if (form.personName.value == "") { // ÀÌ¸§ÀÌ ¾ø´Â °æ¿ì
-      alert("ÀÌ¸§Àº ÇÊ¼öÀÔ´Ï´Ù.");
-      form.personName.focus();
-      return false;
-    } else { // ÀÌ¸§ÀÌ ÀÖ´Â °æ¿ì
-      if (confirm("¼öÁ¤ÇÏ½Ã°Ú½À´Ï±î?")) {
-        form.action = "updatePerson_proc.jsp";
-        form.submit();
-      }
-    }
-  }); */
+	<script>
+	const writeForm = document.getElementById("writeForm");
+	const submit = document.getElementById("submit");
+	
+	
+		submit.addEventListener("click", (e) => { 
+		e.preventDefault();
+        writeForm.action = "Write2.jsp";
+        writeForm.submit();
   
-  
-  document.getElementById("saveBtn").addEventListener("click", (e) => {
-	    e.preventDefault();
-	    
-	    //Á¤º¸¸¦ writeAction2·Î º¸³»µµ·Ï
-	    location.href = "writeAction2.jsp"
-	    		
-	    form.action = "writeAction2.jsp";
-        form.submit();
-  }
+      });
 
 
 </script>
