@@ -181,10 +181,7 @@ public class bBsDAO {// 정보를 빼올 수 있도록 해주는 클래스
 		return rvList;
 	}
 
-	public int updateBbs(int review_num, String review_title, String review_contents, int review_rate) { // 게시글의 글제목과
-																											// 평점, 글 내용을
-																											// 수정할 수 있는
-																											// 기능
+	public int updateBbs(String review_title, String review_contents, int review_num, int review_rate) {
 		String sql = " UPDATE  review SET review_rate =?, review_title=?, review_contents=? where review_num=?";
 
 		int result = 0;
@@ -195,7 +192,7 @@ public class bBsDAO {// 정보를 빼올 수 있도록 해주는 클래스
 			psmt.setInt(1, review_rate);
 			psmt.setString(2, review_title);
 			psmt.setString(3, review_contents);
-			psmt.setInt(1, review_num);
+			psmt.setInt(4, review_num);
 
 			result = psmt.executeUpdate();
 		} catch (Exception e) {
@@ -224,5 +221,6 @@ public class bBsDAO {// 정보를 빼올 수 있도록 해주는 클래스
 		}
 		return result;
 	}
-
+	
+	
 }

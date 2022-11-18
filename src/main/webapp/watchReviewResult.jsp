@@ -26,30 +26,25 @@
 	
 		<% // String user=session.getAttribute("userId").toString(); bBsDAO dao=new bBsDAO(); List<Book>
 		bBsDAO dao = new bBsDAO();
-		String writer = request.getParameter("writer");
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		int rate =Integer.parseInt(request.getParameter("rate"));
-		int rvNum = Integer.parseInt(request.getParameter("num"));
+		String writer = request.getParameter("user");
+		String title = request.getParameter("bbsTitle_modi");
+		String content = request.getParameter("bbsContent_modi");
+		int rate =Integer.parseInt(request.getParameter("rvrate"));
+		int rvNum = Integer.parseInt(request.getParameter("modiBtn"));
 	
+		out.print(title);
+		System.out.println(title);
 		List<Book> buyItems = dao.selectBuyBookList((String)user);
 										
-        // 현재 세션이 존재하는 사람은 userID, 아닌 사람은 null값이 담김
-    	
+       
+		 List<Review> rvList = dao.select_bbs_contents();//데이터베이스에잇는 정ㅂ3ㅗ가지고 오기 
 	%>
 
-       <% //게시글에서 제목 누르면 여기로 이동해서 
-       	/*
-       	창에 쓰여있던 글번호와  제목을 불러옴 (글씨 밝기 밝게)
-       	본인이면 -> 수정과 삭제버튼도 밑에 추가
-       	버튼 누르면 각각 update, delete 되도록
-       	updateAction 만들어야 하
-       	*/
-       	
-       %>
+     
        
      <%
 
+     //리뷰의 리뷰넘버의! 제목, 내용 , 별점을 가져와야함. 
      
      
 	Review r = new Review();
@@ -59,7 +54,7 @@
 <% if ((user.toString()).equals(writer)) {%>  
 <div class="container">
 		<div class="row">
-		<form method="get" action="update_review_proc.jsp?bbsID=<%= user.toString() %>">
+		<form method="post" action="update_review_proc.jsp?bbsID=<%= user.toString() %>">
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd;">
 				<thead>
 					<tr>
@@ -73,7 +68,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td><textarea class="form-control" placeholder="글 내용" name="bbsContent_modi" maxlength="2048" style="height: 350px;" value="<%= content %>>"><%=  content %></textarea></td>
+						<td><textarea class="form-control" placeholder="글 내용" name="bbsContent_modi" maxlength="2048" style="height: 350px;" value="<%= content %>>"><%= content%></textarea></td>
 					</tr>
 				</tbody>
 			</table>
@@ -138,15 +133,15 @@
 	<script>
 
 	
-	 		document.getElementById("modiBtn").addEventListener("click", (e) => {
-			e.preventDefault();
+// 	 		document.getElementById("modiBtn").addEventListener("click", (e) => {
+// 			e.preventDefault();
 
-									//정보를 writeAction2로 보내도록
-			location.href = "update_review_proc.jsp"
+// 									//정보를 writeAction2로 보내도록
+// 			location.href = "watchReview.jsp";
 
-			form.action = "update_review_proc.jsp";
-			form.submit();
-								}  
+// 			form.action = "update_review_proc.jsp"; //form을 보내는 곣
+// 			form.submit();
+// 								}  
 				
 	
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

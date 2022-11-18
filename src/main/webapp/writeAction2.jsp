@@ -13,7 +13,7 @@
 <%
 request.setCharacterEncoding("UTF-8");
 response.setContentType("text/html; charset=UTF-8");
-request.setCharacterEncoding("utf-8");
+request.setCharacterEncoding("UTF-8");
 //상품이름, 글제목, 글내용 , isbn
 //글번호, 상품이름, 글제목, 글쓴이, 등록일, 평점, isbn  받아오기 
 PrintWriter script = response.getWriter();
