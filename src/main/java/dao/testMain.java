@@ -78,16 +78,18 @@ public class testMain {
 		public static void main(String[] args) {
 			
 
-	CustomerDao dao = new CustomerDao();
+			DataDao asd = new DataDao();
+			
+			List<Book> aa = asd.selectBuyBookInfo("bkw");
+			System.out.println(aa.size());
+			
 	
 	
-	System.out.println(dao.selectCustomerInfo("asd").getId());
-	System.out.println(dao.selectCustomerInfo("asd").getPassword());
+
+//			DataDao dao=new DataDao(); 
 			
-			DataDao dao=new DataDao(); 
-			
-			List<Book> bk = dao.selectBuyBookInfo("bkw");
-			System.out.println(bk.size());
+	//		List<Book> bk = dao.selectBuyBookInfo("bkw");
+		//	System.out.println(bk.size());
 			
 			
 

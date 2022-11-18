@@ -13,25 +13,27 @@
 <%
 
 request.setCharacterEncoding("utf-8");
+
 String isbn= request.getParameter("isbn");
-int price = Integer.parseInt(request.getParameter("price"));
+// int price = Integer.parseInt(request.getParameter("price"));
 
 
 // out.print(user.toString());
 cartDao dao = new cartDao();
 cart ct = new cart();
-ct.setId(user.toString());
+
+ct.setId((String)user);
 ct.setIsbn(isbn);
-ct.setPrice(price);
+
+// ct.setPrice(price);
 
 out.print(ct.getId());
 out.print(isbn);
-out.print(price);
-
+// out.print(price);
 int result = dao.insertBookInCart(ct);
 
 
-// response.sendRedirect("cart.jsp?id=user");
+response.sendRedirect("cart.jsp?id="+(String)user);
 %>
 
 </body>

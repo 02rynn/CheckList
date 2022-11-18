@@ -49,71 +49,43 @@ public class cartDao {
 		}
 	}
 	
-	public cart selectBuyBookInfo(String id){
-		String sql = " select * "
-				   + " from book "
-				   + " where isbn = "
-				   + " (select tsbn from shop_bskt where id = ? ) ";
-		cart cartInfo = null;
-		
-		try {
-			connect();
-			
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, id);
-			
-			rs = psmt.executeQuery();
-			
-			cartInfo = new cart();
-			if(rs.next()) {
-				
-				cartInfo.setId(rs.getString("id"));
-			}
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			disConnect();
-		}
-		
-		return cartInfo;
-	}
+//	public cart selectBuyBookInfo(String id){
+//		String sql = " select * "
+//				   + " from book "
+//				   + " where isbn = "
+//				   + " (select tsbn from shop_bskt where id = ? ) ";
+//		cart cartInfo = null;
+//		
+//		try {
+//			connect();
+//			
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setString(1, id);
+//			
+//			rs = psmt.executeQuery();
+//			
+//			cartInfo = new cart();
+//			if(rs.next()) {
+//				
+//				cartInfo.setId(rs.getString("id"));
+//			}
+//			
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			disConnect();
+//		}
+//		
+//		return cartInfo;
+//	}
 	
 	
 	
 //	기존 장바구니 인서트 하는 메소드 지우면 안됨 
-//	public int insertBookInCart(cart ct) { // 장바구니 담기 
-//
-//		   
-//		String sql = "insert into shop_bskt values(?,?,1)";
-//				
-//		int result = 0;
-//		
-//
-//		try {
-//			connect();
-//			psmt = conn.prepareStatement(sql);
-//			psmt.setString(1, ct.getId());
-//			psmt.setString(2, ct.getIsbn());
-//			
-//			
-//			result = psmt.executeUpdate();
-//		
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}finally {
-//			disConnect();
-//		}
-//		return result;
-//	}
-	
-	
-	//테이블 customer_no 만들고 다시 insert만든거 지우면 안됨 
 	public int insertBookInCart(cart ct) { // 장바구니 담기 
 
 		   
-		String sql = " INSERT INTO shop_bskt "
-				   + " VALUES ((SELECT NVL(MAX(customer_no),0)+1 FROM shop_bskt), ? , ? , ? , 1 ) ";
+		String sql = " insert into shop_bskt values(?,?,1) ";
 				
 		int result = 0;
 		
@@ -123,7 +95,6 @@ public class cartDao {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, ct.getId());
 			psmt.setString(2, ct.getIsbn());
-			psmt.setInt(3, ct.getPrice());
 			
 			
 			result = psmt.executeUpdate();
@@ -135,6 +106,35 @@ public class cartDao {
 		}
 		return result;
 	}
+	
+	
+	//테이블 customer_no 만들고 다시 insert만든거 지우면 안됨 
+//	public int insertBookInCart(cart ct) { // 장바구니 담기 
+//
+//		   
+//		String sql = " INSERT INTO shop_bskt "
+//				   + " VALUES ((SELECT NVL(MAX(customer_no),0)+1 FROM shop_bskt), ? , ? , ? , 1 ) ";
+//				
+//		int result = 0;
+//		
+//
+//		try {
+//			connect();
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setString(1, ct.getId());
+//			psmt.setString(2, ct.getIsbn());
+//			psmt.setInt(3, ct.getPrice());
+//			
+//			
+//			result = psmt.executeUpdate();
+//		
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}finally {
+//			disConnect();
+//		}
+//		return result;
+//	}
 	
 	
 	

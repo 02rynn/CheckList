@@ -293,8 +293,8 @@ public class DataDao{
 
 	
 	public List<Book> selectBuyBookInfo(String id){
-		String sql = " select * from shop_bskt s , book b  where id = ?  and s.isbn = b.isbn "
-					+ "order by customer_no ";
+		String sql = " select b.thumbnail, b.title, b.price ,b.isbn from shop_bskt s , book b  where id = ?  and s.isbn = b.isbn ";
+//					+ "order by customer_no ";
 		List<Book> bk = null;
 		
 		try {
@@ -553,28 +553,7 @@ public class DataDao{
 //		}
 //		return result;
 //	}
-	public int deleteDataInCart(String id) {
-		String sql = " delete from shop_bskt "
-				   + " where id = ? ";
-		int result = 0; 
-		try {
-			connect();
-			
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, id);
-			
-			
-			result = psmt.executeUpdate();
-			
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			closeConnect();
-		}
-		return result;
-	}
+
 	public int insertBookInPurchase() { //구매 테이블에 테이터 넣기 지우지마세요
 
 		   
@@ -599,16 +578,15 @@ public class DataDao{
 		return result;
 	}
 	
-	public int deleteDataInCart(String id, String isbn, int customer_no) {
-	String sql = "delete from shop_bskt "
-		    	+ " where id = ? and isbn = ? and customer_no= ? ";
+	public int deleteDataInCart(String id, String isbn) {
+	String sql = "delete from shop_bskt where isbn = ? and rownum =1 and id = ?";
 	int result = 0; 
 	try {
 		connect();
 		
 		psmt = conn.prepareStatement(sql);
-		psmt.setString(1, id);
-		psmt.setString(2, isbn);
+		psmt.setString(1, isbn);
+		psmt.setString(2, id);
 	
 		
 		

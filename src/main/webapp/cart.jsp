@@ -225,12 +225,12 @@ div {
 			<% 
 // 			out.print(user);
 			DataDao dao=new DataDao(); 
-			List<Book> bk = dao.selectBuyBookInfo(user.toString());
+			String asd = request.getParameter("id");
+			
+			List<Book> bk = dao.selectBuyBookInfo(asd);
+			
 		
-
-
-                                            //out.print(bk);
-                                            //out.println(bk.getPrice());
+                                       
                                             %>
 			<table class="table">
 				<thead>
@@ -247,10 +247,13 @@ div {
 
 
 
-					<% //아이디랑 isbn 이 같이 파라미터로 넘어와서 // info에 id를 넣어서 그걸 가져오면 되는데 // 지금 info에는 책 정보밖에 없음
-                                        // id는 따로 만들어서 넣어야? if (bk !=null && bk.size()> 0) {
-                                        for (Book info : bk) {
-
+<!-- 					//아이디랑 isbn 이 같이 파라미터로 넘어와서 // info에 id를 넣어서 그걸 가져오면 되는데 // 지금 info에는 책 정보밖에 없음 -->
+<!--                                         // id는 따로 만들어서 넣어야? if (bk !=null && bk.size()> 0) { -->
+                                      <% 
+                                        	
+                                      int sum =0;
+                                        	for (Book info : bk) {
+											 sum+=info.getPrice();
                                         %>
 					
 						<tr>
@@ -301,8 +304,8 @@ div {
                                                 <div id="cartInfoDiv"
 							class="info designSettingElement shape">
                                                     <div class="price">
-                                                      <div
-									class="title">상품 합계</div>
+<!--                                                       <div -->
+<!-- 									class="title">상품 합계</div> -->
                                                       
 									
 
@@ -330,7 +333,7 @@ div {
                                                     <div
 								class="title bold">합계</div>
                                                     <div
-								id="cartTotalDiscountAppliedPrice" class="content bold"></div>
+								id="cartTotalDiscountAppliedPrice" class="content bold"><%=sum %>원</div>
                                                 </div>
                                             </div>
 
