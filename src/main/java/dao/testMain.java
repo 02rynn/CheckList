@@ -78,7 +78,11 @@ public class testMain {
 		public static void main(String[] args) {
 			
 
+	CustomerDao dao = new CustomerDao();
 	
+	
+	System.out.println(dao.selectCustomerInfo("asd").getId());
+	System.out.println(dao.selectCustomerInfo("asd").getPassword());
 			
 			DataDao dao=new DataDao(); 
 			
@@ -86,8 +90,7 @@ public class testMain {
 			System.out.println(bk.size());
 			
 			
-			
-		
+
 //			System.out.println(dao.getAladinItemList("ItemNewAll").size());
 //			System.out.println(dao.getAladinItemList_ItemEditorChoice().size());
 			
