@@ -62,7 +62,7 @@
 		<div class="collapse navbar-collapse" id="navbarNavDropdown">
 			<ul class="navbar-nav">
 				<li class="nav-item"><a class="nav-link" href="bbs.jsp">review</a></li>
-				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="category_show.jsp" role="button"
+				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="Category_show.jsp" role="button"
 						data-bs-toggle="dropdown" aria-expanded="false"> Category </a>
 					<ul class="dropdown-menu">
 						<li><a class="dropdown-item" href="Category_show.jsp?category=전체">전체</a></li>

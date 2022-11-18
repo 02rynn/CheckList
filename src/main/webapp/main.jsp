@@ -56,6 +56,8 @@
 <body>
 <%@ include file="navBar.jsp"%>
 
+
+
 	
 	<div style="position: absolute; left: 2.5%; width: 95%;">
 		<div
@@ -134,7 +136,8 @@
 					<div class="row">
 						<div class="col"
 							style="width: 15%; display: inline-block; padding: 15px;">
-							<a href="bookDetail2.jsp?isbn=<%=bk2.getIsbn()%>&title=<%=bk2.getTitle()%>&imgUrl=<%=bk2.getThumbnail()%>&price=<%=bk2.getPrice()%>"><img src=<%=bk2.getThumbnail() %> class="card-img-top" alt="..."></a>
+							<a href="bookDetail2.jsp?isbn=<%=bk2.getIsbn()%>&title=<%=bk2.getTitle()%>&imgUrl=<%=bk2.getThumbnail()%>&price=<%=bk2.getPrice()%>">
+							<img src=<%=bk2.getThumbnail() %> class="card-img-top" alt="..."></a>
 							<div class="card-body">
 								<p class="card-text"><%=bk2.getContent().substring(0,40)+"..." %> </p>
 							</div>

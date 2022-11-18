@@ -11,19 +11,27 @@
 <body>
 <%@ include file ="navBar.jsp" %>
 <%
+
+request.setCharacterEncoding("utf-8");
 String isbn= request.getParameter("isbn");
+int price = Integer.parseInt(request.getParameter("price"));
 
 
-out.print(user.toString());
+// out.print(user.toString());
 cartDao dao = new cartDao();
 cart ct = new cart();
 ct.setId(user.toString());
 ct.setIsbn(isbn);
+ct.setPrice(price);
+
 out.print(ct.getId());
+out.print(isbn);
+out.print(price);
+
 int result = dao.insertBookInCart(ct);
 
 
-response.sendRedirect("cart.jsp");
+// response.sendRedirect("cart.jsp?id=user");
 %>
 
 </body>

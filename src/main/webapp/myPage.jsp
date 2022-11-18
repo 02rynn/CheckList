@@ -2,7 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.DataDao"%>
 <%@ page import="dao.Customer"%>
-
+<%@ page import="dao.MypageDao"%>
+<%@ page import="dao.Review"%>
 <%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
@@ -245,6 +246,17 @@ body .designSettingElement.button {
 </head>
 <body>
 	<%@ include file="navBar.jsp"%>
+	
+	<%
+	
+	MypageDao mdao = new MypageDao();
+	List<Review> rv = mdao.selectReviewById((String)user);
+	
+	out.print(user);
+	out.print(rv);
+
+	
+	%>
 
 
 	<form name="personDetailForm" id="personDetailForm" action="updateCustomerInfo_proc.jsp" method="get">
@@ -254,38 +266,77 @@ body .designSettingElement.button {
 				<div class="header designSettingElement text-title">
 					<span class="title">주문 내역</span>
 				</div>
-				<div id="shopCustomerOrderListDiv"
-					class="content orderList designSettingElement text-body hide">
-					<div class="tb-title designSettingElement shape clearfix">
-						<span class="date">일자</span> <span class="product">상품 정보</span> <span
-							class="total">가격</span> <span class="status">상태</span>
-					</div>
-					<div id="shopCustomerOrderList" class="tb-content"></div>
-					<div id="shopCustomerOrderPageCount"
-						class="pagination_div designSettingElement"></div>
-				</div>
-				<div id="noOrderMsg"
-					class="content no-content-msg designSettingElement text-body hide">
-					주문 내역이 없습니다.</div>
+				<table class="table">
+				<thead>
+					<tr>
+						<th scope="col">일자</th>
+						<th scope="col">상품정보</th>
+						<th scope="col">가격</th>
+						<th scope="col">주문상태</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>일자</td>
+						<td>상품정보</td>
+						<td>가격</td>
+						<td>주문상태</td>
+					</tr>
+				</tbody>
+				</table>
+				
+				
+<!-- 				<div id="shopCustomerOrderListDiv" -->
+<!-- 					class="content orderList designSettingElement text-body hide"> -->
+<!-- 					<div class="tb-title designSettingElement shape clearfix"> -->
+<!-- 						<span class="date">일자</span> <span class="product">상품 정보</span> <span -->
+<!-- 							class="total">가격</span> <span class="status">상태</span> -->
+<!-- 					</div> -->
+<!-- 					<div id="shopCustomerOrderList" class="tb-content"></div> -->
+<!-- 					<div id="shopCustomerOrderPageCount" -->
+<!-- 						class="pagination_div designSettingElement"></div> -->
+<!-- 				</div> -->
+<!-- 				<div id="noOrderMsg" -->
+<!-- 					class="content no-content-msg designSettingElement text-body hide"> -->
+<!-- 					주문 내역이 없습니다.</div> -->
 				<!--  my posts -->
 				<div class="js-section-myposts hide">
 					<div
 						class="header designSettingElement text-title otherTitle myPostsTitle myPosts">
 						<span class="title">내가 쓴 글</span>
 					</div>
-					<div id="shopProductMyPostDiv"
-						class="content myPostList designSettingElement text-body hide">
-						<div class="tb-title designSettingElement shape clearfix">
-							<span class="date">일자</span> <span class="title">제목</span> <span
-								class="type">유형</span>
-						</div>
-						<div id="shopProductMyPosts" class="tb-content"></div>
-						<div id="shopCustomerMyPostsCount"
-							class="pagination_div designSettingElement"></div>
-					</div>
-					<div id="noShopCustomerMyPostsMsg"
-						class="content no-content-msg designSettingElement text-body">
-						내가 쓴 글이 없습니다.</div>
+					<table class="table">
+					
+				<thead>
+					<tr>
+						<th scope="col">일자</th>
+						<th scope="col">제목</th>
+					
+
+					</tr>
+				</thead>
+				<tbody>
+				
+				<%
+					
+						for(Review info : rv){ 
+					
+							
+					%>
+				
+					<tr>
+						<td>일자<%=info.getReveiw_date() %></td>
+						<td>제목<%=info.getReview_title()%></td>
+					
+					</tr>
+					
+					<% } %>
+				</tbody>
+				</table>
+<!-- 					<div id="noShopCustomerMyPostsMsg" -->
+<!-- 						class="content no-content-msg designSettingElement text-body"> -->
+<!-- 						내가 쓴 글이 없습니다.</div> -->
 				</div>
 
 
@@ -414,35 +465,33 @@ body .designSettingElement.button {
 	</form>
 
 	<script
-		document.getElementById('deleteBtn').addEventListener('click',(e)=>{
-e.preventDefault();
-let form = document.getElementById('personDetailForm');
-if(confirm('삭제하시겠습니까?')){
-form.action = "deleteCustomer_proc.jsp";
-form.submit();
-}
-
-});
-	document.getElementById('updateBtn').addEventListener('click',(e)=>{
-		e.preventDefault();
-		let form = document.getElementById('personDetailForm');
-		
-		form.action = "updateCustomerInfo_proc.jsp";
-		form.submit();
-		
-
-		});
-	
-
-
-
-	
-	
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
 		crossorigin="anonymous">
+	
+document.getElementById('deleteBtn').addEventListener('click',(e)=>{
+	e.preventDefault();
+	let form = document.getElementById('personDetailForm');
+	if(confirm('삭제하시겠습니까?')){
+	form.action = "deleteCustomer_proc.jsp";
+	form.submit();
+	}
+
+	});
+		document.getElementById('updateBtn').addEventListener('click',(e)=>{
+			e.preventDefault();
+			let form = document.getElementById('personDetailForm');
+			
+			form.action = "updateCustomerInfo_proc.jsp";
+			form.submit();
+			
+
+			});
 		
-		console.log(form);
-		</script>
+
+	
+	
+	
+    </script>
 </body>
 </html>
