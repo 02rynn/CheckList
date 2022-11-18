@@ -5,6 +5,7 @@
     <%@ page import="dao.cart" %>
             <%@ page import="dao.CustomerDao" %>
                      <%@ page import="dao.Customer" %>
+                       <%@ page import="dao.DataDao" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,7 @@ BookDao dao = new BookDao();
 CustomerDao cDao = new CustomerDao();
 Customer cs = new Customer();
 cs = cDao.selectCustomerInfo((String)user);
-
+DataDao dao2 = new DataDao();
 
 
 out.print(cs.getAddress());
@@ -32,7 +33,7 @@ out.print(cs.getEmail());
 out.print(isbn);
 out.print(user);
 
-
+dao2.insertBookInPurchase(cs,"K272830385",13000);
 
 
 
