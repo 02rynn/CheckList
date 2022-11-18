@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR" %>
+    pageEncoding="UTF-8" %>
     <%@ page import = "dao.bBsDAO" %>
     <%@ page import = "dao.Review" %>
     <%@ page import="java.util.*"%>
@@ -23,47 +23,47 @@
      
     
  	 bBsDAO dao = new bBsDAO();
- 	 List<Review> rvList = dao.select_bbs_contents(); //µ•¿Ã≈Õ∫£¿ÃΩ∫ø°º≠ πﬁæ∆ø¬ ∞·∞˙∏¶ ∏ÆΩ∫∆Æø° ≥÷¿ª∞≈æ∆¥œ≥ƒ∞Ì...
+ 	 List<Review> rvList = dao.select_bbs_contents(); //Îç∞Ïù¥ÌÑ∞Î≤†Ïù¥Ïä§ÏóêÏÑú Î∞õÏïÑÏò® Í≤∞Í≥ºÎ•º Î¶¨Ïä§Ìä∏Ïóê ÎÑ£ÏùÑÍ±∞ÏïÑÎãàÎÉêÍ≥†...
       %>
             <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd;margin-top: 20px; width: 100%;
             maxlength=50">
-                <thead> <!--≈◊¿Ã∫Ì¿« ¡¶∏Ò -->
+                <thead> <!--ÌÖåÏù¥Î∏îÏùò Ï†úÎ™© -->
                     <tr>
-                        <th style="background-color: #eeeeee; text-align: center;">π¯»£</th>
-                       <th style="background-color: #eeeeee; text-align: center;">ªÛ«∞¿Ã∏ß</th>
-                        <th style="background-color: #eeeeee; text-align: center;">¡¶∏Ò</th>
-                        <th style="background-color: #eeeeee; text-align: center;">±€æ¥¿Ã</th>
-                        <th style="background-color: #eeeeee; text-align: center;">µÓ∑œ¿œ</th>
-                        <th style="background-color: #eeeeee; text-align: center;">∆Ú¡° </th>
+                        <th style="background-color: #eeeeee; text-align: center;">Î≤àÌò∏</th>
+                       <th style="background-color: #eeeeee; text-align: center;">ÏÉÅÌíàÏù¥Î¶Ñ</th>
+                        <th style="background-color: #eeeeee; text-align: center;">Ï†úÎ™©</th>
+                        <th style="background-color: #eeeeee; text-align: center;">Í∏ÄÏì¥Ïù¥</th>
+                        <th style="background-color: #eeeeee; text-align: center;">Îì±Î°ùÏùº</th>
+                        <th style="background-color: #eeeeee; text-align: center;">ÌèâÏ†ê </th>
                     </tr>
                 </thead>
 
                 <tbody style="background-color:#eeeeee">
-                <!-- µ•¿Ã≈Õ∫£¿ÃΩ∫ø°º≠ ±€π¯»£, √•¿Ã∏ß, √•¡¶∏Ò, ±€æ¥¿Ã, µÓ∑œ¿œ, ∆Ú¡° ∞°¡ˆ∞ÌøÕº≠ ∫∏ø©¡ˆµµ∑œ  -->
+                <!-- Îç∞Ïù¥ÌÑ∞Î≤†Ïù¥Ïä§ÏóêÏÑú Í∏ÄÎ≤àÌò∏, Ï±ÖÏù¥Î¶Ñ, Ï±ÖÏ†úÎ™©, Í∏ÄÏì¥Ïù¥, Îì±Î°ùÏùº, ÌèâÏ†ê Í∞ÄÏßÄÍ≥†ÏôÄÏÑú Î≥¥Ïó¨ÏßÄÎèÑÎ°ù  -->
             
       <%
       
-      	if(rvList != null && rvList.size()>0){ //πËø≠¿Ã null¿Ã æ∆¥œ∞Ì size∞° 0∫∏¥Ÿ ≈©∏È π›∫ππÆ µπ∏±∞≈¿”
+      	if(rvList != null && rvList.size()>0){ //Î∞∞Ïó¥Ïù¥ nullÏù¥ ÏïÑÎãàÍ≥† sizeÍ∞Ä 0Î≥¥Îã§ ÌÅ¨Î©¥ Î∞òÎ≥µÎ¨∏ ÎèåÎ¶¥Í±∞ÏûÑ
       		for(Review  r : rvList){
       			%>
       			<tr>
       			
       			 <td><%= r.getReview_num() %></td>
-      			<td><a href="watchReview.jsp"><%= r.getTitle() %></a></td> <!-- ªÛºº∆‰¿Ã¡ˆ∑Œ ∞°µµ∑œ  -->
+      			<td><a href="watchReview.jsp"><%= r.getTitle() %></a></td> <!-- ÏÉÅÏÑ∏ÌéòÏù¥ÏßÄÎ°ú Í∞ÄÎèÑÎ°ù  -->
       			   <td><a href="watchReview.jsp"><%= r.getReview_title() %></a></td>
       			    <td><%= r.getId() %></td>
       			     <td><%= r.getReveiw_date() %></td>
       			      <td><%
       			    if(r.getReview_rate()== 1){
-    			    	  out.println("°⁄°Ÿ°Ÿ°Ÿ°Ÿ");
+    			    	  out.println("‚òÖ‚òÜ‚òÜ‚òÜ‚òÜ");
     			      }else if(r.getReview_rate() ==2){
-    			    	  out.println("°⁄°⁄°Ÿ°Ÿ°Ÿ");		  
+    			    	  out.println("‚òÖ‚òÖ‚òÜ‚òÜ‚òÜ");		  
     			      }else if(r.getReview_rate() == 3){
-    			    	  out.println("°⁄°⁄°⁄°Ÿ°Ÿ");
+    			    	  out.println("‚òÖ‚òÖ‚òÖ‚òÜ‚òÜ");
     			      }else if(r.getReview_rate() == 4){
-    			    	  out.println("°⁄°⁄°⁄°⁄°Ÿ");
+    			    	  out.println("‚òÖ‚òÖ‚òÖ‚òÖ‚òÜ");
     			      }else{
-    			    	 out.println("°⁄°⁄°⁄°⁄°⁄");
+    			    	 out.println("‚òÖ‚òÖ‚òÖ‚òÖ‚òÖ");
     			      } 
       			      
       			      %></td>
@@ -79,7 +79,7 @@
                 </tbody>
             </table>
              <a href="Write.jsp" class="btn btn-primary" style="width: 100px; position: relative; 
-            left: 90%;">±€æ≤±‚ </a>
+            left: 90%;">Í∏ÄÏì∞Í∏∞ </a>
            
         </div>
     </div>

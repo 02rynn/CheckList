@@ -553,10 +553,10 @@ public class DataDao{
 		}
 		return result;
 	}
-	public int insertBookInPurchase() { //구매 테이블에 테이터 넣기 지우지마세요
+	public int insertBookInPurchase(Customer cs,String isbn,int price) { //구매 테이블에 테이터 넣기 지우지마세요
 
 		   
-		String sql = "insert into shop_bskt values(?,?,1)";
+		String sql = "insert into shop_bskt values(?,?,?,?,?,?,?,시퀀스 들어가기,?,sysdate)";
 				
 		int result = 0;
 		
@@ -564,8 +564,14 @@ public class DataDao{
 		try {
 			connect();
 			psmt = conn.prepareStatement(sql);
-	
-			
+			psmt.setInt(1, cs.getCustomer_no());
+			psmt.setString(2, cs.getId());
+			psmt.setString(3, cs.getEmail());
+			psmt.setString(4, cs.getAddress());
+			psmt.setString(5, isbn);
+			psmt.setInt(6, price);
+			psmt.setInt(7, payMethod 들어가기);
+			psmt.setString(8, "select status from book where isbn='"+isbn+"' " );
 			
 			result = psmt.executeUpdate();
 		
