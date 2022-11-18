@@ -11,6 +11,7 @@ public class Review {
 	int review_rate;
 	String review_title;
 	int review_num;
+	
 	public String getId() {
 		return id;
 	}
