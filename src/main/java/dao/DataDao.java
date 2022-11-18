@@ -202,6 +202,7 @@ public class DataDao{
 				ai.price = rs.getInt("price");
 				ai.title = rs.getString("Title");
 				ai.thumbnail = rs.getString("thumbnail");
+				ai.isbn = rs.getString("isbn");
 
 				bookList.add(ai);
 			}
@@ -292,10 +293,8 @@ public class DataDao{
 
 	
 	public List<Book> selectBuyBookInfo(String id){
-		String sql = " select * "
-				   + " from book "
-				   + " where isbn in "
-				   + " (select isbn from shop_bskt where id = ? ) ";
+		String sql = " select * from shop_bskt s , book b  where id = ?  and s.isbn = b.isbn "
+					+ "order by customer_no ";
 		List<Book> bk = null;
 		
 		try {
@@ -532,29 +531,56 @@ public class DataDao{
 	
 	
 	//회원 탈퇴하면 그 회원이 장바구니에 담았던 데이터도 같이 삭제
-	public int deleteDataInCart(String id) {
-		String sql = " delete from shop_bskt "
-				   + " where id = ? ";
-		int result = 0; 
-		try {
-			connect();
-			
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, id);
-			
-			
-			result = psmt.executeUpdate();
-			
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			closeConnect();
-		}
-		return result;
-	}
+	//장바구니 똑같은 책 중복으로 담겼을때 삭제하면 다 같이 지워지는 delete 메소드 (삭제 ㄴㄴ)
+//	public int deleteDataInCart(String id) {
+//		String sql = " delete from shop_bskt "
+//				   + " where id = ? ";
+//		int result = 0; 
+//		try {
+//			connect();
+//			
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setString(1, id);
+//			
+//			
+//			result = psmt.executeUpdate();
+//			
+//			
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}finally {
+//			closeConnect();
+//		}
+//		return result;
+//	}
 	
+	
+	public int deleteDataInCart(String id, String isbn, int customer_no) {
+	String sql = "delete from shop_bskt "
+		    	+ " where id = ? and isbn = ? and customer_no= ? ";
+	int result = 0; 
+	try {
+		connect();
+		
+		psmt = conn.prepareStatement(sql);
+		psmt.setString(1, id);
+		psmt.setString(2, isbn);
+	
+		
+		
+		
+		result = psmt.executeUpdate();
+		
+		
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally {
+		closeConnect();
+	}
+	return result;
+}
 	
 	
 }

@@ -78,9 +78,11 @@
 				
 				%>
 					<div class="row">
+					
 						<div class="col"
 							style="width: 10% display: inline-block; padding: 15px;">
-							<img src=<%=bk2.getThumbnail() %> class="card-img-top" alt="...">
+							<a href="bookDetail2.jsp?isbn=<%=bk2.getIsbn()%>&title=<%=bk2.getTitle()%>&imgUrl=<%=bk2.getThumbnail()%>&price=<%=bk2.getPrice()%>">
+							<img src=<%=bk2.getThumbnail() %> class="card-img-top" alt="..."></a>
 							<div class="card-body">
 								<p class="card-text"><%=bk2.getTitle()%> </p>
 							</div>
@@ -88,7 +90,8 @@
 						</div>
 						<div class="col"
 							style="width: 10%; display: inline-block; padding: 15px">
-							<img src=<%=bk3.getThumbnail() %> class="card-img-top" alt="...">
+							<a href="bookDetail2.jsp?isbn=<%=bk3.getIsbn()%>&title=<%=bk3.getTitle()%>&imgUrl=<%=bk3.getThumbnail()%>&price=<%=bk3.getPrice()%>">
+							<img src=<%=bk3.getThumbnail() %> class="card-img-top" alt="..."></a>
 							<div class="card-body">
 								<p class="card-text"><%=bk3.getTitle()%></p>
 							</div>
@@ -96,7 +99,8 @@
 						</div>
 						<div class="col"
 							style="width: 10%; display: inline-block; padding: 15px">
-							<img src=<%=bk4.getThumbnail() %> class="card-img-top" alt="...">
+							<a href="bookDetail2.jsp?isbn=<%=bk4.getIsbn()%>&title=<%=bk4.getTitle()%>&imgUrl=<%=bk4.getThumbnail()%>&price=<%=bk4.getPrice()%>">
+							<img src=<%=bk4.getThumbnail() %> class="card-img-top" alt="..."></a>
 							<div class="card-body">
 								<p class="card-text"><%=bk4.getTitle()%> </p>
 							</div>
@@ -104,7 +108,8 @@
 						</div>
 							<div class="col"
 							style="width: 10%; display: inline-block; padding: 15px">
-							<img  src=<%=bk5.getThumbnail() %> class="card-img-top" alt="...">
+							<a href="bookDetail2.jsp?isbn=<%=bk5.getIsbn()%>&title=<%=bk5.getTitle()%>&imgUrl=<%=bk5.getThumbnail()%>&price=<%=bk5.getPrice()%>">
+							<img src=<%=bk5.getThumbnail() %> class="card-img-top" alt="..."></a>
 							<div class="card-body">
 								<p class="card-text"><%=bk5.getTitle()%></p>
 							</div>
@@ -112,7 +117,8 @@
 						</div>	
 						<div class="col"
 							style="width: 10%; display: inline-block; padding: 15px">
-							<img  src=<%=bk6.getThumbnail() %> class="card-img-top" alt="...">
+								<a href="bookDetail2.jsp?isbn=<%=bk6.getIsbn()%>&title=<%=bk6.getTitle()%>&imgUrl=<%=bk6.getThumbnail()%>&price=<%=bk6.getPrice()%>">
+							<img src=<%=bk6.getThumbnail() %> class="card-img-top" alt="..."></a>
 							<div class="card-body">
 								<p class="card-text"><%=bk6.getTitle()%> </p>
 							</div>

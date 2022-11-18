@@ -1,7 +1,6 @@
 package dao;
 
 import java.sql.Connection;
-
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,11 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+public class MypageDao {
 
-
-public class CustomerDao {
-
-	
 	 Connection conn = null;
 	   PreparedStatement psmt = null;
 	   ResultSet rs = null;
@@ -56,64 +52,67 @@ public class CustomerDao {
 	      }
 	   }
 	   
-	   public int insertCustomerInfo(Customer cs) { // 회원가입 메소드 
-
-
-		   
-			String sql = "insert into customer values(customer_seq.nextval,?,?,?,?,sysdate,?,?)";
-					
-			int result = 0;
+	   // 리뷰 목록 리스트로 가져와야되는데 잘못만든거 
+//	   public Review selectReviewById(String id){
+//			String sql = " select review_date, review_title from review where id = ? ";
+//			Review reviewInfo = null;
+//			
+//			try {
+//				connect();
+//				
+//				psmt = conn.prepareStatement(sql);
+//				psmt.setString(1, id);
+//				
+//				rs = psmt.executeQuery();
+//				
+//				reviewInfo = new Review();
+//				if(rs.next()) {
+//					
+//					reviewInfo.setId(rs.getString("id"));
+//				}
+//				
+//			}catch (Exception e) {
+//				e.printStackTrace();
+//			} finally {
+//				disconnect();
+//			}
+//			
+//			return reviewInfo;
+//		}
+	   
+	   
+	   public List<Review> selectReviewById(String id){
+			String sql = " select review_date, review_title from review where id = ? ";
+			List<Review> rv = null;
 			
-
 			try {
 				connect();
-				psmt = conn.prepareStatement(sql);
-				psmt.setString(1, cs.getId());
-				psmt.setString(2, cs.getPassword());
-				psmt.setString(3, cs.getEmail());
-				psmt.setString(4, cs.getAddress());
-				psmt.setString(5, cs.getPhone_num());
-				psmt.setString(6, cs.getCustomer_name());
 				
-				result = psmt.executeUpdate();
-			}catch(Exception e) {
-				e.printStackTrace();
-				return -1;
-			}finally {
-				disconnect();
-			}
-			return result;
-		}
-
-	   public Customer selectCustomerInfo(String id){
-			String sql = "SELECT * FROM customer where id = '"+id+"'";
-			Customer cs = null;
-			try {
-				connect();
 				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, id);
+				
 				rs = psmt.executeQuery();
-				cs = new Customer();
-
-				if(rs.next()) {
-					cs.setAddress(rs.getString("address"));
-					cs.setEmail(rs.getString("email"));
-					cs.setPhone_num(rs.getString("phone_num"));
-					cs.setCustomer_name(rs.getString("customer_name"));
-					cs.setId(rs.getString("id"));
-					cs.setPassword(rs.getString("password"));
-					cs.setCustomer_no(rs.getInt("customer_no"));
+				
+				rv = new ArrayList<Review>();
+				
+				while(rs.next()) {
+					Review rv2 = new Review();
+					rv2.setReview_title(rs.getString("review_title"));
+					rv2.setReveiw_date(rs.getDate("reveiw_date"));
+					
+					
+					rv.add(rv2);
 				}
 			
-				return cs;
-			}catch(Exception e) {
-				e.printStackTrace();
-			}finally {
-				disconnect();
+				return rv;
 				
+			}catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
 			}
-			return cs;
 			
-			
+			return rv;
 		}
-	   
+	
 }

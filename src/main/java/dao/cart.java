@@ -2,16 +2,18 @@ package dao;
 
 public class cart {
 	
-	int CUSTOMER_NO ;
+	int customer_no ;
 	String id ;
 	String isbn; 
+	int price;
 	int shop_cnt;
 	
-	public int getCUSTOMER_NO() {
-		return CUSTOMER_NO;
+	
+	public int getCustomer_no() {
+		return customer_no;
 	}
-	public void setCUSTOMER_NO(int cUSTOMER_NO) {
-		CUSTOMER_NO = cUSTOMER_NO;
+	public void setCustomer_no(int customer_no) {
+		this.customer_no = customer_no;
 	}
 	public String getId() {
 		return id;
@@ -25,10 +27,19 @@ public class cart {
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
 	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	public int getShop_cnt() {
 		return shop_cnt;
 	}
 	public void setShop_cnt(int shop_cnt) {
 		this.shop_cnt = shop_cnt;
 	}
+	
+	
+
 }

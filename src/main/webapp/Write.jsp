@@ -18,7 +18,12 @@
 
 					<%@ include file="navBar.jsp" %>
 						<% // String user=session.getAttribute("userId").toString(); bBsDAO dao=new bBsDAO(); List<Book>
-							buyItems = dao.selectBuyBookList((String)user);
+						bBsDAO dao = new bBsDAO();
+		                  
+	                     
+
+		                  List<Book> buyItems = dao.selectBuyBookList((String)user);
+		                  
 
 							//로그인 안되어잇으면 로그인 페이지로 이동
 							%>

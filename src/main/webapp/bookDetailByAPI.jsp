@@ -89,9 +89,9 @@
                                           " data-is-mini-cart-available="false"
                                                 onclick="require('v2/mall/service/product').detail.handlePurchase('buyNow', event)">
                                                 구매하기</button>
-                                            <form action="Purchase_proc.jsp" method="post">
-                                                <input type="submit" value=<%=item.get("isbn")%> name="isbn" />
-                                            </form>
+<!--                                             <form action="Purchase_proc.jsp" method="post"> -->
+<%--                                                 <input type="submit" value=<%=item.get("isbn")%> name="isbn" /> --%>
+<!--                                             </form> -->
                                         </div>
 
                                         <div class="btn-wrapper cartButton " style="margin-left: 10px;">
@@ -101,10 +101,10 @@
                                                 onclick="require('v2/mall/service/product').detail.handlePurchase('', event)">
                                                 장바구니에 담기</button>
 
-                                            <form action="insertBookInCart_proc.jsp" method="post">
-                                                <input type="submit" value=<%=item.get("isbn")%> name="isbn"
-                                                onclick="alert('상품이 장바구니에 담겼습니다.')"/>
-                                            </form>
+<!--                                             <form action="insertBookInCart_proc.jsp" method="post"> -->
+<%--                                                 <input type="submit" value=<%=item.get("isbn")%> name="isbn" --%>
+<!--                                                 onclick="alert('상품이 장바구니에 담겼습니다.')"/> -->
+<!--                                             </form> -->
                                         </div>
                                     </div>
                                 </div>

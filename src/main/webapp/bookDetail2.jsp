@@ -17,12 +17,14 @@
 </head>
 
 <body>
+ <%@ include file="navBar.jsp" %>
+
 <%
 
 //String user = (String)session.getAttribute("userId");
 
 
-
+out.print(user);
 
 String isbn = request.getParameter("isbn");
 String title = request.getParameter("title");
@@ -117,10 +119,26 @@ int price = Integer.parseInt((request.getParameter("price")).toString());
                             구매하기</button>
                     </div>
                     <div class="btn-wrapper cartButton " style="margin-left: 10px;">
-                        <button id="btn_addToCart" class="btn btn-primary
-                                          " data-is-mini-cart-available="false"
-                            onclick="require('v2/mall/service/product').detail.handlePurchase('', event)">
+<!--                     원래 버튼 -->
+<form action="insertBookInCart_proc.jsp" method="post">
+                     <button type="submit" value="<%=isbn%>" name="isbn"
+                                                onclick="alert('상품이 장바구니에 담겼습니다.')" id="btn_addToCart" class="btn btn-primary
+<!--                                           " data-is-mini-cart-available="false" 
+                            >
                             장바구니에 담기</button>
+                              </form>
+                    
+<!--                      <form action="insertBookInCart_proc.jsp" method="post"> -->
+<!--                         <button id="btn_addToCart" class="btn btn-primary -->
+<!--                                           " data-is-mini-cart-available="false" -->
+<!--                             onclick="require('v2/mall/service/product').detail.handlePurchase('', event)"> -->
+<!--                             장바구니에 담기</button> -->
+<!--                             </form> -->
+
+							
+                            
+                            
+                                          
                     </div>
                 </div>
             </div>

@@ -1,60 +1,159 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-    <%@ page import="bbs.jsp" %>
+<%@page import="dao.Review"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@page import="java.io.PrintWriter"%>
+ <%request.setCharacterEncoding("UTF-8");%>
      <%@ page import="dao.bBsDAO" %>
+      <%@ page import="dao.Book" %>
+      <%@ page import = "java.util.*" %>
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
+<link
+   href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+   rel="stylesheet"
+   integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+   crossorigin="anonymous">
+   <link rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
 </head>
 <body> 
 
+   <%@ include file="navBar.jsp" %>
+   
+      <% // String user=session.getAttribute("userId").toString(); bBsDAO dao=new bBsDAO(); List<Book>
+      bBsDAO dao = new bBsDAO();
+      String writer = request.getParameter("writer");
+      String title = request.getParameter("title");
+      String content = request.getParameter("content");
+      int rate =Integer.parseInt(request.getParameter("rate"));
+      int rvNum = Integer.parseInt(request.getParameter("num"));
+   
+      List<Book> buyItems = dao.selectBuyBookList((String)user);
+                              
+        // í˜„ì¬ ì„¸ì…˜ì´ ì¡´ì¬í•˜ëŠ” ì‚¬ëŒì€ userID, ì•„ë‹Œ ì‚¬ëŒì€ nullê°’ì´ ë‹´ê¹€
+       
+   %>
+
+       <% //ê²Œì‹œê¸€ì—ì„œ ì œëª© ëˆ„ë¥´ë©´ ì—¬ê¸°ë¡œ ì´ë™í•´ì„œ 
+          /*
+          ì°½ì— ì“°ì—¬ìˆë˜ ê¸€ë²ˆí˜¸ì™€  ì œëª©ì„ ë¶ˆëŸ¬ì˜´ (ê¸€ì”¨ ë°ê¸° ë°ê²Œ)
+          ë³¸ì¸ì´ë©´ -> ìˆ˜ì •ê³¼ ì‚­ì œë²„íŠ¼ë„ ë°‘ì— ì¶”ê°€
+          ë²„íŠ¼ ëˆ„ë¥´ë©´ ê°ê° update, delete ë˜ë„ë¡
+          updateAction ë§Œë“¤ì–´ì•¼ í•˜
+          */
+          
+       %>
+       
+     <%
+
+     
+     
+   Review r = new Review();
+    
+     
+     %>
+<% if ((user.toString()).equals(writer)) {%>  
 <div class="container">
-		<div class="row">
-			<form method="get" action="writeAction2.jsp">
-				<!--actionÆäÀÌÁö·Î º¸³¾¼ö ÀÖµµ·Ï -->
-				<!--post ¸Ş¼Òµå·Î ¼û±â¸é¼­ Àü¼Û, ¾×¼ÇÆäÀÌÁö¿¡¼­ Ã³¸®ÇÒ ¼ö ÀÖµµ·Ï Àü¼ÛÇÔ  -->
+      <div class="row">
+      <form method="get" action="update_review_proc.jsp?bbsID=<%= user.toString() %>">
+         <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd;">
+            <thead>
+               <tr>
+                  <th colspan="2" style="background-color: #eeeeee; text-align: center;">ê²Œì‹œíŒ ê¸€ ìˆ˜ì • ì–‘ì‹</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>
+                  <input type="text" class="form-control" placeholder="ê¸€ ì œëª©" name="bbsTitle_modi" maxlength="50" value="<%= title %>">
+                  </td>
+               </tr>
+               <tr>
+                  <td><textarea class="form-control" placeholder="ê¸€ ë‚´ìš©" name="bbsContent_modi" maxlength="2048" style="height: 350px;" value="<%= content %>>"><%=  content %></textarea></td>
+               </tr>
+            </tbody>
+         </table>
+         <div class="customSelectDiv designSettingElement shape "
+                                    id="selectPostReviewRateDiv" style="margin-left: 10px;"
+                                    data-text="í‰ì  ì£¼ê¸°">
 
-				<table class="table table-striped"
-					style="text-align: center; border: 1px solid #dddddd; margin-top: 20px; width: 100%;">
-					<thead>
-						<!--Å×ÀÌºíÀÇ Á¦¸ñ -->
-						<tr>
-							<th style="background-color: #eeeeee; text-align: center;">°Ô½ÃÆÇ
-								±Û¾²±â ¾ç½Ä</th>
-						</tr>
-						<tr>
-							<th><span>»óÇ°¸ñ·Ï</span> 
-							<select name="select">
-										<%
-											for(Book bk : buyItems){
-												%>
-													<option id="option" value=<%=bk.getTitle() %>>	
-												<%=bk.getTitle() %>
-												</option>
-										<% 		
-											}
-										%>
-									
 
-							</select>
-							<th />
-						<tr />
-					</thead>
-					<!--  -->
-					<tbody style="background-color: #eeeeee">
-						<tr>
-							<td><input type="text" class="form-control"
-								placeholder="±Û Á¦¸ñ" name="review_title" maxlength="50"></td>
-						</tr>
-						<tr>
-							<td><textarea type="text" class="form-control"
-									placeholder="±Û ³»¿ë" name="review_contents" maxlength="2048"
-									style="height: 350px;"></textarea></td>
-							<!---->
-						</tr>
-					</tbody>
-				</table>
+
+                                    <select name="rvrate" class="btn btn-outline-primary"
+                                       onchange="require('common/common').customSelectBoxClickEvent(this)"
+                                       id="selectPostReviewRate">
+                                       <option value="0" selected="selected">í‰ì  ì£¼ê¸°</option>
+                                       <option value="5">â˜…â˜…â˜…â˜…â˜…</option>
+                                       <option value="4">â˜…â˜…â˜…â˜…â˜†</option>
+                                       <option value="3">â˜…â˜…â˜…â˜†â˜†</option>
+                                       <option value="2">â˜…â˜…â˜†â˜†â˜†</option>
+                                       <option value="1">â˜…â˜†â˜†â˜†â˜†</option>
+                                    </select>
+
+                                 </div>
+         
+         
+             
+  
+         <button id="removeBtn" name ="removeBtn" type="submit" class="btn btn-primary pull-right" value="<%=rvNum %>">ê¸€ì‚­ì œ</button>
+         <button id="modiBtn"  name="modiBtn"  type="submit" class="btn btn-primary pull-right" value="<%=rvNum %>">ê¸€ìˆ˜ì •</button>
+         </form>
+            
+         <% } else { %>
+            <div class="container">
+            <div class="row">
+            <form method="post" action="updateAction.jsp?bbsID=<%= user.toString() %>">
+               <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd;">
+                  <thead>
+                     <tr>
+                        <th colspan="2" style="background-color: #eeeeee; text-align: center;">ê²Œì‹œíŒ ê¸€ ìˆ˜ì • ì–‘ì‹</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td>
+                        <input  disabled type="text" class="form-control" placeholder="ê¸€ ì œëª©" name="bbsTitle" maxlength="50" value="<%= title %>">
+                        </td>
+                     </tr>
+                     <tr>
+                        <td><textarea readonly class="form-control" placeholder="ê¸€ ë‚´ìš©" name="bbsContent" maxlength="2048" style="height: 350px;"><%=  content %></textarea></td>
+                     </tr>
+                  </tbody>
+               </table>
+            
+      <% }%>   
+      
+         
+      
+         
+         </form>
+      </div>
+   </div>
+   </div>
+      </div>
+   <script>
+
+   
+          document.getElementById("modiBtn").addEventListener("click", (e) => {
+         e.preventDefault();
+
+                           //ì •ë³´ë¥¼ writeAction2ë¡œ ë³´ë‚´ë„ë¡
+         location.href = "update_review_proc.jsp"
+
+         form.action = "update_review_proc.jsp";
+         form.submit();
+                        }  
+            
+   
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+      crossorigin="anonymous">
+    </script>
+
+
 </body>
 </html>

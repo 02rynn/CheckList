@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.DataDao"%>
 <%@ page import="dao.Book"%>
+<%@ page import="dao.cart"%>
 <%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
@@ -222,9 +223,10 @@ div {
 				<span class="title">장바구니<span id="cartSize"></span></span>
 			</div>
 			<% 
-			out.print(user);
+// 			out.print(user);
 			DataDao dao=new DataDao(); 
-			List<Book> bk = dao.selectBuyBookInfo((String)user);
+			List<Book> bk = dao.selectBuyBookInfo(user.toString());
+		
 
 
                                             //out.print(bk);
@@ -237,7 +239,7 @@ div {
 						<th scope="col">상품정보</th>
 						<th scope="col">제목</th>
 						<th scope="col">가격</th>
-						<th scope="col">수량</th>
+<!-- 						<th scope="col">수량</th> -->
 					</tr>
 				</thead>
 				<tbody>
@@ -252,35 +254,35 @@ div {
                                         %>
 					
 						<tr>
-							<td> <input type="submit" value="삭제" onclick="location.href='deleteBookInCart_proc.jsp?isbn=<%=info.getIsbn()%>&id=asd'" /></td>
-							<td><img src="<%=info.getThumbnail()%>" /></td>
+							<td> <input type="submit" value="삭제" onclick="location.href='deleteBookInCart_proc.jsp?isbn=<%=info.getIsbn()%>&id=<%=user%>'" /></td>
+							<td><a href=""><img src="<%=info.getThumbnail()%>" /></a></td>
 						
                                             <td>
                                                 <%=info.getTitle()%>
                                             </td>
 <!--                                       가격 : 수량 조절하면 반영되어 변해야함  -->
                                             <td>
-                                                <%=info.getPrice()%>
+                                                <%=info.getPrice()%>원
                                             </td>
-                                            <td>
-                                                <form
-								action="updateBookInCart_proc.jsp">
+<!--                                             <td> -->
+<!--                                                 <form -->
+<!-- 								action="updateBookInCart_proc.jsp"> -->
 
 									
 <!-- 						*상세페이지에서 장바구니 버튼 누르면 value값에 장바구니 테이블에 변경된 수량으로 들어가게 수정해야함  -->
 <!-- 						 최소값 이하로 입력하면 입력제한하고 알림창 띄우기 	, 숫자만 입력 할 수 있게 제한 				-->
-									<input name="cnt" id="cnt" type="number" value="1" min="1" />
-<!-- 									----------------------------------------------------- -->
-                                    <input name="isbn" type="hidden" value=<%=info.getIsbn()%>>
-                                    <input name="id" type="hidden" value="asd" />
+<!-- 									<input name="cnt" id="cnt" type="number" value="1" min="1" /> -->
+<!-- <!-- 									----------------------------------------------------- --> -->
+<%--                                     <input name="isbn" type="hidden" value=<%=info.getIsbn()%>> --%>
+<!--                                     <input name="id" type="hidden" value="asd" /> -->
 									
 <!-- 						*수량조절 칸에서 책의 수량 입력해서 저장버튼 누르면 (테이블에 update는 되는상태) => 변경된 수량으로 입력칸에 표시되게 하기 -->
-                                    <input id=<%=info.getIsbn() %> type="submit" value="저장">
-                                                </form>
+<%--                                     <input id=<%=info.getIsbn() %> type="submit" value="저장"> --%>
+<!--                                                 </form> -->
 
 
 <%--                                            <input type="submit" value="삭제" onclick="location.href='deleteBookInCart_proc.jsp?isbn=<%=info.getIsbn()%>&id=asd'" /> --%>
-                                            </td>
+<!--                                             </td> -->
                                             </tr>
                                     
                                         <% }  %>
@@ -299,8 +301,10 @@ div {
                                                 <div id="cartInfoDiv"
 							class="info designSettingElement shape">
                                                     <div class="price">
-                                                        <div
+                                                      <div
 									class="title">상품 합계</div>
+                                                      
+									
 
                                                         <div
 									id="cartTotalProductPrice" class="content"></div>
@@ -339,56 +343,6 @@ div {
                                 </div>
 
 
-
-
-
-
-
-                                <div class="row naverPayButton">
-
-
-
-
-
-                                    <script type="text/javascript"
-					src="//pay.naver.com/customer/js/naverPayButton.js" charset="UTF-8"></script>
-
-
-
-                                    <script type="text/javascript">
-                                        var naverPayBtnMobileType;
-                                        var naverPayColor = "white" == "white" ? 2 : 3;
-
-                                        if (naverPayColor === 2) {
-                                            naverPayBtnMobileType = "MA";
-                                        }
-
-                                        if (naverPayColor === 3) {
-                                            naverPayBtnMobileType = "MB";
-                                        }
-
-                                        var buy_nc = function (event) {
-                                            require("v2/mall/service/product").detail.handlePurchase("naverPayOrder", event);
-                                        };
-                                        var wishlist_nc = function () {
-                                            require("v2/mall/service/product").detail.handlePurchase("naverPayZzim", event);
-                                        };
-
-
-
-
-
-
-
-
-
-
-
-                                    
-			</script></div>
-
-
-                      
 						      </div>
                         </div>
 
