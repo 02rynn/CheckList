@@ -4,6 +4,8 @@
         <%@ page import="dao.BookDao" %>
     <%@ page import="dao.cart" %>
             <%@ page import="dao.CustomerDao" %>
+                     <%@ page import="dao.Customer" %>
+                       <%@ page import="dao.DataDao" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,21 +17,23 @@
 <%
 // String isbn= request.getParameter("isbn");
 
-String isbn = "책이름";
-out.print(isbn);
-out.print(user);
+String isbn = "책 isbn";
+
 
 BookDao dao = new BookDao();
 CustomerDao cDao = new CustomerDao();
-cDao.selectCustomerInfo(user.toString());
+Customer cs = new Customer();
+cs = cDao.selectCustomerInfo((String)user);
+DataDao dao2 = new DataDao();
 
 
+out.print(cs.getAddress());
+out.print(cs.getCustomer_no());
+out.print(cs.getEmail());
+out.print(isbn);
+out.print(user);
 
-
-
-
-
-
+dao2.insertBookInPurchase(cs,"K272830385",13000);
 
 
 

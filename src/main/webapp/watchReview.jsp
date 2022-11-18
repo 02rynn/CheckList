@@ -40,9 +40,9 @@
                                  %>
 
                                  <% //게시글에서 제목 누르면 여기로 이동해서 /* 창에 쓰여있던 글번호와 제목을 불러옴 (글씨 밝기 밝게) 본인이면 -> 수정과 삭제버튼도 밑에 추가
-//                                     버튼 누르면 각각 update, delete 되도록
-//                                     updateAction 만들어야 하
-//                                     */
+                                    // 버튼 누르면 각각 update, delete 되도록
+                                    //updateAction 만들어야 하
+
 
                                     %>
 
@@ -112,7 +112,7 @@
                                                    <div class="container">
                                                       <div class="row">
                                                          <form method="post"
-                                                            action="updateAction.jsp?bbsID=<%= user.toString() %>">
+                                                            action="update_review_proc.jsp?bbsID=<%= user.toString() %>">
                                                             <table class="table table-striped"
                                                                style="text-align: center; border: 1px solid #dddddd;">
                                                                <thead>
@@ -161,12 +161,23 @@
 
                                                 form.action = "update_review_proc.jsp";
                                                 form.submit();
+
                                              }  
-				
-	
-		src = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-		integrity = "sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-		crossorigin = "anonymous" >
+                                             
+                                             document.getElementById("removeBtn").addEventListener("click", (e) => {
+                                                e.preventDefault();
+
+                                                if (confirm("삭제하시겠습니까?")) {
+                                                   form.action = "deleteReview_proc.jsp";
+                                                   form.submit();
+                                                }
+
+                                             });
+
+
+                                             src = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+                                             integrity = "sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+                                             crossorigin = "anonymous" >
                                           </script>
 
 
