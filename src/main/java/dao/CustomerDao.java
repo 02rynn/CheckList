@@ -86,11 +86,13 @@ public class CustomerDao {
 		}
 
 	   public Customer selectCustomerInfo(String id){
-			String sql = "SELECT * FROM customer where id = '"+id+"'";
+			String sql = "SELECT * FROM customer where id = ?";
 			Customer cs = null;
 			try {
 				connect();
 				psmt = conn.prepareStatement(sql);
+				
+				psmt.setString(1,id);
 				rs = psmt.executeQuery();
 				cs = new Customer();
 

@@ -317,7 +317,6 @@ public class DataDao{
 				
 				bk.add(bk2);
 			}
-			System.out.println(bk.toString());
 			return bk;
 			
 		}catch (Exception e) {
@@ -554,7 +553,29 @@ public class DataDao{
 		}
 		return result;
 	}
+	public int insertBookInPurchase() { //구매 테이블에 테이터 넣기 지우지마세요
+
+		   
+		String sql = "insert into shop_bskt values(?,?,1)";
+				
+		int result = 0;
+		
+
+		try {
+			connect();
+			psmt = conn.prepareStatement(sql);
 	
+			
+			
+			result = psmt.executeUpdate();
+		
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			closeConnect();
+		}
+		return result;
+	}
 	
 	
 }
