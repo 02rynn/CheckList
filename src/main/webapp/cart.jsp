@@ -214,9 +214,20 @@ div {
 
 <body>
 	<%@ include file="navBar.jsp"%>
+<%
 
 
 
+
+
+
+String price =  request.getParameter("price");
+String isbn = request.getParameter("isbn");
+%>
+
+
+
+ 
 	<div id="shopCartDetail" class="shopCartDetail wrapper">
 		<div id="cart" class="cart wrapper clearfix">
 			<div class="header designSettingElement text-titleWithFontSize">
@@ -340,16 +351,19 @@ div {
 
                                 <div
 				class="btn-wrapper shopCartInfo hide">
-                                    <button id="btn_orderProducts"
+				 <form action="buyCart.jsp" method="get">
+  <input name="isbn" value=<%=isbn %> type="hidden"/>
+       <input name="price" value=<%=price %> type="hidden"/>
+                                    <button type="submit" id="btn_orderProducts"
 					class="designSettingElement button"
 					onclick="location.href='buyNowCartNo.jsp'">주문하기</button>
+					</form>
                                 </div>
 
 
 						      </div>
                         </div>
-
-
+					
                         <script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

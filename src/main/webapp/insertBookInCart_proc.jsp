@@ -15,7 +15,7 @@
 request.setCharacterEncoding("utf-8");
 
 String isbn= request.getParameter("isbn");
-// int price = Integer.parseInt(request.getParameter("price"));
+int price = Integer.parseInt(request.getParameter("price"));
 
 
 // out.print(user.toString());
@@ -33,7 +33,7 @@ out.print(isbn);
 int result = dao.insertBookInCart(ct);
 
 
-response.sendRedirect("cart.jsp?id="+(String)user);
+response.sendRedirect("cart.jsp?id="+(String)user+"price="+price);
 %>
 
 </body>

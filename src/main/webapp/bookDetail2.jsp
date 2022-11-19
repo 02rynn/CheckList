@@ -26,13 +26,14 @@
 
 out.print(user);
 
+
 String isbn = request.getParameter("isbn");
 String title = request.getParameter("title");
 String nail = request.getParameter("imgUrl");
 
 int price = Integer.parseInt((request.getParameter("price")).toString()); 
 
- 
+out.print(price);
 
 %>
 <%=nail %>
@@ -113,14 +114,22 @@ int price = Integer.parseInt((request.getParameter("price")).toString());
             <div id="productActionButtonDiv" class="productActionButtonDiv row">
                 <div class="normalButton" style="display: flex; margin-left: 15px; margin: 20px;">
                     <div class="btn-wrapper buyButton">
-                        <button id="btn_buyNow" class="btn btn-primary
+                    
+                    <form action="buyNowCartNo.jsp" method="get">
+                     <input name="isbn" value=<%=isbn %> type="hidden"/>
+                     <input name="price" value=<%=price %> type="hidden"/>
+                     
+                        <button type="submit"  id="btn_buyNow" class="btn btn-primary
                                           " data-is-mini-cart-available="false"
                             onclick="require('v2/mall/service/product').detail.handlePurchase('buyNow', event)">
                             구매하기</button>
+                              </form>
+                              
                     </div>
                     <div class="btn-wrapper cartButton " style="margin-left: 10px;">
 <!--                     원래 버튼 -->
 <form action="insertBookInCart_proc.jsp" method="post">
+ <input name="price" value=<%=price %> type="hidden"/>
                      <button type="submit" value="<%=isbn%>" name="isbn"
                                                 onclick="alert('상품이 장바구니에 담겼습니다.')" id="btn_addToCart" class="btn btn-primary
 <!--                                           " data-is-mini-cart-available="false" 

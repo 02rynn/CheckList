@@ -554,29 +554,29 @@ public class DataDao{
 //		}
 //		return result;
 //	}
-	public int deleteDataInCart(String id) {
-		String sql = " delete from shop_bskt "
-				   + " where id = ? ";
-		int result = 0; 
-		try {
-			connect();
-			
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, id);
-			
-			
-			result = psmt.executeUpdate();
-			
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			closeConnect();
-		}
-		return result;
-	}
-	public int insertBookInPurchase(Customer cs,String isbn,int price) { //구매 테이블에 테이터 넣기 지우지마세요
+//	public int deleteDataInCart(String id) {
+//		String sql = " delete from shop_bskt "
+//				   + " where id = ? ";
+//		int result = 0; 
+//		try {
+//			connect();
+//			
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setString(1, id);
+//			
+//			
+//			result = psmt.executeUpdate();
+//			
+//			
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}finally {
+//			closeConnect();
+//		}
+//		return result;
+//	}
+	public int insertBookInPurchase(Customer cs,String isbn,int price,String method) { //구매 테이블에 테이터 넣기 지우지마세요
 
 		   
 		String sql = "insert into buy_book values(?,?,?,?,?,?,?,1,?,sysdate)";
@@ -593,7 +593,7 @@ public class DataDao{
 			psmt.setString(4, cs.getAddress());
 			psmt.setString(5, isbn);
 			psmt.setInt(6, price);
-			psmt.setString(7, "카드");
+			psmt.setString(7, method);
 			psmt.setString(8, "예약주문" );
 			
 			result = psmt.executeUpdate();
