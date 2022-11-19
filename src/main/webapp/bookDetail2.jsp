@@ -115,8 +115,7 @@ int price = Integer.parseInt((request.getParameter("price")).toString());
                     <div class="btn-wrapper buyButton">
                         <button id="btn_buyNow" class="btn btn-primary
                                           " data-is-mini-cart-available="false"
-                            onclick="require('v2/mall/service/product').detail.handlePurchase('buyNow', event)">
-                            구매하기</button>
+                            >구매하기</button>
                     </div>
                     <div class="btn-wrapper cartButton " style="margin-left: 10px;">
 <!--                     원래 버튼 -->

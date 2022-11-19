@@ -83,12 +83,7 @@ public class testMain {
 	
 	System.out.println(dao.selectCustomerInfo("asd").getId());
 	System.out.println(dao.selectCustomerInfo("asd").getPassword());
-			
-			DataDao dao=new DataDao(); 
-			
-			List<Book> bk = dao.selectBuyBookInfo("bkw");
-			System.out.println(bk.size());
-			
+
 			
 
 //			System.out.println(dao.getAladinItemList("ItemNewAll").size());

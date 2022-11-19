@@ -87,7 +87,7 @@ String title = request.getParameter("title");
 // int price = Integer.parseInt(request.getParameter("priceSales"));
 
 Customer cs = new Customer();
-cs.setId(user.toString());
+cs.setId((String)user);
 
 
 
