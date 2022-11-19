@@ -130,11 +130,33 @@ out.print(price);
 <!--                     원래 버튼 -->
 <form action="insertBookInCart_proc.jsp" method="post">
  <input name="price" value=<%=price %> type="hidden"/>
-                     <button type="submit" value="<%=isbn%>" name="isbn"
-                                                onclick="alert('상품이 장바구니에 담겼습니다.')" id="btn_addToCart" class="btn btn-primary
+                     <button type="submit" value="<%=isbn%>" 
+                     							name="isbn"
+                     						onclick="service()"
+                     								
+                                                id="btn_addToCart" 
+                                                class="btn btn-primary
 <!--                                           " data-is-mini-cart-available="false" 
                             >
                             장바구니에 담기</button>
+                            
+                            <script>
+                            
+                            //로그인 될때 안될때 
+                            function service(){
+                            	let user =<%=user%>;
+                            	
+                            	if (user == null ) {
+                            		alert("로그인 후 이용해주세요.")
+                            		location.href="main.jsp";
+                            	}else{
+                            		alert("장바구니에 상품이 담겼습니다.")
+                            		location.hrdf="insertBookInCart_proc.jsp";
+                            	}
+                            }
+                            </script>
+                            
+                            
                               </form>
                     
 <!--                      <form action="insertBookInCart_proc.jsp" method="post"> -->
@@ -187,6 +209,14 @@ out.print(price);
                         BUY_BUTTON_HANDLER: buy_nc, // 구매하기 버튼 이벤트 Handler 함수 등록, 품절인 경우 not_buy_nc 함수 사용
                         WISHLIST_BUTTON_HANDLER: wishlist_nc // 찜하기 버튼 이벤트 Handler 함수 등록
                     });
+                    
+                    
+                   
+                    
+                    
+                    
+                    
+                    
                 </script>
             </div>
         </div>
@@ -259,7 +289,11 @@ out.print(price);
             left: 90%;">글쓰기 </a>
         </div>
     </div>
-
+<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+		crossorigin="anonymous">
+    </script>
 
 </body>
 
