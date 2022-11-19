@@ -131,8 +131,8 @@
                                                     <form action="insertBookInCart_proc.jsp" method="post">
                                                         <input name="price" value=<%=price %> type="hidden" />
                                                         <button type="submit" value="<%=isbn%>" name="isbn"
-                                                            onclick="service()" id="btn_addToCart" class="btn btn-primary
-<!--                                           " data-is-mini-cart-available="false">
+                                                            onclick="service()" id="btn_addToCart"
+                                                            class="btn btn-primary" data-is-mini-cart-available="false">
                                                             장바구니에 담기</button>
 
                                                         <script>
