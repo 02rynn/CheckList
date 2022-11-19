@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import = "dao.bBsDAO" %>
-<%@ page import = "dao.Review" %>
-<%@ page import = "java.util.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="dao.bBsDAO" %>
+<%@ page import="dao.Review" %>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,23 +19,10 @@
 <body>
     <%@ include file="navBar.jsp" %>
 
-    <%
-
-//String user = (String)session.getAttribute("userId");
-
-
-out.print(user);
-
-
-String isbn = request.getParameter("isbn");
-String title = request.getParameter("title");
-String nail = request.getParameter("imgUrl");
-
-int price = Integer.parseInt((request.getParameter("price")).toString()); 
-
-out.print(price);
-
-%>
+    <% //String user=(String)session.getAttribute("userId"); out.print(user); String
+                            isbn=request.getParameter("isbn"); String title=request.getParameter("title"); String
+                            nail=request.getParameter("imgUrl"); int
+                            price=Integer.parseInt((request.getParameter("price")).toString()); out.print(price); %>
     <%=nail %>
     <div class="bookDetail" style="display: flex; align-items: center; margin-top:50px;">
         <div class="bookImg" style="width: 60%; margin-left: 50px; ">
@@ -60,13 +47,17 @@ out.print(price);
 
         <div class="bookDetailInfo" style="margin-right: 70px; width:40%">
             <div id="shopProductNameWrapper" class="row">
-                <h1 id="shopProductName" class="row name designSettingElement productName"><%=title %></h1>
+                <h1 id="shopProductName" class="row name designSettingElement productName">
+                    <%=title %>
+                </h1>
                 <div id="shopProductReviewElem" class="designSettingElement text-body hide"
                     data-product-rating-value=0.0></div>
             </div>
 
             <div id="shopProductPrice" class="price row designSettingElement">
-                <span class="productPriceSpan"><%=price %></span>
+                <span class="productPriceSpan">
+                    <%=price %>
+                </span>
             </div>
 
             <div id="shopProductCaptionDiv" class="row caption designSettingElement text-body">
@@ -101,7 +92,9 @@ out.print(price);
                     </div>
                     <div class="product-order-summary-row">
                         <span class="title">총 상품 금액</span> <span class="row-content">
-                            <span id="product-order-total-price"><%=price %></span>
+                            <span id="product-order-total-price">
+                                <%=price %>
+                            </span>
                         </span>
                     </div>
                 </div>
@@ -120,16 +113,32 @@ out.print(price);
 
                             <button type="submit" id="btn_buyNow" class="btn btn-primary
                                           " data-is-mini-cart-available="false">구매하기</button>
-                                          </form>
                     </div>
                     <div class="btn-wrapper cartButton " style="margin-left: 10px;">
                         <!--                     원래 버튼 -->
                         <form action="insertBookInCart_proc.jsp" method="post">
                             <input name="price" value=<%=price %> type="hidden" />
-                            <button type="submit" value="<%=isbn%>" name="isbn" onclick="alert('상품이 장바구니에 담겼습니다.')"
-                                id="btn_addToCart" class="btn btn-primary
+                            <button type="submit" value="<%=isbn%>" name="isbn" onclick="service()" id="btn_addToCart"
+                                class="btn btn-primary
 <!--                                           " data-is-mini-cart-available="false">
                                 장바구니에 담기</button>
+
+                            <script>
+                                //로그인 될때 안될때 
+                                function service() {
+                                    let user = < %= user % > ;
+
+                                    if (user == null) {
+                                        alert("로그인 후 이용해주세요.")
+                                        location.href = "main.jsp";
+                                    } else {
+                                        alert("장바구니에 상품이 담겼습니다.")
+                                        location.hrdf = "insertBookInCart_proc.jsp";
+                                    }
+                                }
+                            </script>
+
+
                         </form>
 
                         <!--                      <form action="insertBookInCart_proc.jsp" method="post"> -->
@@ -138,10 +147,6 @@ out.print(price);
                         <!--                             onclick="require('v2/mall/service/product').detail.handlePurchase('', event)"> -->
                         <!--                             장바구니에 담기</button> -->
                         <!--                             </form> -->
-
-
-
-
 
                     </div>
                 </div>
@@ -189,22 +194,26 @@ out.print(price);
 
     <div class="container">
         <div class="row">
-            <%
-       
-     bBsDAO dao = new bBsDAO();
-     List<Review> rvList = dao.select_bbs_contents_by_title(title);//데이터베이스에서 받아온 결과를 리스트에 넣을거아니냐고...
-      %>
+            <% bBsDAO dao=new bBsDAO(); List<Review> rvList =
+                                            dao.select_bbs_contents_by_title(title);//데이터베이스에서 받아온 결과를 리스트에 넣을거아니냐고...
+                                            %>
             <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd;margin-top: 20px; width: 100%;
             maxlength:50;">
                 <thead>
                     <!--테이블의 제목 -->
                     <tr>
-                        <th style="background-color: #eeeeee; text-align: center;">번호</th>
-                        <th style="background-color: #eeeeee; text-align: center;">상품이름</th>
-                        <th style="background-color: #eeeeee; text-align: center;">제목</th>
-                        <th style="background-color: #eeeeee; text-align: center;">글쓴이</th>
-                        <th style="background-color: #eeeeee; text-align: center;">등록일</th>
-                        <th style="background-color: #eeeeee; text-align: center;">평점 </th>
+                        <th style="background-color: #eeeeee; text-align: center;">번호
+                        </th>
+                        <th style="background-color: #eeeeee; text-align: center;">상품이름
+                        </th>
+                        <th style="background-color: #eeeeee; text-align: center;">제목
+                        </th>
+                        <th style="background-color: #eeeeee; text-align: center;">글쓴이
+                        </th>
+                        <th style="background-color: #eeeeee; text-align: center;">등록일
+                        </th>
+                        <th style="background-color: #eeeeee; text-align: center;">평점
+                        </th>
                     </tr>
                 </thead>
 
@@ -212,49 +221,52 @@ out.print(price);
                 <tbody style="background-color:#eeeeee;">
                     <!-- 데이터베이스에서 글번호, 책이름, 책제목, 글쓴이, 등록일, 평점 가지고와서 보여지도록  -->
 
-                    <%
-      
-         if(rvList != null && rvList.size()>0){ //배열이 null이 아니고 size가 0보다 크면 반복문 돌릴거임
-            %>
+                    <% if(rvList !=null && rvList.size()>0){ //배열이 null이 아니고 size가 0보다
+                                                        크면 반복문 돌릴거임
+                                                        %>
 
-                    <% 
-            for(Review  r : rvList){
-               %>
+                    <% for(Review r : rvList){ %>
                     <%=r.getReview_num()%>
                     <tr>
 
-                        <td><%= r.getReview_num() %></td>
-                        <td><a href="watchReview.jsp"><%= r.getTitle() %></a></td>
-                        <td><%= r.getReview_title() %></td>
-                        <td><%= r.getId() %></td>
-                        <td><%= r.getReveiw_date() %></td>
-                        <td><%
-                   if(r.getReview_rate()== 1){
-                      out.println("★☆☆☆☆");
-                   }else if(r.getReview_rate() ==2){
-                      out.println("★★☆☆☆");        
-                   }else if(r.getReview_rate() == 3){
-                      out.println("★★★☆☆");
-                   }else if(r.getReview_rate() == 4){
-                      out.println("★★★★☆");
-                   }else{
-                     out.println("★★★★★");
-                   } 
-                     
-                     %></td>
+                        <td>
+                            <%= r.getReview_num() %>
+                        </td>
+                        <td><a href="watchReview.jsp">
+                                <%= r.getTitle() %>
+                            </a></td>
+                        <td>
+                            <%= r.getReview_title() %>
+                        </td>
+                        <td>
+                            <%= r.getId() %>
+                        </td>
+                        <td>
+                            <%= r.getReveiw_date() %>
+                        </td>
+                        <td>
+                            <% if(r.getReview_rate()==1){
+                                                                            out.println("★☆☆☆☆"); }else
+                                                                            if(r.getReview_rate()==2){
+                                                                            out.println("★★☆☆☆"); }else
+                                                                            if(r.getReview_rate()==3){
+                                                                            out.println("★★★☆☆"); }else
+                                                                            if(r.getReview_rate()==4){
+                                                                            out.println("★★★★☆"); }else{
+                                                                            out.println("★★★★★"); } %>
+                        </td>
 
                     </tr>
-                    <%
-            }
-         }
-      %>
+                    <% } } %>
                 </tbody>
             </table>
             <a href="Write.jsp" class="btn btn-primary" style="width: 100px; position: relative; 
             left: 90%;">글쓰기 </a>
         </div>
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
+    </script>
 
 </body>
 
