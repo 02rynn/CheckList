@@ -33,7 +33,7 @@ out.print(isbn);
 int result = dao.insertBookInCart(ct);
 
 
-response.sendRedirect("cart.jsp?id="+(String)user+"price="+price);
+response.sendRedirect("cart.jsp?id="+(String)user);
 %>
 
 </body>

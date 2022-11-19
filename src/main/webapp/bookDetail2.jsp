@@ -120,6 +120,7 @@ out.print(price);
 
                             <button type="submit" id="btn_buyNow" class="btn btn-primary
                                           " data-is-mini-cart-available="false">구매하기</button>
+                                          </form>
                     </div>
                     <div class="btn-wrapper cartButton " style="margin-left: 10px;">
                         <!--                     원래 버튼 -->

@@ -99,7 +99,7 @@ cs = dao2.selectCustomerInfoInBuyPage((String)user);
 
 %>
 
- <form action="Purchase_proc.jsp" method="get">
+ <form action="PurchaseToCart_proc.jsp" method="get">
  
  
  
