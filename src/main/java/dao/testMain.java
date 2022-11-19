@@ -80,13 +80,14 @@ public class testMain {
 
 			DataDao asd = new DataDao();
 			
-			List<Book> aa = asd.selectBuyBookInfo("bkw");
+			
+			List<Book> aa = asd.selectBuyBookInfo("asd");
+			
 			System.out.println(aa.size());
 			
 	
 	
-
-//			DataDao dao=new DataDao(); 
+ 
 			
 	//		List<Book> bk = dao.selectBuyBookInfo("bkw");
 		//	System.out.println(bk.size());

@@ -51,7 +51,7 @@
 
                                     </div>
 
-                                    <div class="bookDetailInfo" style="margin-right: 70px; width: 40%">
+                                    <div class="bookDetailInfo" style="margin-right: 70px; width:40%">
                                         <div id="shopProductNameWrapper" class="row">
                                             <h1 id="shopProductName" class="row name designSettingElement productName">
                                                 <%=title %>
@@ -59,6 +59,7 @@
                                             <div id="shopProductReviewElem" class="designSettingElement text-body hide"
                                                 data-product-rating-value=0.0></div>
                                         </div>
+
 
                                         <div id="shopProductPrice" class="price row designSettingElement">
                                             <span class="productPriceSpan">
@@ -118,11 +119,12 @@
                                                 <div class="btn-wrapper buyButton">
 
                                                     <form action="buyNowCartNo.jsp" method="get">
-                                                        <input name="isbn" value=<%=isbn %> type="hidden" /> <input
-                                                            name="price" value=<%=price %> type="hidden" />
+                                                        <input name="isbn" value=<%=isbn %> type="hidden" />
+                                                        <input name="price" value=<%=price %> type="hidden" />
 
                                                         <button type="submit" id="btn_buyNow" class="btn btn-primary
                                           " data-is-mini-cart-available="false">구매하기</button>
+                                                    </form>
                                                 </div>
                                                 <div class="btn-wrapper cartButton " style="margin-left: 10px;">
                                                     <!--                     원래 버튼 -->
@@ -130,13 +132,13 @@
                                                         <input name="price" value=<%=price %> type="hidden" />
                                                         <button type="submit" value="<%=isbn%>" name="isbn"
                                                             onclick="service()" id="btn_addToCart" class="btn btn-primary
-<!--                                           " data-is-mini-cart-available="false">장바구니에 담기</button>
+<!--                                           " data-is-mini-cart-available="false">
+                                                            장바구니에 담기</button>
 
                                                         <script>
-
                                                             //로그인 될때 안될때 
                                                             function service() {
-                                                                let user =<%=user%>;
+                                                                let user = < %= user % > ;
 
                                                                 if (user == null) {
                                                                     alert("로그인 후 이용해주세요.")
@@ -198,14 +200,6 @@
                                                     BUY_BUTTON_HANDLER: buy_nc, // 구매하기 버튼 이벤트 Handler 함수 등록, 품절인 경우 not_buy_nc 함수 사용
                                                     WISHLIST_BUTTON_HANDLER: wishlist_nc // 찜하기 버튼 이벤트 Handler 함수 등록
                                                 });
-
-
-
-
-
-
-
-
                                             </script>
                                         </div>
                                     </div>
@@ -279,8 +273,8 @@
                                                                 <% } } %>
                                                 </tbody>
                                             </table>
-                                            <a href="Write.jsp" class="btn btn-primary"
-                                                style="width: 100px; position: relative; left: 90%;">글쓰기 </a>
+                                            <a href="Write.jsp" class="btn btn-primary" style="width: 100px; position: relative; 
+            left: 90%;">글쓰기 </a>
                                     </div>
                                 </div>
                                 <script
