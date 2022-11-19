@@ -108,6 +108,42 @@ public class cartDao {
 	}
 	
 	
+	public List<cart> deleteBuyBookInfo(String id){
+		String sql = " delete from shop_bskt where id = '?' ";
+					
+		List<cart> ct = null;
+		
+		try {
+			connect();
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			
+			rs = psmt.executeQuery();
+			
+			ct = new ArrayList<cart>();
+			
+			while(rs.next()) {
+				cart ct2 = new cart();
+				ct2.setId(rs.getString("id"));
+				ct2.setIsbn(rs.getString("thumbnail"));
+				ct2.setShop_cnt(rs.getInt("price"));
+				
+				
+				ct.add(ct2);
+			}
+			return ct;
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+		
+		return ct;
+	}
+	
+	
 	//테이블 customer_no 만들고 다시 insert만든거 지우면 안됨 
 //	public int insertBookInCart(cart ct) { // 장바구니 담기 
 //
