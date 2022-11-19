@@ -40,6 +40,15 @@ for(int i = 0 ; i < bk.size();i++){
 
 
 %>
+<script type="text/javascript">
 
+if(confirm("구매를 진행합니다")){
+	
+	location.href = 'purchaseConfirmation.jsp';
+}
+	
+
+
+</script>
 </body>
 </html>
