@@ -21,10 +21,10 @@
                 <body>
                     <%@ include file="navBar.jsp" %>
 
-                        <% //String user=(String)session.getAttribute("userId"); out.print(user); String
-                            isbn=request.getParameter("isbn"); String title=request.getParameter("title"); String
-                            nail=request.getParameter("imgUrl"); int
-                            price=Integer.parseInt((request.getParameter("price")).toString()); out.print(price); %>
+                        <% //String user=(String)session.getAttribute("userId"); out.print(user); 
+                        String isbn=request.getParameter("isbn"); String title=request.getParameter("title"); 
+                        String nail=request.getParameter("imgUrl"); 
+                        int price=Integer.parseInt((request.getParameter("price")).toString()); out.print(price); %>
                             <%=nail %>
                                 <div class="bookDetail" style="display: flex; align-items: center; margin-top:50px;">
                                     <div class="bookImg" style="width: 60%; margin-left: 50px; ">

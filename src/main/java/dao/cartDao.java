@@ -107,41 +107,65 @@ public class cartDao {
 		return result;
 	}
 	
+	//장바구니 전체 삭제 만들다 실패 
+//	public List<cart> deleteBuyBookInfo(String id){
+//		String sql = " delete from shop_bskt where id = '?' ";
+//					
+//		List<cart> ct = null;
+//		
+//		try {
+//			connect();
+//			
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setString(1, id);
+//			
+//			rs = psmt.executeQuery();
+//			
+//			ct = new ArrayList<cart>();
+//			
+//			while(rs.next()) {
+//				cart ct2 = new cart();
+//				ct2.setId(rs.getString("id"));
+//				ct2.setIsbn(rs.getString("isbn"));
+//				ct2.setShop_cnt(rs.getInt("shop_cnt"));
+//				
+//				
+//				ct.add(ct2);
+//			}
+//			return ct;
+//			
+//		}catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			disConnect();
+//		}
+//		
+//		return ct;
+//	}
 	
-	public List<cart> deleteBuyBookInfo(String id){
-		String sql = " delete from shop_bskt where id = '?' ";
-					
-		List<cart> ct = null;
-		
-		try {
-			connect();
-			
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, id);
-			
-			rs = psmt.executeQuery();
-			
-			ct = new ArrayList<cart>();
-			
-			while(rs.next()) {
-				cart ct2 = new cart();
-				ct2.setId(rs.getString("id"));
-				ct2.setIsbn(rs.getString("thumbnail"));
-				ct2.setShop_cnt(rs.getInt("price"));
-				
-				
-				ct.add(ct2);
-			}
-			return ct;
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			disConnect();
-		}
-		
-		return ct;
-	}
+	//장바구니 전체 삭제 만들다 실패 
+//	public int deleteBookInCart(String id) {
+//		String sql = " delete from shop_bskt where id = '?' ";
+//		int result = 0; 
+//		try {
+//			connect();
+//			
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setString(1, id);
+//			
+//			
+//			result = psmt.executeUpdate();
+//			
+//			
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}finally {
+//			disConnect();
+//		}
+//		return result;
+//	}
+	
 	
 	
 	//테이블 customer_no 만들고 다시 insert만든거 지우면 안됨 
