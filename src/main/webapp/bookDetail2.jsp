@@ -51,7 +51,7 @@
 
                                     </div>
 
-                                    <div class="bookDetailInfo" style="margin-right: 70px; width:40%">
+                                    <div class="bookDetailInfo" style="margin-right: 70px; width: 40%">
                                         <div id="shopProductNameWrapper" class="row">
                                             <h1 id="shopProductName" class="row name designSettingElement productName">
                                                 <%=title %>
@@ -118,8 +118,8 @@
                                                 <div class="btn-wrapper buyButton">
 
                                                     <form action="buyNowCartNo.jsp" method="get">
-                                                        <input name="isbn" value=<%=isbn %> type="hidden" />
-                                                        <input name="price" value=<%=price %> type="hidden" />
+                                                        <input name="isbn" value=<%=isbn %> type="hidden" /> <input
+                                                            name="price" value=<%=price %> type="hidden" />
 
                                                         <button type="submit" id="btn_buyNow" class="btn btn-primary
                                           " data-is-mini-cart-available="false">구매하기</button>
@@ -127,11 +127,10 @@
                                                 <div class="btn-wrapper cartButton " style="margin-left: 10px;">
                                                     <!--                     원래 버튼 -->
                                                     <form action="insertBookInCart_proc.jsp" method="post">
-                                                        <input name="price" value=<%=price %> type="hidden"/>
+                                                        <input name="price" value=<%=price %> type="hidden" />
                                                         <button type="submit" value="<%=isbn%>" name="isbn"
                                                             onclick="service()" id="btn_addToCart" class="btn btn-primary
-<!--                                           " data-is-mini-cart-available="false">
-                                                            장바구니에 담기</button>
+<!--                                           " data-is-mini-cart-available="false">장바구니에 담기</button>
 
                                                         <script>
 
@@ -217,8 +216,8 @@
                                         <% bBsDAO dao=new bBsDAO(); List<Review> rvList =
                                             dao.select_bbs_contents_by_title(title);//데이터베이스에서 받아온 결과를 리스트에 넣을거아니냐고...
                                             %>
-                                            <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd;margin-top: 20px; width: 100%;
-            maxlength:50;">
+                                            <table class="table table-striped"
+                                                style="text-align: center; border: 1px solid #dddddd; margin-top: 20px; width: 100%; maxlength: 50;">
                                                 <thead>
                                                     <!--테이블의 제목 -->
                                                     <tr>
@@ -238,11 +237,11 @@
                                                 </thead>
 
                                                 <h1 style="margin-top: 30px;">독자님들의 후기</h1>
-                                                <tbody style="background-color:#eeeeee;">
+                                                <tbody style="background-color: #eeeeee;">
                                                     <!-- 데이터베이스에서 글번호, 책이름, 책제목, 글쓴이, 등록일, 평점 가지고와서 보여지도록  -->
 
                                                     <% if(rvList !=null && rvList.size()>0){ //배열이 null이 아니고 size가 0보다
-                                                        크면 반복문 돌릴거임
+
                                                         %>
 
                                                         <% for(Review r : rvList){ %>
@@ -280,8 +279,8 @@
                                                                 <% } } %>
                                                 </tbody>
                                             </table>
-                                            <a href="Write.jsp" class="btn btn-primary" style="width: 100px; position: relative; 
-            left: 90%;">글쓰기 </a>
+                                            <a href="Write.jsp" class="btn btn-primary"
+                                                style="width: 100px; position: relative; left: 90%;">글쓰기 </a>
                                     </div>
                                 </div>
                                 <script
