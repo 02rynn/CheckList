@@ -19,10 +19,12 @@
 <body>
     <%@ include file="navBar.jsp" %>
 
-    <% //String user=(String)session.getAttribute("userId"); out.print(user); String
-                            isbn=request.getParameter("isbn"); String title=request.getParameter("title"); String
-                            nail=request.getParameter("imgUrl"); int
-                            price=Integer.parseInt((request.getParameter("price")).toString()); out.print(price); %>
+    <% 	//String user=(String)session.getAttribute("userId"); 
+    out.print(user); 
+    String isbn =request.getParameter("isbn"); 
+    String title=request.getParameter("title"); 
+    String nail=request.getParameter("imgUrl"); 
+    int price=Integer.parseInt((request.getParameter("price")).toString()); out.print(price); %>
     <%=nail %>
     <div class="bookDetail" style="display: flex; align-items: center; margin-top:50px;">
         <div class="bookImg" style="width: 60%; margin-left: 50px; ">
@@ -113,6 +115,7 @@
 
                             <button type="submit" id="btn_buyNow" class="btn btn-primary
                                           " data-is-mini-cart-available="false">구매하기</button>
+                                          </form>
                     </div>
                     <div class="btn-wrapper cartButton " style="margin-left: 10px;">
                         <!--                     원래 버튼 -->
@@ -222,7 +225,7 @@
                     <!-- 데이터베이스에서 글번호, 책이름, 책제목, 글쓴이, 등록일, 평점 가지고와서 보여지도록  -->
 
                     <% if(rvList !=null && rvList.size()>0){ //배열이 null이 아니고 size가 0보다
-                                                        크면 반복문 돌릴거임
+                                                   
                                                         %>
 
                     <% for(Review r : rvList){ %>
