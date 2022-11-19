@@ -99,7 +99,7 @@ BuyBookDao dao = new BuyBookDao();
 bk = dao.selectBuyBookInfoInBuyPage(isbn);
 cs = dao.selectCustomerInfoInBuyPage((String)user);
 
-cs.setId(user.toString());
+cs.setId((String)user);
 
 
 // out.print(isbn);

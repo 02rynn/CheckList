@@ -137,13 +137,13 @@
                                                         <script>
                                                             //로그인 될때 안될때 
                                                             function service() {
-                                                                let user = < %= user % > ;
+                                                                let user = <%=user%> ;
 
                                                                 if (user == null) {
-                                                                    alert("로그인 후 이용해주세요.")
+                                                                    alert("로그인 후 이용해주세요.");
                                                                     location.href = "main.jsp";
                                                                 } else {
-                                                                    alert("장바구니에 상품이 담겼습니다.")
+                                                                    alert("장바구니에 상품이 담겼습니다.");
                                                                     location.hrdf = "insertBookInCart_proc.jsp";
                                                                 }
                                                             }

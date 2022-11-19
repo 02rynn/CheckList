@@ -86,7 +86,7 @@
 		<%
 		
 		Object user = session.getAttribute("userId");
-		
+	
 		if(user == null){
 			%>
 
