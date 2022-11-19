@@ -108,10 +108,10 @@ public class cartDao {
 	}
 	
 	
-	public List<cart> deleteBuyBookInfo(String id){
-		String sql = " delete from shop_bskt where id = '?' ";
+	public int deleteBuyBookInfo(String id){
+		String sql = " delete from shop_bskt where id = ? ";
 					
-		List<cart> ct = null;
+		int result = 0;
 		
 		try {
 			connect();
@@ -119,20 +119,12 @@ public class cartDao {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
 			
-			rs = psmt.executeQuery();
+			result = psmt.executeUpdate();
 			
-			ct = new ArrayList<cart>();
 			
-			while(rs.next()) {
-				cart ct2 = new cart();
-				ct2.setId(rs.getString("id"));
-				ct2.setIsbn(rs.getString("thumbnail"));
-				ct2.setShop_cnt(rs.getInt("price"));
-				
-				
-				ct.add(ct2);
-			}
-			return ct;
+			
+			
+			return result;
 			
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -140,7 +132,7 @@ public class cartDao {
 			disConnect();
 		}
 		
-		return ct;
+		return result;
 	}
 	
 	

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="dao.DataDao"%>
 <%@ page import="dao.Book"%>
+<%@ page import="dao.cartDao"%>
 <%@ page import="dao.cart"%>
 <%@ page import="java.util.*"%>
 <!DOCTYPE html>
@@ -215,13 +216,6 @@ div {
 <body>
 	<%@ include file="navBar.jsp"%>
 
-<%
-
-
-
-
-
-%>
 
 
 
@@ -235,7 +229,15 @@ div {
 
 
 <button onclick="location.href='index.jsp'" type="button" class="btn btn-primary btn-lg">메인화면으로 이동</button>
-</a>
+<%
+cartDao dao = new cartDao();
+
+
+
+dao.deleteBuyBookInfo((String)user);
+
+%>
+
 
 
 
