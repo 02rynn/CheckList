@@ -82,4 +82,72 @@ public class BuyBookDao {
 		}
 		return result;
 	}
+	
+	// 상세페이지에서 구매하기 눌렀을 때 구매페이지로 데이터 불러오는 메소드 11.18 18시30분
+	public Book selectBuyBookInfoInBuyPage(String isbn){
+	String sql = " select * from book where isbn= ? ";
+	Book bk = null;
+	
+	try {
+		connect();
+		
+		psmt = conn.prepareStatement(sql);
+		psmt.setString(1, isbn);
+		
+		rs = psmt.executeQuery();
+		
+		bk = new Book();
+		if(rs.next()) {
+			
+			bk.setIsbn(rs.getString("isbn"));
+			bk.setTitle(rs.getString("title"));
+			bk.setThumbnail(rs.getString("thumbnail"));
+			bk.setPrice(rs.getInt("price"));
+		}
+		
+	}catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+		disconnect();
+	}
+	
+	return bk;
+}
+	
+	public Customer selectCustomerInfoInBuyPage(String id){
+		String sql = " select * from customer where id= ? ";
+		Customer cs = null;
+		
+		try {
+			connect();
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			
+			rs = psmt.executeQuery();
+			
+			cs = new Customer();
+			if(rs.next()) {
+				
+				cs.setId(rs.getString("id"));
+				cs.setAddress(rs.getString("address"));
+				cs.setPhone_num(rs.getString("phone_num"));
+				cs.setCustomer_name(rs.getString("customer_name"));
+		
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		
+		return cs;
+	}
+	
+	
+	
+	
+	
+	
 }

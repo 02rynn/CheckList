@@ -214,9 +214,20 @@ div {
 
 <body>
 	<%@ include file="navBar.jsp"%>
+<%
 
 
 
+
+
+
+String price =  request.getParameter("price");
+String isbn = request.getParameter("isbn");
+%>
+
+
+
+ 
 	<div id="shopCartDetail" class="shopCartDetail wrapper">
 		<div id="cart" class="cart wrapper clearfix">
 			<div class="header designSettingElement text-titleWithFontSize">
@@ -225,12 +236,12 @@ div {
 			<% 
 // 			out.print(user);
 			DataDao dao=new DataDao(); 
-			List<Book> bk = dao.selectBuyBookInfo(user.toString());
+			String asd = request.getParameter("id");
+			
+			List<Book> bk = dao.selectBuyBookInfo(asd);
+			
 		
-
-
-                                            //out.print(bk);
-                                            //out.println(bk.getPrice());
+                                       
                                             %>
 			<table class="table">
 				<thead>
@@ -247,10 +258,13 @@ div {
 
 
 
-					<% //아이디랑 isbn 이 같이 파라미터로 넘어와서 // info에 id를 넣어서 그걸 가져오면 되는데 // 지금 info에는 책 정보밖에 없음
-                                        // id는 따로 만들어서 넣어야? if (bk !=null && bk.size()> 0) {
-                                        for (Book info : bk) {
-
+<!-- 					//아이디랑 isbn 이 같이 파라미터로 넘어와서 // info에 id를 넣어서 그걸 가져오면 되는데 // 지금 info에는 책 정보밖에 없음 -->
+<!--                                         // id는 따로 만들어서 넣어야? if (bk !=null && bk.size()> 0) { -->
+                                      <% 
+                                        	
+                                      int sum =0;
+                                        	for (Book info : bk) {
+											 sum+=info.getPrice();
                                         %>
 					
 						<tr>
@@ -301,8 +315,8 @@ div {
                                                 <div id="cartInfoDiv"
 							class="info designSettingElement shape">
                                                     <div class="price">
-                                                      <div
-									class="title">상품 합계</div>
+<!--                                                       <div -->
+<!-- 									class="title">상품 합계</div> -->
                                                       
 									
 
@@ -330,23 +344,26 @@ div {
                                                     <div
 								class="title bold">합계</div>
                                                     <div
-								id="cartTotalDiscountAppliedPrice" class="content bold"></div>
+								id="cartTotalDiscountAppliedPrice" class="content bold"><%=sum %>원</div>
                                                 </div>
                                             </div>
 
 
                                 <div
 				class="btn-wrapper shopCartInfo hide">
-                                    <button id="btn_orderProducts"
+				 <form action="buyCart.jsp" method="get">
+  <input name="isbn" value=<%=isbn %> type="hidden"/>
+       <input name="price" value=<%=price %> type="hidden"/>
+                                    <button type="submit" id="btn_orderProducts"
 					class="designSettingElement button"
 					onclick="location.href='buyNowCartNo.jsp'">주문하기</button>
+					</form>
                                 </div>
 
 
 						      </div>
                         </div>
-
-
+					
                         <script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

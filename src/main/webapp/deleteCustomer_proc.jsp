@@ -20,9 +20,9 @@
 DataDao dao = new DataDao();
 
 int result = dao.deleteCustomer((String)user);
-int result2 = dao.deleteDataInCart((String)user);
+// int result2 = dao.deleteDataInCart((String)user);
 
-if(result > 0 & result2 > 0){
+if(result > 0 ){
 %>      
 <script>
 alert('삭제되었습니다.')

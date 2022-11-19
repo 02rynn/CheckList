@@ -4,6 +4,7 @@
 <%@ page import="dao.Customer"%>
 <%@ page import="dao.MypageDao"%>
 <%@ page import="dao.Review"%>
+<%@ page import="dao.BuyBook"%>
 <%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
@@ -251,10 +252,11 @@ body .designSettingElement.button {
 	
 	MypageDao mdao = new MypageDao();
 	List<Review> rv = mdao.selectReviewById((String)user);
+	List<BuyBook> bb = mdao.selectBuyListById((String)user);
 	
 	out.print(user);
 	out.print(rv);
-
+//	out.print(rv.get)
 	
 	%>
 
@@ -270,7 +272,8 @@ body .designSettingElement.button {
 				<thead>
 					<tr>
 						<th scope="col">일자</th>
-						<th scope="col">상품정보</th>
+<!-- 						buybook table에 썸네일 컬럼 만들어서 select sql문에 썸네일 추가해서 상품정보 띄우기  -->
+<!-- 						<th scope="col">상품정보</th> -->
 						<th scope="col">가격</th>
 						<th scope="col">주문상태</th>
 
@@ -278,11 +281,21 @@ body .designSettingElement.button {
 				</thead>
 				<tbody>
 					<tr>
-						<td>일자</td>
-						<td>상품정보</td>
-						<td>가격</td>
-						<td>주문상태</td>
+					
+						<%
+					
+						for(BuyBook info : bb){ 
+					
+							
+					%>
+					
+						<td>일자<%=info.getOrder_date()%></td>
+<%-- 						<td>상품정보<%=info.get()%></td> --%>
+						<td>가격<%=info.getPrice()%></td>
+						<td>주문상태<%=info.getOrder_status()%></td>
 					</tr>
+					
+					<% } %>
 				</tbody>
 				</table>
 				
@@ -326,8 +339,8 @@ body .designSettingElement.button {
 					%>
 				
 					<tr>
-						<td>일자<%=info.getReveiw_date() %></td>
-						<td>제목<%=info.getReview_title()%></td>
+						<td><%=info.getReveiw_date() %></td>
+						<td><%=info.getReview_title()%></td>
 					
 					</tr>
 					

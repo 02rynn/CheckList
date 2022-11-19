@@ -17,14 +17,15 @@
 </head>
 
 <body>
- <%@ include file="navBar.jsp" %>
+    <%@ include file="navBar.jsp" %>
 
-<%
+    <%
 
 //String user = (String)session.getAttribute("userId");
 
 
 out.print(user);
+
 
 String isbn = request.getParameter("isbn");
 String title = request.getParameter("title");
@@ -32,10 +33,10 @@ String nail = request.getParameter("imgUrl");
 
 int price = Integer.parseInt((request.getParameter("price")).toString()); 
 
- 
+out.print(price);
 
 %>
-<%=nail %>
+    <%=nail %>
     <div class="bookDetail" style="display: flex; align-items: center; margin-top:50px;">
         <div class="bookImg" style="width: 60%; margin-left: 50px; ">
             <div id="shopProductImgsDiv" class="content mainImg productImgType_thumbnails ratio_default loading"
@@ -44,10 +45,9 @@ int price = Integer.parseInt((request.getParameter("price")).toString());
                 <div id='shopProductImgsMainDiv' class='main img-div img'>
                     <div class='shopProductImgMainWrapper type_thumbnails sequence_0 on' data-shopproductsequence='0'>
                         <img data-shopProductSequence=' 0' imgSrc='/uploadedFiles/95268/product/image_1668245931868.jpg'
-                            class='shopProductImgMain thumbnails' style="width: 60%; margin: 30px"
-                             src=<%=nail %>> 
-                            
-                            <!-- 썸네일바꾸기  -->
+                            class='shopProductImgMain thumbnails' style="width: 60%; margin: 30px" src=<%=nail %>>
+
+                        <!-- 썸네일바꾸기  -->
 
                     </div>
                 </div>
@@ -89,7 +89,7 @@ int price = Integer.parseInt((request.getParameter("price")).toString());
             </div>
 
 
-         
+
 
             <div class="product-order-summary-wrapper designSettingElement text-body ">
                 <div class="product-order-summary-info designSettingElement shape">
@@ -113,31 +113,35 @@ int price = Integer.parseInt((request.getParameter("price")).toString());
             <div id="productActionButtonDiv" class="productActionButtonDiv row">
                 <div class="normalButton" style="display: flex; margin-left: 15px; margin: 20px;">
                     <div class="btn-wrapper buyButton">
-                        <button id="btn_buyNow" class="btn btn-primary
-                                          " data-is-mini-cart-available="false"
-                            >구매하기</button>
+
+                        <form action="buyNowCartNo.jsp" method="get">
+                            <input name="isbn" value=<%=isbn %> type="hidden" />
+                            <input name="price" value=<%=price %> type="hidden" />
+
+                            <button type="submit" id="btn_buyNow" class="btn btn-primary
+                                          " data-is-mini-cart-available="false">구매하기</button>
                     </div>
                     <div class="btn-wrapper cartButton " style="margin-left: 10px;">
-<!--                     원래 버튼 -->
-<form action="insertBookInCart_proc.jsp" method="post">
-                     <button type="submit" value="<%=isbn%>" name="isbn"
-                                                onclick="alert('상품이 장바구니에 담겼습니다.')" id="btn_addToCart" class="btn btn-primary
-<!--                                           " data-is-mini-cart-available="false" 
-                            >
-                            장바구니에 담기</button>
-                              </form>
-                    
-<!--                      <form action="insertBookInCart_proc.jsp" method="post"> -->
-<!--                         <button id="btn_addToCart" class="btn btn-primary -->
-<!--                                           " data-is-mini-cart-available="false" -->
-<!--                             onclick="require('v2/mall/service/product').detail.handlePurchase('', event)"> -->
-<!--                             장바구니에 담기</button> -->
-<!--                             </form> -->
+                        <!--                     원래 버튼 -->
+                        <form action="insertBookInCart_proc.jsp" method="post">
+                            <input name="price" value=<%=price %> type="hidden" />
+                            <button type="submit" value="<%=isbn%>" name="isbn" onclick="alert('상품이 장바구니에 담겼습니다.')"
+                                id="btn_addToCart" class="btn btn-primary
+<!--                                           " data-is-mini-cart-available="false">
+                                장바구니에 담기</button>
+                        </form>
 
-							
-                            
-                            
-                                          
+                        <!--                      <form action="insertBookInCart_proc.jsp" method="post"> -->
+                        <!--                         <button id="btn_addToCart" class="btn btn-primary -->
+                        <!--                                           " data-is-mini-cart-available="false" -->
+                        <!--                             onclick="require('v2/mall/service/product').detail.handlePurchase('', event)"> -->
+                        <!--                             장바구니에 담기</button> -->
+                        <!--                             </form> -->
+
+
+
+
+
                     </div>
                 </div>
             </div>
@@ -184,7 +188,7 @@ int price = Integer.parseInt((request.getParameter("price")).toString());
 
     <div class="container">
         <div class="row">
-         <%
+            <%
        
      bBsDAO dao = new bBsDAO();
      List<Review> rvList = dao.select_bbs_contents_by_title(title);//데이터베이스에서 받아온 결과를 리스트에 넣을거아니냐고...
@@ -206,24 +210,24 @@ int price = Integer.parseInt((request.getParameter("price")).toString());
                 <h1 style="margin-top: 30px;">독자님들의 후기</h1>
                 <tbody style="background-color:#eeeeee;">
                     <!-- 데이터베이스에서 글번호, 책이름, 책제목, 글쓴이, 등록일, 평점 가지고와서 보여지도록  -->
-                           
-      <%
+
+                    <%
       
          if(rvList != null && rvList.size()>0){ //배열이 null이 아니고 size가 0보다 크면 반복문 돌릴거임
             %>
-            
-            <% 
+
+                    <% 
             for(Review  r : rvList){
                %>
-               <%=r.getReview_num()%>
-               <tr>
-               
-                <td><%= r.getReview_num() %></td>
-               <td><a href="watchReview.jsp"><%= r.getTitle() %></a></td>
-                  <td><%= r.getReview_title() %></td>
-                   <td><%= r.getId() %></td>
-                    <td><%= r.getReveiw_date() %></td>
-                     <td><%
+                    <%=r.getReview_num()%>
+                    <tr>
+
+                        <td><%= r.getReview_num() %></td>
+                        <td><a href="watchReview.jsp"><%= r.getTitle() %></a></td>
+                        <td><%= r.getReview_title() %></td>
+                        <td><%= r.getId() %></td>
+                        <td><%= r.getReveiw_date() %></td>
+                        <td><%
                    if(r.getReview_rate()== 1){
                       out.println("★☆☆☆☆");
                    }else if(r.getReview_rate() ==2){
@@ -237,9 +241,9 @@ int price = Integer.parseInt((request.getParameter("price")).toString());
                    } 
                      
                      %></td>
-               
-               </tr>
-         <%
+
+                    </tr>
+                    <%
             }
          }
       %>
