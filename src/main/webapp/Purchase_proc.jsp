@@ -48,7 +48,19 @@ dao2.insertBookInPurchase(cs, isbn, price,mm);
 
 
 
+
+
 %>
+<script type="text/javascript">
+
+if(confirm("구매를 진행합니다")){
+	
+	location.href = 'purchaseConfirmation.jsp';
+}
+	
+
+
+</script>
 
 </body>
 </html>

@@ -166,6 +166,32 @@ public class cartDao {
 //		return result;
 //	}
 	
+	public int deleteBuyBookInfo(String id){
+		String sql = " delete from shop_bskt where id = ? ";
+					
+		int result = 0;
+		
+		try {
+			connect();
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			
+			result = psmt.executeUpdate();
+			
+			
+			
+			
+			return result;
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			disConnect();
+		}
+		
+		return result;
+	}
 	
 	
 	//테이블 customer_no 만들고 다시 insert만든거 지우면 안됨 
