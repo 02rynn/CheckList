@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
     <%@ page import = "dao.bBsDAO" %>
+        <%@ page import = "dao.Book" %>
     <%@ page import = "dao.Review" %>
     <%@ page import="java.util.*"%>
 <!DOCTYPE html>
@@ -21,7 +22,7 @@
                     
      <%
      
-    out.print((String)user);
+
  	 bBsDAO dao = new bBsDAO();
  	 List<Review> rvList = dao.select_bbs_contents(); //데이터베이스에서 받아온 결과를 리스트에 넣을거아니냐고...
       %>
@@ -42,15 +43,15 @@
                 <!-- 데이터베이스에서 글번호, 책이름, 책제목, 글쓴이, 등록일, 평점 가지고와서 보여지도록  -->
             
       <%
+  
       
       	if(rvList != null && rvList.size()>0){ //배열이 null이 아니고 size가 0보다 크면 반복문 돌릴거임
       		for(Review  r : rvList){
       			%>
       			<tr>
-      			
       			 <td><%= r.getReview_num() %></td>
-      			<td><a href="bookDetail2.jsp"><%= r.getTitle() %></a></td> <!-- 상세페이지로 가도록  -->
-      			   <td><a href="watchReview.jsp?writer=<%=r.getId()%>&title=<%=r.getReview_title()%>&content=<%=r.getReview_contents()%>&rate=<%= r.getReview_rate()%>&num=<%= r.getReview_num() %>"><%= r.getReview_title() %></a></td>
+      			<td><a style="text-decoration: none;" href="bbs_bookDetail.jsp?title=<%=r.getReview_title() %>"><%=r.getReview_title() %></a></td> <!-- 상세페이지로 가도록  -->
+      			   <td><a style="text-decoration: none;" href="watchReview.jsp?writer=<%=r.getId()%>&title=<%=r.getReview_title()%>&content=<%=r.getReview_contents()%>&rate=<%=r.getReview_rate()%>&num=<%= r.getReview_num() %>"><%= r.getReview_title() %></a></td>
       			    <td><%= r.getId()%></td>
       			     <td><%= r.getReveiw_date() %></td>
       			      <td><%
@@ -62,7 +63,7 @@
     			    	  out.println("★★★☆☆");
     			      }else if(r.getReview_rate() == 4){
     			    	  out.println("★★★★☆");
-    			      }else{
+    			      }else {
     			    	 out.println("★★★★★");
     			      } 
       			      

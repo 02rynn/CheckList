@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	<%@ page import="dao.bBsDAO" %>
 		<%@ page import="dao.Book" %>
+		
+		 <%@ page import="java.io.PrintWriter"%>
 			<%@ page import="java.util.*" %>
 				<!DOCTYPE html>
 				<html>
@@ -30,8 +32,6 @@
 								%>
 
 
-
-
 								<div class="container">
 									<div class="row">
 										<form method="get" action="writeAction2.jsp">
@@ -51,7 +51,7 @@
 																<% for(Book bk : buyItems){ %>
 																	<option id="option" value=<%=bk.getTitle() %>>
 																		<%=bk.getTitle() %>
-																	</option>`
+																	</option>
 																	<% } %>
 
 
@@ -77,18 +77,16 @@
 											<div class="bbs"
 												style="display: flex; align-items: center; justify-content: flex-end">
 												<input id="saveBtn" type="submit" class="btn btn-outline-primary"
-													value="저장하기" style="width: 100px;">
+													value="저장하기">
 
 												<div class="customSelectDiv designSettingElement shape "
 													id="selectPostReviewRateDiv" style="margin-left: 10px;"
 													data-text="평점 주기">
 
-
-
 													<select name="rvrate" class="btn btn-outline-primary"
 														onchange="require('common/common').customSelectBoxClickEvent(this)"
 														id="selectPostReviewRate">
-														<option value="0" selected="selected">평점 주기</option>
+														<option >평점 주기</option>
 														<option value="5">★★★★★</option>
 														<option value="4">★★★★☆</option>
 														<option value="3">★★★☆☆</option>
@@ -105,7 +103,7 @@
 
 								<div class="btn-wrapper save-post-wrapper field">
 									<button id="goListReviewInBoardProduct" type="button" class="btn btn-outline-dark"
-										style="margin-left: 40px;" onclick="history.back()">목록으로 가기</button>
+										style="margin-left: 70px;position: relative; bottom: 50px; " onclick="history.back()">목록으로 가기</button>
 								</div>
 								</div>
 

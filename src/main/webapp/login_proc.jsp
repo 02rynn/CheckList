@@ -22,8 +22,7 @@
 						script.println("</script>");
 						script.close();
 						}else{
-						script.println("
-						<script>");
+						script.println("<script>");
 							script.println("alert('로그인 실패');");
 							script.println("location.href = 'index.jsp';");
 							script.println("</script>");

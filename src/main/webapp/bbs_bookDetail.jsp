@@ -2,6 +2,7 @@
 <%@ page import = "dao.bBsDAO" %>
 <%@ page import = "dao.Review" %>
 <%@ page import = "java.util.*" %>
+<%@ page import = "dao.Book" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,16 +25,19 @@
 //String user = (String)session.getAttribute("userId");
 
 
-out.print(user);
+// out.print(user);
 
+// String isbn = request.getParameter("isbn");
+// String title = request.getParameter("title");
+// String nail = request.getParameter("imgUrl");
 
+// int price = Integer.parseInt((request.getParameter("price")).toString()); 
 
-String isbn = request.getParameter("isbn");
-String title = request.getParameter("title");
-String nail = request.getParameter("imgUrl");
+String title =  request.getParameter("title");
 
-int price = Integer.parseInt((request.getParameter("price")).toString()); 
-
+  bBsDAO dao1 = new bBsDAO();
+ 	 List<Book> bList = dao1.select_bookInfo_by_title(title);
+ 	 
  
 
 %>
@@ -47,7 +51,7 @@ int price = Integer.parseInt((request.getParameter("price")).toString());
                     <div class='shopProductImgMainWrapper type_thumbnails sequence_0 on' data-shopproductsequence='0'>
                         <img data-shopProductSequence=' 0' imgSrc='/uploadedFiles/95268/product/image_1668245931868.jpg'
                             class='shopProductImgMain thumbnails' style="width: 60%; margin: 30px"
-                             src=<%=nail %>> 
+                             src=<%=bList.get(0).getThumbnail() %>> 
                             
                             <!-- 썸네일바꾸기  -->
 
@@ -68,7 +72,7 @@ int price = Integer.parseInt((request.getParameter("price")).toString());
             </div>
 
             <div id="shopProductPrice" class="price row designSettingElement">
-                <span class="productPriceSpan"><%=price %></span>
+                <span class="productPriceSpan"><%=bList.get(0).getPrice() %></span>
             </div>
 
             <div id="shopProductCaptionDiv" class="row caption designSettingElement text-body">
@@ -103,7 +107,7 @@ int price = Integer.parseInt((request.getParameter("price")).toString());
                     </div>
                     <div class="product-order-summary-row">
                         <span class="title">총 상품 금액</span> <span class="row-content">
-                            <span id="product-order-total-price"><%=price %></span>
+                            <span id="product-order-total-price"><%=bList.get(0).getPrice() %></span>
                         </span>
                     </div>
                 </div>
@@ -123,7 +127,7 @@ int price = Integer.parseInt((request.getParameter("price")).toString());
                     <div class="btn-wrapper cartButton " style="margin-left: 10px;">
 <!--                     원래 버튼 -->
 <form action="insertBookInCart_proc.jsp" method="post">
-                     <button type="submit" value="<%=isbn%>" name="isbn"
+                     <button type="submit" value="<%=bList.get(0).getIsbn()%>" name="isbn"
                                                 onclick="alert('상품이 장바구니에 담겼습니다.')" id="btn_addToCart" class="btn btn-primary
 <!--                                           " data-is-mini-cart-available="false" 
                             >
@@ -208,7 +212,7 @@ int price = Integer.parseInt((request.getParameter("price")).toString());
 
                 <h1 style="margin-top: 30px;">독자님들의 후기</h1>
                 <tbody style="background-color:#eeeeee;">
-                    <!-- 데이터베이스에서 글번호, 책이름, 책제목, 글쓴이, 등록일, 평점 가지고와서 보여지도록  -->
+          
                            
       <%
       
@@ -218,12 +222,12 @@ int price = Integer.parseInt((request.getParameter("price")).toString());
             <% 
             for(Review  r : rvList){
                %>
-               <%=r.getReview_num()%>
+             
                <tr>
                
                 <td><%= r.getReview_num() %></td>
-               <td><a href="watchReview.jsp"><%= r.getTitle() %></a></td>
-                  <td><%= r.getReview_title() %></td>
+           	<td><a style="text-decoration: none;" href="bbs_bookDetail.jsp?title=<%=r.getReview_title() %>"><%=r.getReview_title() %></a></td> <!-- 상세페이지로 가도록  -->
+      			   <td><a style="text-decoration: none;" href="watchReview.jsp?writer=<%=r.getId()%>&title=<%=r.getReview_title()%>&content=<%=r.getReview_contents()%>&rate=<%=r.getReview_rate()%>&num=<%= r.getReview_num() %>"><%= r.getReview_title() %></a></td>
                    <td><%= r.getId() %></td>
                     <td><%= r.getReveiw_date() %></td>
                      <td><%
