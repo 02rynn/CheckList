@@ -6,24 +6,21 @@
     <%@ page import="java.util.*"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <title>Insert title here</title>
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+<title>Insert title here</title>
 </head>
-
 <body>
 
 
-    <%@ include file ="navBar.jsp" %>
+<%@ include file ="navBar.jsp" %>
 
 
     <div class="container">
         <div class="row">
-
-            <%
+                    
+     <%
      
 
  	 bBsDAO dao = new bBsDAO();
@@ -31,11 +28,10 @@
       %>
             <table class="table table-striped" style="text-align: center; border: 1px solid #dddddd;margin-top: 20px; width: 100%;
             maxlength=50">
-                <thead>
-                    <!--테이블의 제목 -->
+                <thead> <!--테이블의 제목 -->
                     <tr>
                         <th style="background-color: #eeeeee; text-align: center;">번호</th>
-                        <th style="background-color: #eeeeee; text-align: center;">상품이름</th>
+                       <th style="background-color: #eeeeee; text-align: center;">상품이름</th>
                         <th style="background-color: #eeeeee; text-align: center;">제목</th>
                         <th style="background-color: #eeeeee; text-align: center;">글쓴이</th>
                         <th style="background-color: #eeeeee; text-align: center;">등록일</th>
@@ -44,21 +40,14 @@
                 </thead>
 
                 <tbody style="background-color:#eeeeee">
-<<<<<<< HEAD
                 <!-- 데이터베이스에서 글번호, 책이름, 책제목, 글쓴이, 등록일, 평점 가지고와서 보여지도록  -->
             
       <%
   
-=======
-                    <!-- 데이터베이스에서 글번호, 책이름, 책제목, 글쓴이, 등록일, 평점 가지고와서 보여지도록  -->
-
-                    <%
->>>>>>> ea3ddfc26528d9cbf99642ccdda96f05b1d1a37b
       
       	if(rvList != null && rvList.size()>0){ //배열이 null이 아니고 size가 0보다 크면 반복문 돌릴거임
       		for(Review  r : rvList){
       			%>
-<<<<<<< HEAD
       			<tr>
       			 <td><%= r.getReview_num() %></td>
       			<td><a style="text-decoration: none;" href="bbs_bookDetail.jsp?title=<%=r.getReview_title() %>"><%=r.getReview_title() %></a></td> <!-- 상세페이지로 가도록  -->
@@ -66,18 +55,6 @@
       			    <td><%= r.getId()%></td>
       			     <td><%= r.getReveiw_date() %></td>
       			      <td><%
-=======
-                    <tr>
-
-                        <td><%= r.getReview_num() %></td>
-                        <td><a href="bookDetail2.jsp"><%= r.getTitle() %></a></td> <!-- 상세페이지로 가도록  -->
-                        <td><a
-                                href="watchReview.jsp?writer=<%=r.getId()%>&title=<%=r.getReview_title()%>&content=<%=r.getReview_contents()%>&rate=<%= r.getReview_rate()%>&num=<%= r.getReview_num() %>"><%= r.getReview_title() %></a>
-                        </td>
-                        <td><%= r.getId()%></td>
-                        <td><%= r.getReveiw_date() %></td>
-                        <td><%
->>>>>>> ea3ddfc26528d9cbf99642ccdda96f05b1d1a37b
       			    if(r.getReview_rate()== 1){
     			    	  out.println("★☆☆☆☆");
     			      }else if(r.getReview_rate() ==2){
@@ -91,26 +68,25 @@
     			      } 
       			      
       			      %></td>
-
-                    </tr>
-                    <%
+     			 
+     			 </tr>
+      	<%
       		}
       	}
       %>
-
-
-
+     
+ 
+                  
                 </tbody>
             </table>
-            <a href="Write.jsp" class="btn btn-primary" style="width: 100px; position: relative; 
+             <a href="Write.jsp" class="btn btn-primary" style="width: 100px; position: relative; 
             left: 90%;">글쓰기 </a>
-
+           
         </div>
     </div>
-
+    
 
 
 
 </body>
-
 </html>

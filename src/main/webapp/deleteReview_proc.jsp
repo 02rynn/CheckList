@@ -1,7 +1,9 @@
-<%@page import="java.io.PrintWriter"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    <%@page import ="dao.bBsDAO" %>
+     <%@ page import = "dao.Review" %>
+         <%@ page import="java.io.PrintWriter"%>
+         <% request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,34 +12,34 @@
 </head>
 <body>
 
-<%
 
-//리뷰넘버를 파라미터로 받기 
-      PrintWriter script = response.getWriter();
-      String name = request.getParameter("personName");
-      int id = Integer.parseInt(request.getParameter("id"));
-      PersonInfo personInfo = new PersonInfo();
-      personInfo.setId(id);
-      personInfo.setName(name);
+<!-- PrintWriter script = response.getWriter(); -->
+    <%
+    
+    PrintWriter script = response.getWriter();
+      int rvNum = Integer.parseInt(request.getParameter("rvNum"));
+     bBsDAO dao = new bBsDAO();
+      int result = dao.deleteBbs(rvNum);
       
-      PersonDao personDao = new PersonDao();
-      int result = personDao.deletePersonInfo(personInfo.getId());
       
       if(result > 0){
          script.println("<script>");
          script.println("alert('삭제되었습니다.');");
-         script.println("location.href = 'index.jsp;");
+         script.println("location.href = 'bbs.jsp';"); // 게시판으로 이동 
          script.println("</script>");
          script.close();
          return;
       } else{
          script.println("<script>");
          script.println("alert('삭제에 실패하였습니다.');");
-         script.println("location.href = 'PersonInfoDetail.jsp?id="+id+"';");
+         script.println("location.href = 'watchReview.jsp="+rvNum+"';"); //그대로 리뷰화면으로 이동 
          script.println("</script>");
          script.close();
       }
-      
-   %>
+    
+    
+    %>
+
+
 </body>
 </html>
