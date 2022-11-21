@@ -78,14 +78,14 @@ public class testMain {
 		public static void main(String[] args) {
 			
 
-			DataDao asd = new DataDao();
+
+			bBsDAO dao = new bBsDAO();
+
+		
+
+			List<Book> buyItems = dao.selectBuyBookList("asd");
 			
-			
-			List<Book> aa = asd.selectBuyBookInfo("asd");
-			
-			System.out.println(aa.size());
-			
-	
+			System.out.println(buyItems.size());
 	
  
 			

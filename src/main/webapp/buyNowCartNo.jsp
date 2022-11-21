@@ -104,31 +104,32 @@ cs.setId((String)user);
 
 // out.print(isbn);
 // out.print(price);
-out.print(title);
+
+
 
 
 
 %>
 
-   <form action="Purchase_proc.jsp" method="get">
-      <input name="isbn" value=<%=isbn %> type="hidden" />
-      <input name="price" value=<%=price %> type="hidden" />
-      <input name="title" value=<%=title %> type="hidden" />
-      <div class="PaymentOrder" style="width: 750px;">
-         <div class="card collapsed">
-            <div class="card-title-wrapper">
-               <h1 class="page-title-text" style="text-align: center; padding: 24px 16px;">별책부록</h1>
-            </div>
-            <div class="OrderSheet">
-               <div class="OrderItems">
-                  <div class="card-title-wrapper">
-                     <h2 class="title-text">주문상품</h2>
-                  </div>
-                  <br />
-                  <div class="card-body-wrapper">
-                     <div class="order-item-list">
-                        <div class="order-item">
-                           <img src=<%=bk.getThumbnail() %>>
+	<form action="Purchase_proc.jsp" method="get" name="pay">
+		<input name="isbn" value=<%=isbn %> type="hidden" />
+		<input name="price" value=<%=price %> type="hidden" />
+		<input name="title" value="<%=bk.getTitle()%>" type="hidden" />
+		<div class="PaymentOrder" style="width: 750px;">
+			<div class="card collapsed">
+				<div class="card-title-wrapper">
+					<h1 class="page-title-text" style="text-align: center; padding: 24px 16px;">별책부록</h1>
+				</div>
+				<div class="OrderSheet">
+					<div class="OrderItems">
+						<div class="card-title-wrapper">
+							<h2 class="title-text">주문상품</h2>
+						</div>
+						<br />
+						<div class="card-body-wrapper">
+							<div class="order-item-list">
+								<div class="order-item">
+									<img src=<%=bk.getThumbnail() %>>
 
                            <div class="order-item-info-wrapper">
                               <span class="item-title"><%=bk.getTitle() %></span>
@@ -162,55 +163,56 @@ out.print(title);
                   </div>
                </div>
 
-               <div class="ShippingInfo">
-                  <div class="card-title-wrapper">
-                     <h2 class="text-title">배송지</h2>
-                  </div>
-                  <div class="card-body-wrapper">
-                     <div class="shipping-address-type-selector">
-                        <label class="radio-container"> <input class="radio-input" name="shippingAddressType"
-                              type="radio" value="DEFAULT" disabled="true"> <span class="checkmark"></span>
-                           <span class="text-label">기본배송지</span>
-                        </label> <label class="radio-container"> <input class="radio-input"
-                              name="shippingAddressType" type="radio" value="NEW" checked> <span
-                              class="checkmark"></span> <span class="text-label">신규입력</span>
-                        </label>
-                     </div>
-                     <div class="new-shipping-address-form-wrapper">
-                        <div class="form-group">
-                           <label>이름</label>
-                           <div class="input-group">
-                              <input type="text" value=<%=cs.getCustomer_name() %>>
-                           </div>
-                        </div>
-                        <!--                      <div class="form-group"> -->
-                        <!--                         <label>우편번호</label> -->
-                        <!--                         <div class="input-group"> -->
-                        <!--                            <div class="multiple-columns"> -->
-                        <!--                               <input type="tel"> -->
-                        <!--                               <button type="button"> -->
-                        <!--                                  <span>검색하기</span> -->
-                        <!--                               </button> -->
-                        <!--                            </div> -->
-                        <!--                         </div> -->
-                        <!--                      </div> -->
-                        <div class="form-group">
-                           <label>주소</label>
-                           <div class="input-group">
-                              <div class="multiple-rows">
-                                 <input type="text" value=<%=cs.getAddress() %>>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="form-group" data-ref-id="shippingInfoComponent-recipientPhone-ko"
-                           data-status="normal">
-                           <label>연락처</label>
-                           <div class="input-group">
-                              <div class="multiple-columns">
-                                 <input type="tel" maxlength="3" data-form-field="phoneOne"
-                                    data-scheme-type="localTel"
-                                    class="designSettingElement point-color point-color-border-on-focus"
-                                    value=<%=cs.getPhone_num() %>>
+					<div class="ShippingInfo">
+						<div class="card-title-wrapper">
+							<h2 class="text-title">배송지</h2>
+						</div>
+						<div class="card-body-wrapper">
+							<div class="shipping-address-type-selector">
+								<label class="radio-container"> <input class="radio-input" name="shippingAddressType"
+										type="radio" value="DEFAULT" disabled="true"> <span class="checkmark"></span>
+									<span class="text-label">기본배송지</span>
+								</label> <label class="radio-container"> <input class="radio-input"
+										name="shippingAddressType" type="radio" value="NEW" checked> <span
+										class="checkmark"></span> <span class="text-label">신규입력</span>
+								</label>
+							</div>
+							<div class="new-shipping-address-form-wrapper">
+								<div class="form-group">
+									<label>이름</label>
+									<div class="input-group">
+										<input type="text" value=<%=cs.getCustomer_name() %> name="name">
+									</div>
+								</div>
+								<!-- 							<div class="form-group"> -->
+								<!-- 								<label>우편번호</label> -->
+								<!-- 								<div class="input-group"> -->
+								<!-- 									<div class="multiple-columns"> -->
+								<!-- 										<input type="tel"> -->
+								<!-- 										<button type="button"> -->
+								<!-- 											<span>검색하기</span> -->
+								<!-- 										</button> -->
+								<!-- 									</div> -->
+								<!-- 								</div> -->
+								<!-- 							</div> -->
+								<div class="form-group">
+									<label>주소</label>
+									<div class="input-group">
+										<div class="multiple-rows">
+											<input type="text" value=<%=cs.getAddress() %> name="address">
+										</div>
+									</div>
+								</div>
+								<div class="form-group" data-ref-id="shippingInfoComponent-recipientPhone-ko"
+									data-status="normal">
+									<label>연락처</label>
+									<div class="input-group">
+										<div class="multiple-columns">
+											<input type="tel" maxlength="11" data-form-field="phoneOne"
+												data-scheme-type="localTel"
+													onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
+												class="designSettingElement point-color point-color-border-on-focus"
+												value=<%=cs.getPhone_num() %> name="phone">
 
                               </div>
                               <div class="msg-stack">
@@ -282,39 +284,39 @@ out.print(title);
                               </div>
                               <div class="card-body-wrapper" data-loading-restrict="loaded">
 
-                                 <div class="methods-container pay-methods" data-locale-restrict="ko">
-                                    <label class="method-item" data-paymethod-type="CARD" data-radio-button>
-                                       <label
-                                          class="radio-container designSettingElement point-color point-color-radio">
-                                          <input class="radio-input" name="paymethodType" type="radio"
-                                             value="CARD"> <span class="checkmark"></span>
-                                          <span class="text-label">신용 / 체크카드</span>
-                                       </label>
-                                    </label> <label class="method-item" data-paymethod-type="KAKAOPAY"
-                                       data-radio-button> <label
-                                          class="radio-container designSettingElement point-color point-color-radio">
-                                          <input class="radio-input" name="paymethodType" type="radio"
-                                             value="KAKAOPAY"> <span class="checkmark"></span> <span
-                                             class="text-label">카카오페이</span>
-                                       </label>
-                                    </label> <label class="method-item" data-paymethod-type="BANK"
-                                       data-radio-button> <label
-                                          class="radio-container designSettingElement point-color point-color-radio">
-                                          <input class="radio-input" name="paymethodType" type="radio"
-                                             value="BANK"> <span class="checkmark"></span>
-                                          <span class="text-label">계좌 이체</span>
-                                       </label>
-                                    </label> <label class="method-item" data-paymethod-type="WITHOUT_BANK"
-                                       data-radio-button>
-                                       <label
-                                          class="radio-container designSettingElement point-color point-color-radio">
-                                          <input class="radio-input" name="paymethodType" type="radio"
-                                             value="WITHOUT_BANK"> <span class="checkmark"></span> <span
-                                             class="text-label">무통장
-                                             입금</span>
-                                       </label>
-                                    </label>
-                                 </div>
+											<div class="methods-container pay-methods" data-locale-restrict="ko">
+												<label class="method-item" data-paymethod-type="CARD" data-radio-button>
+													<label
+														class="radio-container designSettingElement point-color point-color-radio">
+														<input class="radio-input" name="paymethodType" id="paymethodType" type="radio"
+															value="CARD"> <span class="checkmark"></span>
+														<span class="text-label">신용 / 체크카드</span>
+													</label>
+												</label> <label class="method-item" data-paymethod-type="KAKAOPAY"
+													data-radio-button> <label
+														class="radio-container designSettingElement point-color point-color-radio">
+														<input class="radio-input" name="paymethodType" id="paymethodType" type="radio"
+															value="KAKAOPAY"> <span class="checkmark"></span> <span
+															class="text-label">카카오페이</span>
+													</label>
+												</label> <label class="method-item" data-paymethod-type="BANK"
+													data-radio-button> <label
+														class="radio-container designSettingElement point-color point-color-radio">
+														<input class="radio-input" name="paymethodType" id="paymethodType" type="radio"
+															value="BANK"> <span class="checkmark"></span>
+														<span class="text-label">계좌 이체</span>
+													</label>
+												</label> <label class="method-item" data-paymethod-type="WITHOUT_BANK"
+													data-radio-button>
+													<label
+														class="radio-container designSettingElement point-color point-color-radio">
+														<input class="radio-input" name="paymethodType" id="paymethodType" type="radio"
+															value="WITHOUT_BANK"> <span class="checkmark"></span> <span
+															class="text-label">무통장
+															입금</span>
+													</label>
+												</label>
+											</div>
 
                                  <div class="method-additional-infos-container" data-locale-restrict="ko">
                                  </div>
@@ -326,26 +328,62 @@ out.print(title);
                            <div class="fixed-card">
 
 
-                              <!--                           <form action="Purchase_proc.jsp" method="get"> -->
-                              <%--                            <input name="isbn" value=<%=isbn %> type="hidden"/> --%>
-                              <button type="submit" data-ref-id="checkoutBtnComponent"
-                                 class="CheckoutBtnComponent btn btn-cta designSettingElement brand-color brand-color-bg brand-color-text-reverse">
-                                 <span data-locale-restrict="ko"> <span
-                                       data-field="orderPrice"><%=bk.getPrice() %></span>원 결제하기
-                                 </span>
-                              </button>
+										<!-- 								  <form action="Purchase_proc.jsp" method="get"> -->
+										<%-- 								   <input name="isbn" value=<%=isbn %> type="hidden"/> --%>
+										<button type="submit" data-ref-id="checkoutBtnComponent" id="paybtn"
+											class="CheckoutBtnComponent btn btn-cta designSettingElement brand-color brand-color-bg brand-color-text-reverse">
+											<span data-locale-restrict="ko"> <span
+													data-field="orderPrice"><%=bk.getPrice() %></span>원 결제하기
+											</span>
+										</button>
 
 
 
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	
+	<script>
+	
+	
+
+	
+	document.getElementById('paybtn').addEventListener('click', (e) => {
+		e.preventDefault();
+		let form = document.pay;
+		if(form.paymethodType.value == "" ){
+		alert("결제 방법을 선택하세요")
+		form.paymethodType.focus();
+		return false;
+		}	else if (form.name.value == "") {
+			alert("이름은 필수입니다")
+			form.name.focus();
+			return false;
+		} else if (form.address.value == "") {
+			alert("주소는 필수입니다")
+			form.address.focus();
+			return false;
+		} else if (form.phone.value == "") {
+			alert("연락처는 필수입니다")
+			form.phone.focus();
+			return false;
+		} else {
+			if (confirm('결제하시겠습니까?')) {
+				form.action = "Purchase_proc.jsp";
+				form.submit();
+			}
+		}
+	});
+		
+	
+	</script>
+	
 
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">

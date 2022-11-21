@@ -117,7 +117,7 @@ public class MypageDao {
 	   
 //	   마이페이지에서 주문내역 정보 불러오는 메소드 
 	   public List<BuyBook> selectBuyListById(String id){
-			String sql = " select order_date, price,order_status,title from buy_book where id = ? ";
+			String sql = " select order_date, price,order_status,title,isbn from buy_book where id = ? ";
 			List<BuyBook> bb = null;
 			
 			try {
@@ -136,6 +136,7 @@ public class MypageDao {
 					bb2.setPrice(rs.getInt("price"));
 					bb2.setOrder_status(rs.getString("order_status"));
 					bb2.setTitle(rs.getString("title"));
+					bb2.setIsbn(rs.getString("isbn"));
 					
 					
 					bb.add(bb2);
@@ -153,42 +154,42 @@ public class MypageDao {
 		}
 	   
 	   
-//	   주문내역에 썸네일도 화면에 나오게 하려고 만들어본 메소드 
-	   public List<Book> selectBuyListCoverById(String id,String isbn){
-			String sql = " select  k.titlefrom buy_book b, book k "
-						+ " where id = ? and b.book_num = ? ";
-			
-			List<Book> bk = null;
-			
-			try {
-				connect();
-				
-				psmt = conn.prepareStatement(sql);
-				psmt.setString(1, id);
-				psmt.setString(2, isbn);
-				
-				rs = psmt.executeQuery();
-				
-				bk = new ArrayList<Book>();
-				
-				while(rs.next()) {
-					Book bk2 = new Book();
-					bk2.setTitle(rs.getString("title"));
-					
-					
-					bk.add(bk2);
-				}
-			
-				return bk;
-				
-			}catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				disconnect();
-			}
-			
-			return bk;
-		}
+//	   주문내역에 썸네일도 화면에 나오게 하려고 만들어본 메소드 (필요없음)
+//	   public List<Book> selectBuyListCoverById(String id,String isbn){
+//			String sql = " select  k.titlefrom buy_book b, book k "
+//						+ " where id = ? and b.book_num = ? ";
+//			
+//			List<Book> bk = null;
+//			
+//			try {
+//				connect();
+//				
+//				psmt = conn.prepareStatement(sql);
+//				psmt.setString(1, id);
+//				psmt.setString(2, isbn);
+//				
+//				rs = psmt.executeQuery();
+//				
+//				bk = new ArrayList<Book>();
+//				
+//				while(rs.next()) {
+//					Book bk2 = new Book();
+//					bk2.setTitle(rs.getString("title"));
+//					
+//					
+//					bk.add(bk2);
+//				}
+//			
+//				return bk;
+//				
+//			}catch (Exception e) {
+//				e.printStackTrace();
+//			} finally {
+//				disconnect();
+//			}
+//			
+//			return bk;
+//		}
 	   
 	   
 	   

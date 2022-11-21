@@ -123,7 +123,7 @@ public class bBsDAO {// 정보를 빼올 수 있도록 해주는 클래스
 		}
 
 		List<Book> bookList = null;
-		String sqlQuery = "select title from book where isbn = (select book_num from buy_book where id = ? )";
+		String sqlQuery = "select * from buy_book where  id = ? ";
 		try {
 			psmt = conn.prepareStatement(sqlQuery);
 			psmt.setString(1, id);
@@ -132,8 +132,9 @@ public class bBsDAO {// 정보를 빼올 수 있도록 해주는 클래스
 			while (rs.next()) {
 				Book ai = new Book();
 
-				ai.title = rs.getString("Title");
-				ai.isbn = rs.getString("isbn");
+				ai.title = rs.getString("title");
+				ai.isbn = rs.getString("book_num");
+				
 				bookList.add(ai);
 			}
 		} catch (SQLException e) {
