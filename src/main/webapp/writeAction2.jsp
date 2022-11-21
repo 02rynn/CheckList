@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="EUC-KR"%>
+    pageEncoding="UTF-8"%>
     <%@ page import = "dao.bBsDAO" %>
        <%@ page import = "dao.Bbs" %>
    <%@ page import="java.io.PrintWriter"%>
@@ -14,12 +14,12 @@
 request.setCharacterEncoding("UTF-8");
 response.setContentType("text/html; charset=UTF-8");
 request.setCharacterEncoding("UTF-8");
-//»óÇ°ÀÌ¸§, ±ÛÁ¦¸ñ, ±Û³»¿ë , isbn
-//±Û¹øÈ£, »óÇ°ÀÌ¸§, ±ÛÁ¦¸ñ, ±Û¾´ÀÌ, µî·ÏÀÏ, ÆòÁ¡, isbn  ¹Þ¾Æ¿À±â 
+//ï¿½ï¿½Ç°ï¿½Ì¸ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Û³ï¿½ï¿½ï¿½ , isbn
+//ï¿½Û¹ï¿½È£, ï¿½ï¿½Ç°ï¿½Ì¸ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½Û¾ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½, isbn  ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½ 
 PrintWriter script = response.getWriter();
 String title =request.getParameter("select");
 
-// System.out.println(title); //Ã¥Á¦¸ñ
+// System.out.println(title); //Ã¥ï¿½ï¿½ï¿½ï¿½
 
 
 String rvTitle =request.getParameter("review_title");
@@ -60,14 +60,14 @@ int result = dao.insert_review_contents(title, rvRate, rvTitle,  rvContents, (St
       
 //       if(result > 0){
 //          script.println("<script>");
-//          script.println("alert('»èÁ¦µÇ¾ú½À´Ï´Ù.');");
+//          script.println("alert('ï¿½ï¿½ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.');");
 //          script.println("location.href = 'JSPSample.jsp';");
 //          script.println("</script>");
 //          script.close();
 //          return;
 //       } else{
 //          script.println("<script>");
-//          script.println("alert('»èÁ¦¿¡ ½ÇÆÐÇÏ¿´½À´Ï´Ù.');");
+//          script.println("alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.');");
 //          script.println("location.href = 'PersonInfoDetail.jsp?id="+id+"';");
 //          script.println("</script>");
 //          script.close();
