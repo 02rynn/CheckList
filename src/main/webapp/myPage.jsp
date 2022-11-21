@@ -7,7 +7,9 @@
 <%@ page import="dao.BuyBook"%>
 <%@ page import="dao.Book"%>
 <%@ page import="java.util.*"%>
-       <%request.setCharacterEncoding("UTF-8");%>
+<%
+request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -249,250 +251,238 @@ body .designSettingElement.button {
 </head>
 <body>
 	<%@ include file="navBar.jsp"%>
-	
+
 	<%
 	String isbn = request.getParameter("isbn");
 	String title = request.getParameter("title");
 	MypageDao mdao = new MypageDao();
-	List<Review> rv = mdao.selectReviewById((String)user);
-	List<BuyBook> bb = mdao.selectBuyListById((String)user);
-	List<Book> bk = mdao.selectBuyListCoverById((String)user,isbn);
-	
-	
+	List<Review> rv = mdao.selectReviewById((String) user);
+	List<BuyBook> bb = mdao.selectBuyListById((String) user);
+
 	out.print(user);
-// 	out.print(bk.get(0).getTitle());
+	// 	out.print(bk.get(0).getTitle());
 	out.print(rv);
-//	out.print(rv.get)
-	
+	//	out.print(rv.get)
 	%>
 
 
-	<form name="personDetailForm" id="personDetailForm" action="updateCustomerInfo_proc.jsp" method="get">
-	<div id="myPage" class="myPage wrapper">
-		<div class="column-wrapper two-column">
-			<div class="infoList field">
-				<div class="header designSettingElement text-title">
-					<span class="title">주문 내역</span>
-				</div>
-				<table class="table">
-				<thead>
-					<tr>
-						<th scope="col">일자</th>
-<!-- 						buybook table에 썸네일 컬럼 만들어서 select sql문에 썸네일 추가해서 상품정보 띄우기  -->
-						<th scope="col">상품정보</th>
-						<th scope="col">가격</th>
-						<th scope="col">주문상태</th>
-
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-					
-						<%
-					
-						for(BuyBook info : bb){ 
-					
-							
-					%>
-					
-						<td><%=info.getOrder_date()%></td>
-<!-- 					주문내역에	책 제목 들고올 자리  -->
-						<td><%=info.getTitle()%></td>
-						<td><%=info.getPrice()%>원</td>
-						<td><%=info.getOrder_status()%></td>
-					</tr>
-					
-					<% } %>
-				</tbody>
-				</table>
-				
-				
-<!-- 				<div id="shopCustomerOrderListDiv" -->
-<!-- 					class="content orderList designSettingElement text-body hide"> -->
-<!-- 					<div class="tb-title designSettingElement shape clearfix"> -->
-<!-- 						<span class="date">일자</span> <span class="product">상품 정보</span> <span -->
-<!-- 							class="total">가격</span> <span class="status">상태</span> -->
-<!-- 					</div> -->
-<!-- 					<div id="shopCustomerOrderList" class="tb-content"></div> -->
-<!-- 					<div id="shopCustomerOrderPageCount" -->
-<!-- 						class="pagination_div designSettingElement"></div> -->
-<!-- 				</div> -->
-<!-- 				<div id="noOrderMsg" -->
-<!-- 					class="content no-content-msg designSettingElement text-body hide"> -->
-<!-- 					주문 내역이 없습니다.</div> -->
-				<!--  my posts -->
-				<div class="js-section-myposts hide">
-					<div
-						class="header designSettingElement text-title otherTitle myPostsTitle myPosts">
-						<span class="title">내가 쓴 글</span>
+	<form name="personDetailForm" id="personDetailForm"
+		action="updateCustomerInfo_proc.jsp" method="get">
+		<div id="myPage" class="myPage wrapper">
+			<div class="column-wrapper two-column">
+				<div class="infoList field">
+					<div class="header designSettingElement text-title">
+						<span class="title">주문 내역</span>
 					</div>
 					<table class="table">
-					
-				<thead>
-					<tr>
-						<th scope="col">일자</th>
-						<th scope="col">제목</th>
-					
+						<thead>
+							<tr>
+								<th scope="col">일자</th>
+								<!-- 						buybook table에 썸네일 컬럼 만들어서 select sql문에 썸네일 추가해서 상품정보 띄우기  -->
+								<th scope="col">상품정보</th>
+								<th scope="col">가격</th>
+								<th scope="col">주문상태</th>
 
-					</tr>
-				</thead>
-				<tbody>
-				
-				<%
-					
-						for(Review info : rv){ 
-					
-							
-					%>
-				
-					<tr>
-						<td><%=info.getReveiw_date() %></td>
-						<td><%=info.getReview_title()%></td>
-					
-					</tr>
-					
-					<% } %>
-				</tbody>
-				</table>
-<!-- 					<div id="noShopCustomerMyPostsMsg" -->
-<!-- 						class="content no-content-msg designSettingElement text-body"> -->
-<!-- 						내가 쓴 글이 없습니다.</div> -->
-				</div>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+
+								<%
+								for (BuyBook info : bb) {
+								%>
+
+								<td><%=info.getOrder_date()%></td>
+								<!-- 					주문내역에	책 제목 들고올 자리  -->
+								<td><%=info.getTitle()%></td>
+								<td><%=info.getPrice()%>원</td>
+								<td><%=info.getOrder_status()%></td>
+							</tr>
+
+							<%
+							}
+							%>
+						</tbody>
+					</table>
 
 
+					<!-- 				<div id="shopCustomerOrderListDiv" -->
+					<!-- 					class="content orderList designSettingElement text-body hide"> -->
+					<!-- 					<div class="tb-title designSettingElement shape clearfix"> -->
+					<!-- 						<span class="date">일자</span> <span class="product">상품 정보</span> <span -->
+					<!-- 							class="total">가격</span> <span class="status">상태</span> -->
+					<!-- 					</div> -->
+					<!-- 					<div id="shopCustomerOrderList" class="tb-content"></div> -->
+					<!-- 					<div id="shopCustomerOrderPageCount" -->
+					<!-- 						class="pagination_div designSettingElement"></div> -->
+					<!-- 				</div> -->
+					<!-- 				<div id="noOrderMsg" -->
+					<!-- 					class="content no-content-msg designSettingElement text-body hide"> -->
+					<!-- 					주문 내역이 없습니다.</div> -->
+					<!--  my posts -->
+					<div class="js-section-myposts hide">
+						<div
+							class="header designSettingElement text-title otherTitle myPostsTitle myPosts">
+							<span class="title">내가 쓴 글</span>
+						</div>
+						<table class="table">
+
+							<thead>
+								<tr>
+									<th scope="col">일자</th>
+									<th scope="col">제목</th>
 
 
+								</tr>
+							</thead>
+							<tbody>
 
+								<%
+								for (Review info : rv) {
+								%>
 
+								<tr>
+									<td><%=info.getReveiw_date()%></td>
+									<td><%=info.getReview_title()%></td>
 
+								</tr>
 
-
-
-
-			</div>
-
-			<div class="memberInfo field">
-				<div class="header designSettingElement text-title">
-					<span class="title">회원 정보</span>
-				</div>
-				
-			
-			
-				<div class="content designSettingElement text-body">
-
-
-					<%
-					
-					DataDao dao = new DataDao();
-					Customer cus = new Customer();
-					cus = dao.selectCustomerInfoInMypage((String)user);
-// 					out.println(cus.getId());
-// 					out.println(cus.getEmail());
-// 					out.println(cus.getCustomer_name());
-// 					out.println(cus.getPhone_num());
-// 					out.println(cus.getAddress());
-					
-
-					%>
-
-
-					<div class="row">
-						<label for="customerId" class="title">아이디</label> <input
-							type="text" name="customerId" class="designSettingElement shape"
-							readonly value="<%=cus.getId()%>">
-
-					</div>
-
-					<div class="row">
-						<label for="customerId" class="title">비밀번호</label> <input
-							type="text" name="customerPw" class="designSettingElement shape"
-							 value="<%=cus.getPassword()%>">
-
-					</div>
-
-					<div class="row">
-						<label for="customerEmail" class="title">이메일</label> <input
-							type="email" name="customerEmail"
-							class="designSettingElement shape" value="<%=cus.getEmail()%>">
+								<%
+								}
+								%>
+							</tbody>
+						</table>
+						<!-- 					<div id="noShopCustomerMyPostsMsg" -->
+						<!-- 						class="content no-content-msg designSettingElement text-body"> -->
+						<!-- 						내가 쓴 글이 없습니다.</div> -->
 					</div>
 
 
-					<div class="row name">
 
 
 
-						<span class="title">이름</span> <input name="customerName" type="text"
-							class="designSettingElement shape" readonly
-							value="<%=cus.getCustomer_name()%>">
+
+
+
+
+
+
+				</div>
+
+				<div class="memberInfo field">
+					<div class="header designSettingElement text-title">
+						<span class="title">회원 정보</span>
+					</div>
+
+
+
+					<div class="content designSettingElement text-body">
+
+
+						<%
+						DataDao dao = new DataDao();
+						Customer cus = new Customer();
+						cus = dao.selectCustomerInfoInMypage((String) user);
+						// 					out.println(cus.getId());
+						// 					out.println(cus.getEmail());
+						// 					out.println(cus.getCustomer_name());
+						// 					out.println(cus.getPhone_num());
+						// 					out.println(cus.getAddress());
+						%>
+
+
+						<div class="row">
+							<label for="customerId" class="title">아이디</label> <input
+								type="text" name="customerId" class="designSettingElement shape"
+								readonly value="<%=cus.getId()%>">
+
+						</div>
+
+						<div class="row">
+							<label for="customerId" class="title">비밀번호</label> <input
+								type="text" name="customerPw" class="designSettingElement shape"
+								value="<%=cus.getPassword()%>">
+
+						</div>
+
+						<div class="row">
+							<label for="customerEmail" class="title">이메일</label> <input
+								type="email" name="customerEmail"
+								class="designSettingElement shape" value="<%=cus.getEmail()%>">
+						</div>
+
+
+						<div class="row name">
+
+
+
+							<span class="title">이름</span> <input name="customerName"
+								type="text" class="designSettingElement shape" readonly
+								value="<%=cus.getCustomer_name()%>">
+
+
+						</div>
+
+
+						<div class="row contact">
+
+
+
+							<label for="customerPhone1" class="title">휴대폰 번호</label> <input
+								type="tel" name="customerPhone1"
+								class="designSettingElement shape phoneNumber js-inputOnlyNumber"
+								maxlength="11" value="<%=cus.getPhone_num()%>">
+
+
+
+						</div>
+
+					</div>
+
+
+
+					<div class="row address">
+
+
+
+						<label class="title">주소</label> <input type="text" name="post2"
+							class="designSettingElement shape addressInfo"
+							value="<%=cus.getAddress()%>">
 
 
 					</div>
 
 
-					<div class="row contact">
 
 
 
-						<label for="customerPhone1" class="title">휴대폰 번호</label> 
-						<input
-							type="tel" name="customerPhone1"
-							class="designSettingElement shape phoneNumber js-inputOnlyNumber"
-							maxlength="11" value="<%=cus.getPhone_num()%>">
+					<br />
 
+
+					<div class="function">
+
+						<!-- 					<a href="/changePassword" -->
+						<!-- 						class="text designSettingElement text-assi">비밀번호 변경하기</a>  -->
+
+						<a id=deleteBtn href="deleteCustomer_proc.jsp"
+							class="text designSettingElement text-assi">탈퇴하기</a>
 
 
 					</div>
-
+					<br /> <input type="submit" id="updateBtn"
+						class="designSettingElement button" value="수정" />
 				</div>
-
-
-
-				<div class="row address">
-
-
-
-					<label class="title">주소</label> <input type="text" name="post2"
-						class="designSettingElement shape addressInfo"
-						value="<%=cus.getAddress()%>">
-
-
-				</div>
-				
-		
-				
-				
-
-				<br />
-
-
-				<div class="function">
-
-					<!-- 					<a href="/changePassword" -->
-					<!-- 						class="text designSettingElement text-assi">비밀번호 변경하기</a>  -->
-
-					<a id=deleteBtn href="deleteCustomer_proc.jsp"
-						class="text designSettingElement text-assi">탈퇴하기</a>
-
-
-				</div>
-				<br /> <input type="submit" id="updateBtn"
-					class="designSettingElement button"
-					
-					value="수정" /> 
 			</div>
 		</div>
-	</div>
-	</div>
+		</div>
 	</form>
+	<script>
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-		crossorigin="anonymous">
+	const form = document.getElementById("personDetailForm");
 	
 document.getElementById('deleteBtn').addEventListener('click',(e)=>{
 	e.preventDefault();
-	let form = document.getElementById('personDetailForm');
+
 	if(confirm('탈퇴하시겠습니까?')){
 	form.action = "deleteCustomer_proc.jsp";
 	form.submit();
@@ -501,7 +491,7 @@ document.getElementById('deleteBtn').addEventListener('click',(e)=>{
 		
 		document.getElementById('updateBtn').addEventListener('click',(e)=>{
 			e.preventDefault();
-			let form = document.getElementById('personDetailForm');
+		 
 			
 			if(form.customerPw.value == "" ){
 				alert("비밀번호는 필수입니다")
@@ -526,11 +516,13 @@ document.getElementById('deleteBtn').addEventListener('click',(e)=>{
 			}
 			}
 			});
-		
+	
+	</script>
 
-	
-	
-	
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+		crossorigin="anonymous">
     </script>
 </body>
 </html>
