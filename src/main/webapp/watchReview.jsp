@@ -34,14 +34,14 @@
                               String content = request.getParameter("content");
                               int rate =Integer.parseInt(request.getParameter("rate"));
                               int rvNum = Integer.parseInt(request.getParameter("num"));
-	//out.print(rate);
+
                             
 
                                  // 현재 세션이 존재하는 사람은 userID, 아닌 사람은 null값이 담김
 
                                  %>
 
-	<% Review r=new Review(); out.print(r.getReview_rate()); %>
+	<% Review r=new Review();  %>
 	
 	<% if ((user.toString()).equals(writer)) {%>
 	<form method="post" id="review_detail">
@@ -68,6 +68,9 @@
 									name="bbsContent_modi" maxlength="2048" style="height: 350px;"><%=  content %></textarea>
 							</td>
 						</tr>
+						<tr>
+						<td> 별점: <%= rate%> 점</td>
+						</tr>
 					</tbody>
 				</table>
 				<div style="display: flex; justify-content: space-between;">
@@ -75,55 +78,68 @@
 				<div class="customSelectDiv designSettingElement shape "
 					id="selectPostReviewRateDiv" style="margin-left: 10px;"
 					data-text="평점 주기">
-
+					
+<!-- 					여기서 데이터값을 다시 넣어서 update_review_proc으로 넘겨야함 -->
 					<select name="rvrate" class="btn btn-outline-primary"
-						onchange="require('common/common').customSelectBoxClickEvent(this)"
-						id="selectPostReviewRate">
+														onchange="changeValue()" id="selectPostReviewRate">
+														<option >평점 주기</option>
+														<option value="5">★★★★★</option>
+														<option value="4">★★★★☆</option>
+														<option value="3">★★★☆☆</option>
+														<option value="2">★★☆☆☆</option>
+														<option value="1">★☆☆☆☆</option>
+													</select>
+					
+					
+
+<!-- 					<select name="rvrate" class="btn btn-outline-primary" -->
+<!-- 						onchange="require('common/common').customSelectBoxClickEvent(this)" -->
+<!-- 						id="selectPostReviewRate"> -->
 						
 					
 						
-						<% //bbs에서 받아온 값을 띄워줌 ==> 근데 여기서 값을 변경해야함@@@@ ㄷ이 받아온 값을 수정값으로 바꾸고 그걸 update로 보내줘야함 
+<%-- 						<% //bbs에서 받아온 값을 띄워줌 ==> 근데 여기서 값을 변경해야함@@@@ ㄷ이 받아온 값을 수정값으로 바꾸고 그걸 update로 보내줘야함  --%>
 						
-															if(rate== 1){%>
-											                    <option selected value="1">★☆☆☆☆</option>
-															     <option value="2">★★☆☆☆</option>
-															      <option  value="3">★★★☆☆</option>
-															      <option  value="4" >★★★★☆</option>
-															      <option  value="5">★★★★★</option>
-											                 <% }else if(rate== 2){%>  
-											                       <option value="1">★☆☆☆☆</option>
-															     <option   selected  value="2">★★☆☆☆</option>
-															      <option  value="3">★★★☆☆</option>
-															      <option  value="4" >★★★★☆</option>
-															      <option  value="5">★★★★★</option>
-											                  <% }else if(rate == 3){%> 
-											                      <option  value="1">★☆☆☆☆</option>
-															     <option value="2">★★☆☆☆</option>
-															      <option selected value="3">★★★☆☆</option>
-															      <option  value="4" >★★★★☆</option>
-															      <option  value="5">★★★★★</option>
-											                  <% }else if( rate== 4){ %> 
-											                    <option  value="1">★☆☆☆☆</option>
-															     <option value="2">★★☆☆☆</option>
-															      <option  value="3">★★★☆☆</option>
-															      <option  value="4" selected >★★★★☆</option>
-															      <option  value="5">★★★★★</option>
-											                   <% }else{ %>
-											                      <option  value="1">★☆☆☆☆</option>
-															     <option value="2">★★☆☆☆</option>
-															      <option  value="3">★★★☆☆</option>
-															      <option  value="4" >★★★★☆</option>
-															      <option  selected value="5">★★★★★</option>
-											                  <% } %> 
+<%-- 															if(rate== 1){%> --%>
+<!-- 											                    <option selected value="1">★☆☆☆☆</option> -->
+<!-- 															     <option value="2">★★☆☆☆</option> -->
+<!-- 															      <option  value="3">★★★☆☆</option> -->
+<!-- 															      <option  value="4" >★★★★☆</option> -->
+<!-- 															      <option  value="5">★★★★★</option> -->
+<%-- 											                 <% }else if(rate== 2){%>   --%>
+<!-- 											                       <option value="1">★☆☆☆☆</option> -->
+<!-- 															     <option   selected  value="2">★★☆☆☆</option> -->
+<!-- 															      <option  value="3">★★★☆☆</option> -->
+<!-- 															      <option  value="4" >★★★★☆</option> -->
+<!-- 															      <option  value="5">★★★★★</option> -->
+<%-- 											                  <% }else if(rate == 3){%>  --%>
+<!-- 											                      <option  value="1">★☆☆☆☆</option> -->
+<!-- 															     <option value="2">★★☆☆☆</option> -->
+<!-- 															      <option selected value="3">★★★☆☆</option> -->
+<!-- 															      <option  value="4" >★★★★☆</option> -->
+<!-- 															      <option  value="5">★★★★★</option> -->
+<%-- 											                  <% }else if( rate== 4){ %>  --%>
+<!-- 											                    <option  value="1">★☆☆☆☆</option> -->
+<!-- 															     <option value="2">★★☆☆☆</option> -->
+<!-- 															      <option  value="3">★★★☆☆</option> -->
+<!-- 															      <option  value="4" selected >★★★★☆</option> -->
+<!-- 															      <option  value="5">★★★★★</option> -->
+<%-- 											                   <% }else{ %> --%>
+<!-- 											                      <option  value="1">★☆☆☆☆</option> -->
+<!-- 															     <option value="2">★★☆☆☆</option> -->
+<!-- 															      <option  value="3">★★★☆☆</option> -->
+<!-- 															      <option  value="4" >★★★★☆</option> -->
+<!-- 															      <option  selected value="5">★★★★★</option> -->
+<%-- 											                  <% } %>  --%>
 														
 														
 					
-<!-- 						<option selected value="5">★★★★★</option> -->
-<!-- 						<option value="4" selected>★★★★☆</option> -->
-<!-- 						<option value="3">★★★☆☆</option> -->
-<!-- 						<option value="2">★★☆☆☆</option> -->
+<!-- <!-- 						<option selected value="5">★★★★★</option> --> -->
+<!-- <!-- 						<option value="4" selected>★★★★☆</option> --> -->
+<!-- <!-- 						<option value="3">★★★☆☆</option> --> -->
+<!-- <!-- 						<option value="2">★★☆☆☆</option> --> -->
 						
-					</select>
+<!-- 					</select> -->
 				</div>
 			</div>
 			<div class="btns"
@@ -180,23 +196,44 @@
 
 
 			</form>
+			
 		</div>
 	</div>
 
 	<script>
 	//r.getReview_rate()
-					let selectRate = document.getElementById('selectPostReviewRate'); //
-					selectRate.selectedIndex = <%=r.getReview_rate()%>;  //select된 인덱스의 값을 알려줌 인덱스 알면 ->?
-		
 	
-                                                const review_detail = document.getElementById("review_detail")
+// 	const changeValue = (target) => {
+		
+// 		console.log(target.value);
+// 		console.log(target.options[target.selectedIndex].text);
+		
+// 	}
+	
+	
+// 					let selectRate = document.getElementById('selectPostReviewRate'); //
+<%-- 					selectRate.selectedIndex = <%=r.getReview_rate()%>;  //select된 인덱스의 값을 알려줌 인덱스 알면 ->그 인덱스의 값을 보내기? --%>
+		
+// 							selectRate.options[selectRate.selectedIndex].value
+
+
+let value = null;
+function changeValue(){
+	
+	let selectRate =  document.getElementById("selectPostReviewRate"); 
+	 value = (selectRate.options[selectRate.selectedIndex].value);
+	console.log(value);
+}
+
+							
+     const review_detail = document.getElementById("review_detail")
 											  document.getElementById("modiBtn").addEventListener("click", (e) => {
                                                 e.preventDefault();
 
 <%-- 											    update_review_proc.jsp?bbsID=<%= user.toString() //여기서 넘겨줄때 수정된 값이 아닌 bbs에서 넘어오는값을 넘겨줌 ㅜㅜ %> --%>
 
 												if (confirm("수정하시겠습니까?")) {
-													review_detail.action = "update_review_proc.jsp?rate=<%=rate%>&rvNum=<%=rvNum%>&writer=<%=writer%>";
+													review_detail.action = "update_review_proc.jsp?rate="+value+"&rvNum=<%=rvNum%>&writer=<%=writer%>";
 													review_detail.submit();
 										             }
                                              });

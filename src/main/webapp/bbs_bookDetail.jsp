@@ -114,40 +114,58 @@ out.print(title);
             </div>
 
 
+<div id="productActionButtonDiv" class="productActionButtonDiv row">
+                                            <div class="normalButton"
+                                                style="display: flex; margin-left: 15px; margin: 20px;">
+                                                <div class="btn-wrapper buyButton">
+
+                                                    <form action="buyNowCartNo.jsp" method="get">
+                                                        <input name="isbn" value=<%=bList.get(0).getIsbn() %> type="hidden" />
+                                                        <input name="price" value=<%=bList.get(0).getPrice() %> type="hidden" />
+                                                        <input name="title" value=<%=bList.get(0).getTitle() %> type="hidden" />
+                                                        <button type="submit" id="btn_buyNow" class="btn btn-primary"
+                                                            data-is-mini-cart-available="false">구매하기</button>
+                                                    </form>
+                                                </div>
+                                                <div class="btn-wrapper cartButton " style="margin-left: 10px;">
+                                                    <!--                     원래 버튼 -->
+                                                    <form action="insertBookInCart_proc.jsp" method="post">
+                                                        <input name="isbn" value=<%=bList.get(0).getIsbn() %> type="hidden" />
+                                                        <input name="price" value=<%=bList.get(0).getPrice() %> type="hidden" />
+                                                        <input name="title" value=<%=title %> type="hidden" />
+                                                        <button type="submit" value="<%=bList.get(0).getTitle()%>" name="isbn"
+                                                            onclick="service()" id="btn_addToCart"
+                                                            class="btn btn-primary" data-is-mini-cart-available="false">
+                                                            장바구니에 담기</button>
+
+                                                        <script>
+                                                            //로그인 될때 안될때 
+                                                            function service() {
+                                                                let user = <%=user%> ;
+
+                                                                if (user == null) {
+                                                                    alert("로그인 후 이용해주세요.");
+                                                                    location.href = "main.jsp";
+                                                                } else {
+                                                                    alert("장바구니에 상품이 담겼습니다.")
+                                                                    location.href = "insertBookInCart_proc.jsp";
+                                                                }
+                                                            }
+                                                        </script>
 
 
-            <div id="productActionButtonDiv" class="productActionButtonDiv row">
-                <div class="normalButton" style="display: flex; margin-left: 15px; margin: 20px;">
-                    <div class="btn-wrapper buyButton">
-                        <button id="btn_buyNow" class="btn btn-primary
-                                          " data-is-mini-cart-available="false"
-                            onclick="require('v2/mall/service/product').detail.handlePurchase('buyNow', event)">
-                            구매하기</button>
-                    </div>
-                    <div class="btn-wrapper cartButton " style="margin-left: 10px;">
-<!--                     원래 버튼 -->
-<form action="insertBookInCart_proc.jsp" method="post">
-                     <button type="submit" value="<%=bList.get(0).getIsbn()%>" name="isbn"
-                                                onclick="alert('상품이 장바구니에 담겼습니다.')" id="btn_addToCart" class="btn btn-primary
-<!--                                           " data-is-mini-cart-available="false" 
-                            >
-                            장바구니에 담기</button>
-                              </form>
-                    
-<!--                      <form action="insertBookInCart_proc.jsp" method="post"> -->
-<!--                         <button id="btn_addToCart" class="btn btn-primary -->
-<!--                                           " data-is-mini-cart-available="false" -->
-<!--                             onclick="require('v2/mall/service/product').detail.handlePurchase('', event)"> -->
-<!--                             장바구니에 담기</button> -->
-<!--                             </form> -->
+                                                    </form>
 
-							
-                            
-                            
-                                          
-                    </div>
-                </div>
-            </div>
+                                                    <!--                      <form action="insertBookInCart_proc.jsp" method="post"> -->
+                                                    <!--                         <button id="btn_addToCart" class="btn btn-primary -->
+                                                    <!--                                           " data-is-mini-cart-available="false" -->
+                                                    <!--                             onclick="require('v2/mall/service/product').detail.handlePurchase('', event)"> -->
+                                                    <!--                             장바구니에 담기</button> -->
+                                                    <!--                             </form> -->
+
+                                                </div>
+                                            </div>
+                                        </div>
 
 
 
