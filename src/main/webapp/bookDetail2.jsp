@@ -120,7 +120,7 @@
                                                     <form action="buyNowCartNo.jsp" method="get">
                                                         <input name="isbn" value=<%=isbn %> type="hidden" />
                                                         <input name="price" value=<%=price %> type="hidden" />
-
+														<input name="title" value=<%=title %> type="hidden" />
                                                         <button type="submit" id="btn_buyNow" class="btn btn-primary"
                                                             data-is-mini-cart-available="false">구매하기</button>
                                                     </form>
@@ -128,7 +128,9 @@
                                                 <div class="btn-wrapper cartButton " style="margin-left: 10px;">
                                                     <!--                     원래 버튼 -->
                                                     <form action="insertBookInCart_proc.jsp" method="post">
+                                                    <input name="isbn" value=<%=isbn %> type="hidden" />
                                                         <input name="price" value=<%=price %> type="hidden" />
+                                                        <input name="title" value=<%=title %> type="hidden" />
                                                         <button type="submit" value="<%=isbn%>" name="isbn"
                                                             onclick="service()" id="btn_addToCart"
                                                             class="btn btn-primary" data-is-mini-cart-available="false">
@@ -144,7 +146,7 @@
                                                                     location.href = "main.jsp";
                                                                 } else {
                                                                     alert("장바구니에 상품이 담겼습니다.")
-                                                                    location.hrdf = "insertBookInCart_proc.jsp";
+                                                                    location.href = "insertBookInCart_proc.jsp";
                                                                 }
                                                             }
                                                         </script>

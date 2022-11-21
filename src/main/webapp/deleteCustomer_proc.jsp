@@ -21,6 +21,7 @@ DataDao dao = new DataDao();
 
 int result = dao.deleteCustomer((String)user);
 // int result2 = dao.deleteDataInCart((String)user);
+dao.deleteBuyListById((String)user);
 
 if(result > 0 ){
 %>      

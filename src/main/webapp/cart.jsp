@@ -294,10 +294,14 @@
 
 					<body>
 						<%@ include file="navBar.jsp" %>
-							<% String price=request.getParameter("price"); String isbn=request.getParameter("isbn"); %>
+							<% String price=request.getParameter("price"); 
+							String isbn=request.getParameter("isbn"); 
+							String title = request.getParameter("title");
+							out.print(isbn);
+							%>
+	
 
-
-
+						
 
 								<div id="shopCartDetail" class="shopCartDetail wrapper">
 									<div id="cart" class="cart wrapper clearfix">
@@ -305,14 +309,9 @@
 											<span class="title">장바구니<span id="cartSize"></span></span>
 										</div>
 										<%  
-										
-										
 										DataDao dao=new DataDao(); 
-										String asd=request.getParameter("id"); List<Book> bk = dao.selectBuyBookInfo(asd);
-
-
-
-											%>
+										String asd=request.getParameter("id");
+										List<Book> bk = dao.selectBuyBookInfo(asd);											%>
 											<table class="table">
 												<thead>
 													<tr>
@@ -320,16 +319,14 @@
 														<th scope="col">상품정보</th>
 														<th scope="col">제목</th>
 														<th scope="col">가격</th>
-														<!-- 						<th scope="col">수량</th> -->
+												
 													</tr>
 												</thead>
 												<tbody>
+													
+												
 
 
-
-
-													<!-- 					//아이디랑 isbn 이 같이 파라미터로 넘어와서 // info에 id를 넣어서 그걸 가져오면 되는데 // 지금 info에는 책 정보밖에 없음 -->
-													<!--                                         // id는 따로 만들어서 넣어야? if (bk !=null && bk.size()> 0) { -->
 													<% int sum=0; for (Book info : bk) { sum+=info.getPrice(); %>
 
 														<tr>
@@ -418,9 +415,10 @@
 												<form action="buyCart.jsp" method="get">
 													<input name="isbn" value=<%=isbn %> type="hidden"/>
 													<input name="price" value=<%=price %> type="hidden"/>
+												
 													<button type="submit" id="btn_orderProducts"
 														class="designSettingElement button"
-														onclick="location.href='buyNowCartNo.jsp'">주문하기</button>
+														onclick="cartCheck()">주문하기</button>
 												</form>
 											</div>
 
@@ -431,7 +429,22 @@
 								<script
 									src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 									integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-									crossorigin="anonymous"></script>
+									crossorigin="anonymous">
+								
+							function cartCheck(){
+								if (bk == null) {
+									 alert('장바구니에 상품을 담아주세요')
+									 location.href="cart.jsp";
+								}else{
+									location.href="buyNowCartNo.jsp";
+								}
+							}
+								
+								
+								
+								
+								
+								</script>
 					</body>
 
 					</html>
