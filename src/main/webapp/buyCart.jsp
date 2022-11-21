@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
+    <%@ page import="dao.Customer" %>
+        <%@ page import="dao.Book" %>
+         <%@ page import="dao.BuyBookDao" %>
+                  <%@ page import="dao.DataDao" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -78,6 +82,27 @@
 </style>
 </head>
 <body>
+<%@ include file = "navBar.jsp" %>
+
+<% 
+BuyBookDao dao2 = new BuyBookDao();
+DataDao dao = new DataDao();
+
+List<Book> asd = dao.selectBuyBookInfo((String)user);
+Customer cs = new Customer();
+cs = dao2.selectCustomerInfoInBuyPage((String)user);
+
+// out.print(isbn);
+// out.print(price);
+
+
+
+%>
+
+ <form action="PurchaseToCart_proc.jsp" method="get">
+ 
+ 
+ 
 	<div class="PaymentOrder" style="width: 750px;">
 		<div class="card collapsed">
 			<div class="card-title-wrapper">
@@ -89,35 +114,56 @@
 					<div class="card-title-wrapper">
 						<h2 class="title-text">주문상품</h2>
 					</div>
+						<br/>
+						
+						<%
+						int sum = 0;
+						for(Book bk : asd){
+							
+							
+						
+						%>
 					<div class="card-body-wrapper">
 						<div class="order-item-list">
 							<div class="order-item">
-								<img class="order-item-thumnail"
-									src=https://contents.sixshop.com/uploadedFiles/95268/product/image_1666966301464.jpg>
+							<img src=<%=bk.getThumbnail() %>>
+								
 								<div class="order-item-info-wrapper">
-									<span class="item-title">눈을 감고 걷기</span>
-									<div class="item-qty-and-price-wrapper">1개 / 13,000원</div>
+									<span class="item-title"><%=bk.getTitle() %></span>
+									<div class="item-qty-and-price-wrapper">1개 
+<%-- 									<%=price %> --%>
+									
+									</div>
+									
 								</div>
 							</div>
 						</div>
+						<br/>
 						<div class="order-total-wrapper">
 							<span>상품합계</span>
 							<div class="order-total-price-wrapper"
 								style="display: block; text-align: right;">
 								<span class="order-total-price"
-									style="color: blue; font-weight: bold;">13,000</span><span
+									style="color: blue; font-weight: bold;"><%=bk.getPrice() %></span>
+									
+									<span
 									class="order-total-unit"
 									style="color: blue; font-weight: bold;">원</span>
 							</div>
 						</div>
 					</div>
-
+					<% 
+					
+					sum += bk.getPrice();
+						}
+					
+					%>
 				</div>
 				<div class="OrderInfo">
 					<div class="card-title-wrapper">
 						<h2 class="title-text">주문자</h2>
 						<div class="title-supplement">
-							<span style="color: blue">배고운</span>
+							<span style="color: blue"><%=cs.getCustomer_name() %></span>
 						</div>
 					</div>
 				</div>
@@ -142,25 +188,25 @@
 							<div class="form-group">
 								<label>이름</label>
 								<div class="input-group">
-									<input type="text">
+									<input type="text" value=<%=cs.getCustomer_name() %>>
 								</div>
 							</div>
-							<div class="form-group">
-								<label>우편번호</label>
-								<div class="input-group">
-									<div class="multiple-columns">
-										<input type="tel">
-										<button type="button">
-											<span>검색하기</span>
-										</button>
-									</div>
-								</div>
-							</div>
+<!-- 							<div class="form-group"> -->
+<!-- 								<label>우편번호</label> -->
+<!-- 								<div class="input-group"> -->
+<!-- 									<div class="multiple-columns"> -->
+<!-- 										<input type="tel"> -->
+<!-- 										<button type="button"> -->
+<!-- 											<span>검색하기</span> -->
+<!-- 										</button> -->
+<!-- 									</div> -->
+<!-- 								</div> -->
+<!-- 							</div> -->
 							<div class="form-group">
 								<label>주소</label>
 								<div class="input-group">
 									<div class="multiple-rows">
-										<input type="text" disabled> <input type="text">
+										<input type="text" value=<%=cs.getAddress() %>> 
 									</div>
 								</div>
 							</div>
@@ -172,13 +218,10 @@
 									<div class="multiple-columns">
 										<input type="tel" maxlength="3" data-form-field="phoneOne"
 											data-scheme-type="localTel"
-											class="designSettingElement point-color point-color-border-on-focus">
-										<span class="divider">-</span> <input type="tel" maxlength="4"
-											data-form-field="phoneTwo" data-scheme-type="localTel"
-											class="designSettingElement point-color point-color-border-on-focus">
-										<span class="divider">-</span> <input type="tel" maxlength="4"
-											data-form-field="phoneThree" data-scheme-type="localTel"
-											class="designSettingElement point-color point-color-border-on-focus">
+											class="designSettingElement point-color point-color-border-on-focus"
+											value=<%=cs.getPhone_num() %>
+											>
+										
 									</div>
 									<div class="msg-stack">
 										<div class="msg-row">
@@ -212,8 +255,7 @@
 									</div>
 								</div>
 							</div>
-							<p class="additional-fee-notice-text">제주 및 도서 산간 지역의 배송은 추가
-								배송비가 발생할 수 있습니다.</p>
+						
 							<div class="card-title-body-wrapper"
 								data-loading-restrict="loaded">
 
@@ -221,10 +263,7 @@
 
 								<hr class="horizontal-rule">
 								<div class="info-list">
-									<div class="info-item">
-										<span class="title">상품 합계</span> <span class="value"
-											data-field="salePrice">{N}원</span>
-									</div>
+									
 									<div class="info-item"
 										data-ref-id="paymentInfoComponent-deliveryPriceInfo">
 										<span class="title"> 배송비 <i
@@ -232,7 +271,7 @@
 											data-ref-id="paymentInfoComponent-showDeliveryPriceListIcon"
 											data-collapsable-controller
 											data-collapsable-target="deliveryPriceList"></i>
-										</span> <span class="value" data-field="deliveryPrice">{N}원</span>
+										</span> <span class="value" data-field="deliveryPrice">무료</span>
 									</div>
 									<div class="info-item collapsable collapsed"
 										data-collapsable-tag="deliveryPriceList"
@@ -240,18 +279,15 @@
 										<div class="multiple-rows" data-collapsable-area
 											data-ref-id="paymentInfoComponent-deliveryPriceList"></div>
 									</div>
-									<div class="info-item">
-										<span class="title">총 할인 금액</span> <span class="value"
-											data-field="discountAmount">{N}원</span>
-									</div>
+									
 								</div>
 								<hr class="horizontal-rule">
 								<div class="order-total-wrapper">
 									<span class="order-total-label">결제 금액</span>
 									<div
 										class="order-total-price-wrapper designSettingElement point-color point-color-text">
-										<span class="order-total-price" data-field="orderPrice">0</span>
-										<span class="order-total-price-unit">원</span>
+<%-- 										<span class="order-total-price" data-field="orderPrice"><%=bk.getPrice() %></span> --%>
+										<span class="order-total-price-unit"><%=sum %>원</span>
 									</div>
 								</div>
 								<br />
@@ -302,13 +338,21 @@
 
 									</div>
 								</div>
+									<br/>
 								<div class="fixed-card">
-									<button type="button" data-ref-id="checkoutBtnComponent"
+								
+								
+<!-- 								  <form action="Purchase_proc.jsp" method="get"> -->
+<%-- 								   <input name="isbn" value=<%=isbn %> type="hidden"/> --%>
+									<button type="submit" data-ref-id="checkoutBtnComponent"
 										class="CheckoutBtnComponent btn btn-cta designSettingElement brand-color brand-color-bg brand-color-text-reverse">
 										<span data-locale-restrict="ko"> <span
-											data-field="orderPrice">{N}</span>원 결제하기
+											data-field="orderPrice"><%=sum %></span>원 결제하기
 										</span>
 									</button>
+								
+									
+									
 								</div>
 							</div>
 						</div>
@@ -317,8 +361,7 @@
 			</div>
 		</div>
 	</div>
-
-
+</form>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

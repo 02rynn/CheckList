@@ -15,7 +15,9 @@
 						pw=request.getParameter("inpw"); out.print(id); out.print(pw); CustomerDao dao=new
 						CustomerDao(); Customer cs=null; cs=dao.selectCustomerInfo(id); out.print(cs.getId());
 						out.print(cs.getPassword()); if(id.equals(cs.getId()) && pw.equals(cs.getPassword())){
-						session.setAttribute("userId", id); script.println("<script>");
+						session.setAttribute("userId", id); 
+						session.setMaxInactiveInterval(60*6) ;
+						script.println("<script>");
 						script.println("alert('로그인 성공');");
 						script.println("location.href = 'main.jsp';");
 						script.println("location.href = 'main.jsp';");

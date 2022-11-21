@@ -98,7 +98,7 @@ public class MypageDao {
 				while(rs.next()) {
 					Review rv2 = new Review();
 					rv2.setReview_title(rs.getString("review_title"));
-					rv2.setReveiw_date(rs.getDate("reveiw_date"));
+					rv2.setReveiw_date(rs.getDate("review_date"));
 					
 					
 					rv.add(rv2);
@@ -113,6 +113,42 @@ public class MypageDao {
 			}
 			
 			return rv;
+		}
+	   
+	   
+	   public List<BuyBook> selectBuyListById(String id){
+			String sql = " select order_date, price,order_status from buy_book where id = ? ";
+			List<BuyBook> bb = null;
+			
+			try {
+				connect();
+				
+				psmt = conn.prepareStatement(sql);
+				psmt.setString(1, id);
+				
+				rs = psmt.executeQuery();
+				
+				bb = new ArrayList<BuyBook>();
+				
+				while(rs.next()) {
+					BuyBook bb2 = new BuyBook();
+					bb2.setOrder_date(rs.getDate("order_date"));
+					bb2.setPrice(rs.getInt("price"));
+					bb2.setOrder_status(rs.getString("order_status"));
+					
+					
+					bb.add(bb2);
+				}
+			
+				return bb;
+				
+			}catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
+			}
+			
+			return bb;
 		}
 	
 }

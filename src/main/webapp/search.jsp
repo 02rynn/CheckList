@@ -53,7 +53,7 @@
 	%>
 	<div 
 		style="width: 23.75%; display: inline-block; padding: 15px;">
-		<img src=<%=bk.getThumbnail() %> class="card-img-top" alt="...">
+		<a href="bookDetail2.jsp?isbn=<%=bk.getIsbn()%>&title=<%=bk.getTitle()%>&imgUrl=<%=bk.getThumbnail()%>&price=<%=bk.getPrice()%>"><img src=<%=bk.getThumbnail() %> class="card-img-top" alt="..."></a>
 		<div class="card-body">
 			<p class="card-text"><%=bk.getTitle() %></p>
 		</div>

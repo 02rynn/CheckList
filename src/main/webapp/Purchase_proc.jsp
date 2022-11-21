@@ -4,6 +4,8 @@
         <%@ page import="dao.BookDao" %>
     <%@ page import="dao.cart" %>
             <%@ page import="dao.CustomerDao" %>
+                     <%@ page import="dao.Customer" %>
+                       <%@ page import="dao.DataDao" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,19 +15,31 @@
 <body>
 <%@ include file="navBar.jsp"%>
 <%
-// String isbn= request.getParameter("isbn");
+String isbn= request.getParameter("isbn");
+int price = Integer.parseInt(request.getParameter("price"));
+String mm= request.getParameter("paymethodType");
+// String isbn = "책 isbn";
 
-String isbn = "책이름";
-out.print(isbn);
-out.print(user);
 
 BookDao dao = new BookDao();
 CustomerDao cDao = new CustomerDao();
-cDao.selectCustomerInfo(user.toString());
+Customer cs = new Customer();
+
+cs = cDao.selectCustomerInfo((String)user);
+
+DataDao dao2 = new DataDao();
 
 
+out.print(cs.getAddress());
+out.print(cs.getCustomer_no());
+out.print(cs.getEmail());
+out.print(isbn);
+out.print(user);
+out.print(mm);
 
+// dao2.insertBookInPurchase(cs,"K272830385",13000); 규진씨가 처음에 작성한 코드
 
+dao2.insertBookInPurchase(cs, isbn, price,mm);
 
 
 
@@ -37,6 +51,16 @@ cDao.selectCustomerInfo(user.toString());
 
 
 %>
+<script type="text/javascript">
+
+if(confirm("구매를 진행합니다")){
+	
+	location.href = 'purchaseConfirmation.jsp';
+}
+	
+
+
+</script>
 
 </body>
 </html>

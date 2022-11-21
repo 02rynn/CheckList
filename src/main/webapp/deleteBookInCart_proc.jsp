@@ -16,11 +16,12 @@
 
 String isbn=request.getParameter("isbn");
 String id=request.getParameter("id");
-int customer_no = Integer.parseInt(request.getParameter("customer_no"));
-DataDao dao = new DataDao();
 
+DataDao dao = new DataDao();
+out.print(isbn);
+out.print(id);
 // int result = dao.deleteBookInCart(id,isbn);
-int result = dao.deleteDataInCart(id,isbn,customer_no);
+int result = dao.deleteDataInCart(id,isbn);
 
 if(result > 0){
 %>      
