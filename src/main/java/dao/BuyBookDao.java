@@ -52,38 +52,39 @@ public class BuyBookDao {
 	   }
 	
 	
+	//안쓰는 코드 
+//	public int insertBuyBook(BuyBook bb) { // 구매테이블에 담기 
+//
+//		   
+//		String sql = "insert into buy_book values(?, ?, ?, ?, ?, ?, ?, ?, SYSDATE,?)";
+//				
+//		int result = 0;
+//		
+//
+//		try {
+//			connect();
+//			psmt = conn.prepareStatement(sql);
+//			psmt.setString(1, bb.getId());
+//			psmt.setString(2, bb.getEmail());
+//			psmt.setString(3, bb.getAddress());
+//			psmt.setString(4, bb.getIsbn());
+//			psmt.setInt(5, bb.getPrice());
+//			psmt.setString(6, bb.getPay_meth());
+//			psmt.setString(7, bb.getOrder_num());
+//			psmt.setString(8, bb.getOrder_status());
+//			psmt.setString(9, bb.getTitle());
+//	
+//			result = psmt.executeUpdate();
+//		
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}finally {
+//			disconnect();
+//		}
+//		return result;
+//	}
 	
-	public int insertBuyBook(BuyBook bb) { // 구매테이블에 담기 
-
-		   
-		String sql = "insert into buy_book values(?, ?, ?, ?, ?, ?, ?, ?, SYSDATE)";
-				
-		int result = 0;
-		
-
-		try {
-			connect();
-			psmt = conn.prepareStatement(sql);
-			psmt.setString(1, bb.getId());
-			psmt.setString(2, bb.getEmail());
-			psmt.setString(3, bb.getAddress());
-			psmt.setString(4, bb.getIsbn());
-			psmt.setInt(5, bb.getPrice());
-			psmt.setString(6, bb.getPay_meth());
-			psmt.setString(7, bb.getOrder_num());
-			psmt.setString(8, bb.getOrder_status());
-	
-			result = psmt.executeUpdate();
-		
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			disconnect();
-		}
-		return result;
-	}
-	
-	// 상세페이지에서 구매하기 눌렀을 때 구매페이지로 데이터 불러오는 메소드 11.18 18시30분
+	// 상세페이지에서 구매하기 눌렀을 때 구매페이지로 데이터 불러오는 메소드
 	public Book selectBuyBookInfoInBuyPage(String isbn){
 	String sql = " select * from book where isbn= ? ";
 	Book bk = null;

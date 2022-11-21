@@ -17,6 +17,7 @@
 <%
 
 String meth = request.getParameter("paymethodType");
+String title = request.getParameter("title");
 DataDao dao=new DataDao(); 
 CustomerDao cDao = new CustomerDao();
 Customer cs = new Customer();
@@ -32,7 +33,7 @@ for(int i = 0 ; i < bk.size();i++){
 	Book book = bk.get(i);
 	
 	
-	dao.insertBookInPurchase(cs, book.getIsbn(),book.getPrice(),meth);
+	dao.insertBookInPurchase(cs, book.getIsbn(),book.getPrice(),meth,book.getTitle());
 	
 	
 }

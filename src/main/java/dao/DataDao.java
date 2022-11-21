@@ -529,6 +529,30 @@ public class DataDao{
 		return result;
 	}
 	
+	//회원 탈퇴되면 주문 내역 지워지게 
+	public int deleteBuyListById(String id) {
+		String sql = " delete from buy_book "
+				   + " where id = ? ";
+		int result = 0; 
+		try {
+			connect();
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			
+			
+			result = psmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			closeConnect();
+		}
+		return result;
+	}
+	
 	
 	//회원 탈퇴하면 그 회원이 장바구니에 담았던 데이터도 같이 삭제
 	//장바구니 똑같은 책 중복으로 담겼을때 삭제하면 다 같이 지워지는 delete 메소드 (삭제 ㄴㄴ)
@@ -576,10 +600,10 @@ public class DataDao{
 //		}
 //		return result;
 //	}
-	public int insertBookInPurchase(Customer cs,String isbn,int price,String method) { //구매 테이블에 테이터 넣기 지우지마세요
+	public int insertBookInPurchase(Customer cs,String isbn,int price,String method,String title) { //구매 테이블에 테이터 넣기 지우지마세요
 
 		   
-		String sql = "insert into buy_book values(?,?,?,?,?,?,?,1,?,sysdate)";
+		String sql = "insert into buy_book values(?,?,?,?,?,?,?,1,?,sysdate,?)";
 				
 		int result = 0;
 		
@@ -595,6 +619,7 @@ public class DataDao{
 			psmt.setInt(6, price);
 			psmt.setString(7, method);
 			psmt.setString(8, "예약주문" );
+			psmt.setString(9, title);
 			
 			result = psmt.executeUpdate();
 		

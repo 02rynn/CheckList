@@ -85,6 +85,11 @@
 <%@ include file = "navBar.jsp" %>
 
 <% 
+
+String title = request.getParameter("title");
+
+
+
 BuyBookDao dao2 = new BuyBookDao();
 DataDao dao = new DataDao();
 
@@ -94,6 +99,7 @@ cs = dao2.selectCustomerInfoInBuyPage((String)user);
 
 // out.print(isbn);
 // out.print(price);
+out.print(title);
 
 
 
@@ -115,7 +121,7 @@ cs = dao2.selectCustomerInfoInBuyPage((String)user);
 						<h2 class="title-text">주문상품</h2>
 					</div>
 						<br/>
-						
+						 
 						<%
 						int sum = 0;
 						for(Book bk : asd){

@@ -5,7 +5,9 @@
 <%@ page import="dao.MypageDao"%>
 <%@ page import="dao.Review"%>
 <%@ page import="dao.BuyBook"%>
+<%@ page import="dao.Book"%>
 <%@ page import="java.util.*"%>
+       <%request.setCharacterEncoding("UTF-8");%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -249,12 +251,16 @@ body .designSettingElement.button {
 	<%@ include file="navBar.jsp"%>
 	
 	<%
-	
+	String isbn = request.getParameter("isbn");
+	String title = request.getParameter("title");
 	MypageDao mdao = new MypageDao();
 	List<Review> rv = mdao.selectReviewById((String)user);
 	List<BuyBook> bb = mdao.selectBuyListById((String)user);
+	List<Book> bk = mdao.selectBuyListCoverById((String)user,isbn);
+	
 	
 	out.print(user);
+// 	out.print(bk.get(0).getTitle());
 	out.print(rv);
 //	out.print(rv.get)
 	
@@ -273,7 +279,7 @@ body .designSettingElement.button {
 					<tr>
 						<th scope="col">일자</th>
 <!-- 						buybook table에 썸네일 컬럼 만들어서 select sql문에 썸네일 추가해서 상품정보 띄우기  -->
-<!-- 						<th scope="col">상품정보</th> -->
+						<th scope="col">상품정보</th>
 						<th scope="col">가격</th>
 						<th scope="col">주문상태</th>
 
@@ -289,10 +295,11 @@ body .designSettingElement.button {
 							
 					%>
 					
-						<td>일자<%=info.getOrder_date()%></td>
-<%-- 						<td>상품정보<%=info.get()%></td> --%>
-						<td>가격<%=info.getPrice()%></td>
-						<td>주문상태<%=info.getOrder_status()%></td>
+						<td><%=info.getOrder_date()%></td>
+<!-- 					주문내역에	책 제목 들고올 자리  -->
+						<td><%=info.getTitle()%></td>
+						<td><%=info.getPrice()%>원</td>
+						<td><%=info.getOrder_status()%></td>
 					</tr>
 					
 					<% } %>
@@ -426,7 +433,8 @@ body .designSettingElement.button {
 
 
 
-						<label for="customerPhone1" class="title">휴대폰 번호</label> <input
+						<label for="customerPhone1" class="title">휴대폰 번호</label> 
+						<input
 							type="tel" name="customerPhone1"
 							class="designSettingElement shape phoneNumber js-inputOnlyNumber"
 							maxlength="11" value="<%=cus.getPhone_num()%>">
@@ -485,20 +493,38 @@ body .designSettingElement.button {
 document.getElementById('deleteBtn').addEventListener('click',(e)=>{
 	e.preventDefault();
 	let form = document.getElementById('personDetailForm');
-	if(confirm('삭제하시겠습니까?')){
+	if(confirm('탈퇴하시겠습니까?')){
 	form.action = "deleteCustomer_proc.jsp";
 	form.submit();
 	}
-
 	});
+		
 		document.getElementById('updateBtn').addEventListener('click',(e)=>{
 			e.preventDefault();
 			let form = document.getElementById('personDetailForm');
 			
+			if(form.customerPw.value == "" ){
+				alert("비밀번호는 필수입니다")
+				form.customerPw.focus();
+				return false;
+			} else if(form.customerEmail.value == ""){
+				alert("이메일는 필수입니다")
+				form.customerEmail.focus();
+				return false;
+			}else if(form.customerPhone1.value == ""){
+				alert("전화번호는 필수입니다")
+				form.customerPhone1.focus();
+				return false;
+			}else if(form.post2.value == ""){
+				alert("주소는 필수입니다")
+				form.post2.focus();
+				return false;
+				} else{ 
+			if(confirm('수정하시겠습니까?')){
 			form.action = "updateCustomerInfo_proc.jsp";
 			form.submit();
-			
-
+			}
+			}
 			});
 		
 
