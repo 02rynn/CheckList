@@ -26,4 +26,8 @@
 # Package Files #
 *.jar
 *.war
+<<<<<<< HEAD
+/build/
+=======
 
+>>>>>>> ea3ddfc26528d9cbf99642ccdda96f05b1d1a37b

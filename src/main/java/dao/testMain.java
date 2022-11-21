@@ -89,8 +89,10 @@ public class testMain {
 	
  
 			
-	//		List<Book> bk = dao.selectBuyBookInfo("bkw");
-		//	System.out.println(bk.size());
+//			DataDao dao=new DataDao(); 
+			
+//			List<Book> bk = dao.selectBuyBookInfo("bkw");
+//			System.out.println(bk.size());
 			
 			
 

@@ -148,7 +148,7 @@ public class bBsDAO {// 정보를 빼올 수 있도록 해주는 클래스
 
 	public List<Review> select_bbs_contents_by_title(String title) {
 		String sql = "SELECT * FROM REVIEW WHERE title = ? order by review_num";
-		// 사용자들이 후기를 쓰면 그걸 게시판 형태로 보여주기 위한 함수
+		// 제목에 해당하는 리뷰만 가져오는 메소드 
 
 		List<Review> rvList = null; // 리뷰클래스를 갖는 리스트
 		try {
@@ -203,9 +203,48 @@ public class bBsDAO {// 정보를 빼올 수 있도록 해주는 클래스
 		}
 		return result;
 	}
+	
+	
+	
+	
+	public List<Review> select_modified_review_contents(int review_num) {
+		String sql = "SELECT review_title, review_contents, title, review_rate ,review_num FROM REVIEW WHERE review_num = ? order by review_num";
+		// 사용자들이 후기를 쓰면 그걸 게시판 형태로 보여주기 위한 함수
+
+		List<Review> rvList = null; // 리뷰클래스를 갖는 리스트
+		try {
+			connect();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, review_num);
+			rs = psmt.executeQuery(); // sql문 결과 담겨잇음
+
+			rvList = new ArrayList<Review>();
+
+			while (rs.next()) {
+				Review rv = new Review();
+			
+				rv.setReview_title(rs.getString("review_title"));
+				rv.setReview_contents(rs.getString("review_contents"));
+				rv.setTitle(rs.getString("title"));
+				rv.setReview_rate(rs.getInt("review_rate"));
+				rv.setReview_num(rs.getInt("review_num"));
+				rvList.add(rv); // 위에서 저장한 값들을 리스트에 담아서
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeConnect();
+		}
+
+		return rvList;
+	}
+
+	
+	
 
 	public int deleteBbs(int review_num) {
-		String sql = " DELETE review " + " WHERE id=? ";
+		String sql = " DELETE review " + " WHERE review_num=? ";
 		int result = 0;
 
 		try {
@@ -220,6 +259,40 @@ public class bBsDAO {// 정보를 빼올 수 있도록 해주는 클래스
 			closeConnect();
 		}
 		return result;
+	}
+	
+	public List<Book> select_bookInfo_by_title(String title) {
+		String sql = "SELECT title, thumbnail, price FROM book WHERE title = ? ";
+		// 사용자들이 후기를 쓰면 그걸 게시판 형태로 보여주기 위한 함수
+
+		List<Book> bList = null; // 리뷰클래스를 갖는 리스트
+		try {
+			connect();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, title);
+			rs = psmt.executeQuery(); // sql문 결과 담겨잇음
+
+			bList = new ArrayList<Book>();
+
+			while (rs.next()) {
+				Book b = new Book();
+			
+				b.setTitle(rs.getString("title"));
+			
+				b.setPrice(rs.getInt("price"));
+			
+				b.setThumbnail(rs.getString("thumbnail"));
+				
+				bList.add(b); // 위에서 저장한 값들을 리스트에 담아서
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			closeConnect();
+		}
+
+		return bList;
 	}
 	
 	
