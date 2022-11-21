@@ -119,20 +119,11 @@ String title =  request.getParameter("title");
             <div id="productActionButtonDiv" class="productActionButtonDiv row">
                 <div class="normalButton" style="display: flex; margin-left: 15px; margin: 20px;">
                     <div class="btn-wrapper buyButton">
-                        <button id="btn_buyNow" class="btn btn-primary
-                                          " data-is-mini-cart-available="false"
-                            onclick="require('v2/mall/service/product').detail.handlePurchase('buyNow', event)">
-                            구매하기</button>
+                    
                     </div>
                     <div class="btn-wrapper cartButton " style="margin-left: 10px;">
 <!--                     원래 버튼 -->
-<form action="insertBookInCart_proc.jsp" method="post">
-                     <button type="submit" value="<%=bList.get(0).getIsbn()%>" name="isbn"
-                                                onclick="alert('상품이 장바구니에 담겼습니다.')" id="btn_addToCart" class="btn btn-primary
-<!--                                           " data-is-mini-cart-available="false" 
-                            >
-                            장바구니에 담기</button>
-                              </form>
+
                     
 <!--                      <form action="insertBookInCart_proc.jsp" method="post"> -->
 <!--                         <button id="btn_addToCart" class="btn btn-primary -->
@@ -151,41 +142,6 @@ String title =  request.getParameter("title");
 
 
 
-            <div class="row naverPayButton">
-                <script type="text/javascript" src="//pay.naver.com/customer/js/naverPayButton.js" charset="UTF-8">
-                </script>
-
-                <script type="text/javascript">
-                    var naverPayBtnMobileType;
-                    var naverPayColor = "white" == "white" ? 2 : 3;
-
-                    if (naverPayColor === 2) {
-                        naverPayBtnMobileType = "MA";
-                    }
-
-                    if (naverPayColor === 3) {
-                        naverPayBtnMobileType = "MB";
-                    }
-
-                    var buy_nc = function (event) {
-                        require("v2/mall/service/product").detail.handlePurchase("naverPayOrder",
-                            event);
-                    };
-                    var wishlist_nc = function () {
-                        require("v2/mall/service/product").detail.handlePurchase("naverPayZzim", event);
-                    };
-                    naver.NaverPayButton.apply({
-                        BUTTON_KEY: "0F96F8DF-BC03-4637-A5E3-1911F4E2F9C6", // 네이버페이에서 제공받은 버튼 인증 키 입력
-                        TYPE: "desktop" == "mobile" ? naverPayBtnMobileType : "C", // 버튼 모음 종류 설정
-                        COLOR: naverPayColor, // 버튼 모음의 색 설정
-                        COUNT: "product" == "cart" ? 1 :
-                        2, // 버튼 개수 설정. 구매하기 버튼만 있으면(장바구니 페이지) 1, 찜하기 버튼도 있으면(상품 상세 페이지) 2를 입력.
-                        ENABLE: "notSoldOut" == "soldOut" ? "N" : "Y", // 품절 등의 이유로 버튼 모음을 비활성화할 때에는 "N" 입력
-                        BUY_BUTTON_HANDLER: buy_nc, // 구매하기 버튼 이벤트 Handler 함수 등록, 품절인 경우 not_buy_nc 함수 사용
-                        WISHLIST_BUTTON_HANDLER: wishlist_nc // 찜하기 버튼 이벤트 Handler 함수 등록
-                    });
-                </script>
-            </div>
         </div>
     </div>
 
