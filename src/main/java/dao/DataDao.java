@@ -273,7 +273,7 @@ public class DataDao{
 			bookList = new ArrayList<Book>();
 			while (rs.next()) {
 				Book ai = new Book();
-
+				ai.isbn = rs.getString("isbn");
 				ai.price = rs.getInt("price");
 				ai.title = rs.getString("Title");
 				ai.thumbnail = rs.getString("thumbnail");

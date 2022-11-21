@@ -260,9 +260,9 @@ body .designSettingElement.button {
 	
 	
 	out.print(user);
-// 	out.print(bk.get(0).getTitle());
+
 	out.print(rv);
-//	out.print(rv.get)
+
 	
 	%>
 
