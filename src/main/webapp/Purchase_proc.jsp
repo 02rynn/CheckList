@@ -21,7 +21,7 @@ String title = request.getParameter("title");
 int price = Integer.parseInt(request.getParameter("price"));
 String mm= request.getParameter("paymethodType");
 // String isbn = "책 isbn";
-
+out.print(title);
 
 BookDao dao = new BookDao();
 CustomerDao cDao = new CustomerDao();

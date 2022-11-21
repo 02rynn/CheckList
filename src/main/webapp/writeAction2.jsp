@@ -17,16 +17,19 @@ request.setCharacterEncoding("UTF-8");
 //��ǰ�̸�, ������, �۳��� , isbn
 //�۹�ȣ, ��ǰ�̸�, ������, �۾���, �����, ����, isbn  �޾ƿ��� 
 PrintWriter script = response.getWriter();
-String title =request.getParameter("select");
 
-// System.out.println(title); //å����
 
+
+
+String titleSum =request.getParameter("select");
+
+String[]arr = titleSum.split("&");
+String title = arr[0];
+String isbn = arr[1];
 
 String rvTitle =request.getParameter("review_title");
 String rvContents =request.getParameter("review_contents");
 int rvRate =Integer.parseInt (request.getParameter("rvrate"));
-String isbn =request.getParameter("isbn");
-//String isbn = request.getParameter("book_num");
 
 
 Bbs bbs = new Bbs(); 

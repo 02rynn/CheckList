@@ -104,7 +104,8 @@ cs.setId((String)user);
 
 // out.print(isbn);
 // out.print(price);
-out.print(title);
+
+
 
 
 
@@ -113,7 +114,7 @@ out.print(title);
 	<form action="Purchase_proc.jsp" method="get" name="pay">
 		<input name="isbn" value=<%=isbn %> type="hidden" />
 		<input name="price" value=<%=price %> type="hidden" />
-		<input name="title" value=<%=title %> type="hidden" />
+		<input name="title" value="<%=bk.getTitle()%>" type="hidden" />
 		<div class="PaymentOrder" style="width: 750px;">
 			<div class="card collapsed">
 				<div class="card-title-wrapper">

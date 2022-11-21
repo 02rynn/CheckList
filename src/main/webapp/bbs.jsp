@@ -47,11 +47,13 @@
       
       	if(rvList != null && rvList.size()>0){ //배열이 null이 아니고 size가 0보다 크면 반복문 돌릴거임
       		for(Review  r : rvList){
+      			
+      			String[] arr = r.getReview_title().split("&");
       			%>
       			<tr>
       			 <td><%= r.getReview_num() %></td>
-      			<td><a style="text-decoration: none;" href="bbs_bookDetail.jsp?title=<%=r.getReview_title() %>"><%=r.getReview_title() %></a></td> <!-- 상세페이지로 가도록  -->
-      			   <td><a style="text-decoration: none;" href="watchReview.jsp?writer=<%=r.getId()%>&title=<%=r.getReview_title()%>&content=<%=r.getReview_contents()%>&rate=<%=r.getReview_rate()%>&num=<%= r.getReview_num() %>"><%= r.getReview_title() %></a></td>
+      			<td><a style="text-decoration: none;" href="bbs_bookDetail.jsp?title=<%=r.getReview_title() %>"><%=arr[0] %></a></td> <!-- 상세페이지로 가도록  -->
+      			   <td><a style="text-decoration: none;" href="watchReview.jsp?writer=<%=r.getId()%>&title=<%=r.getReview_title()%>&content=<%=r.getReview_contents()%>&rate=<%=r.getReview_rate()%>&num=<%= r.getReview_num() %>"><%=arr[0] %></a></td>
       			    <td><%= r.getId()%></td>
       			     <td><%= r.getReveiw_date() %></td>
       			      <td><%
