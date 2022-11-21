@@ -145,7 +145,7 @@
 
 	</form>
 
-	<% } else { %>
+	<% }  else { %>
 	<div class="container">
 	
 	
@@ -183,7 +183,6 @@
 		</div>
 	</div>
 
-<<<<<<< HEAD
 	<script>
 	//r.getReview_rate()
 					let selectRate = document.getElementById('selectPostReviewRate'); //
@@ -192,83 +191,10 @@
 	
                                                 const review_detail = document.getElementById("review_detail")
 											  document.getElementById("modiBtn").addEventListener("click", (e) => {
-=======
-                                                      <select name="rvrate" class="btn btn-outline-primary"
-                                                         onchange="require('common/common').customSelectBoxClickEvent(this)"
-                                                         id="selectPostReviewRate">
-                                                         <option value="0" selected="selected">평점 주기</option>
-                                                         <option value="5">★★★★★</option>
-                                                         <option value="4">★★★★☆</option>
-                                                         <option value="3">★★★☆☆</option>
-                                                         <option value="2">★★☆☆☆</option>
-                                                         <option value="1">★☆☆☆☆</option>
-                                                      </select>
-
-                                                   </div>
-
-
-
-
-                                                   <button id="removeBtn" name="removeBtn" type="submit"
-                                                      class="btn btn-primary pull-right"
-                                                      value="<%=rvNum %>">글삭제</button>
-                                                   <button id="modiBtn" name="modiBtn" type="submit"
-                                                      class="btn btn-primary pull-right"
-                                                      value="<%=rvNum %>">글수정</button>
-                                                </form>
-
-                                                <% } else { %>
-                                                   <div class="container">
-                                                      <div class="row">
-                                                         <form method="post"
-                                                            action="update_review_proc.jsp?bbsID=<%= user.toString() %>">
-                                                            <table class="table table-striped"
-                                                               style="text-align: center; border: 1px solid #dddddd;">
-                                                               <thead>
-                                                                  <tr>
-                                                                     <th colspan="2"
-                                                                        style="background-color: #eeeeee; text-align: center;">
-                                                                        게시판 글 수정 양식</th>
-                                                                  </tr>
-                                                               </thead>
-                                                               <tbody>
-                                                                  <tr>
-                                                                     <td>
-                                                                        <input disabled type="text" class="form-control"
-                                                                           placeholder="글 제목" name="bbsTitle"
-                                                                           maxlength="50" value="<%= title %>">
-                                                                     </td>
-                                                                  </tr>
-                                                                  <tr>
-                                                                     <td><textarea readonly class="form-control"
-                                                                           placeholder="글 내용" name="bbsContent"
-                                                                           maxlength="2048"
-                                                                           style="height: 350px;"><%=  content %></textarea>
-                                                                     </td>
-                                                                  </tr>
-                                                               </tbody>
-                                                            </table>
-
-                                                            <% }%>
-
-
-
-
-                                                         </form>
-                                                      </div>
-                                                   </div>
-                                             </div>
-                                          </div>
-                                          <script>
-
-
-                                             document.getElementById("modiBtn").addEventListener("click", (e) => {
->>>>>>> ea3ddfc26528d9cbf99642ccdda96f05b1d1a37b
                                                 e.preventDefault();
 
 <%-- 											    update_review_proc.jsp?bbsID=<%= user.toString() //여기서 넘겨줄때 수정된 값이 아닌 bbs에서 넘어오는값을 넘겨줌 ㅜㅜ %> --%>
 
-<<<<<<< HEAD
 												if (confirm("수정하시겠습니까?")) {
 													review_detail.action = "update_review_proc.jsp?rate=<%=rate%>&rvNum=<%=rvNum%>&writer=<%=writer%>";
 													review_detail.submit();
@@ -285,28 +211,6 @@
 											             }
 	                                             });
                                                 </script>
-=======
-                                                form.action = "update_review_proc.jsp";
-                                                form.submit();
-
-                                             }  
-                                             
-                                             document.getElementById("removeBtn").addEventListener("click", (e) => {
-                                                e.preventDefault();
-
-                                                if (confirm("삭제하시겠습니까?")) {
-                                                   form.action = "deleteReview_proc.jsp";
-                                                   form.submit();
-                                                }
-
-                                             });
-
-
-                                             src = "https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-                                             integrity = "sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-                                             crossorigin = "anonymous" >
-                                          </script>
->>>>>>> ea3ddfc26528d9cbf99642ccdda96f05b1d1a37b
 
 
 </body>

@@ -34,7 +34,7 @@
 // int price = Integer.parseInt((request.getParameter("price")).toString()); 
 
 String title =  request.getParameter("title");
-
+out.print(title);
   bBsDAO dao1 = new bBsDAO();
  	 List<Book> bList = dao1.select_bookInfo_by_title(title);
  	 
@@ -212,7 +212,7 @@ String title =  request.getParameter("title");
 
                 <h1 style="margin-top: 30px;">독자님들의 후기</h1>
                 <tbody style="background-color:#eeeeee;">
-          
+                    <!-- 데이터베이스에서 글번호, 책이름, 책제목, 글쓴이, 등록일, 평점 가지고와서 보여지도록  -->
                            
       <%
       
@@ -222,12 +222,12 @@ String title =  request.getParameter("title");
             <% 
             for(Review  r : rvList){
                %>
-             
+               <%=r.getReview_num()%>
                <tr>
                
                 <td><%= r.getReview_num() %></td>
-           	<td><a style="text-decoration: none;" href="bbs_bookDetail.jsp?title=<%=r.getReview_title() %>"><%=r.getReview_title() %></a></td> <!-- 상세페이지로 가도록  -->
-      			   <td><a style="text-decoration: none;" href="watchReview.jsp?writer=<%=r.getId()%>&title=<%=r.getReview_title()%>&content=<%=r.getReview_contents()%>&rate=<%=r.getReview_rate()%>&num=<%= r.getReview_num() %>"><%= r.getReview_title() %></a></td>
+           	<td><a style="text-decoration : none;" href="bbs_bookDetail.jsp?title=<%=r.getReview_title() %>"><%=r.getReview_title() %>></a></td> <!-- 상세페이지로 가도록  -->
+      			   <td><a  style="text-decoration : none;" href="watchReview.jsp?writer=<%=r.getId()%>&title=<%=r.getReview_title()%>&content=<%=r.getReview_contents()%>&rate=<%=r.getReview_rate()%>&num=<%= r.getReview_num() %>"><%= r.getReview_title() %></a></td>
                    <td><%= r.getId() %></td>
                     <td><%= r.getReveiw_date() %></td>
                      <td><%
@@ -256,7 +256,6 @@ String title =  request.getParameter("title");
             left: 90%;">글쓰기 </a>
         </div>
     </div>
-
 
 </body>
 
