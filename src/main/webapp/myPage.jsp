@@ -369,9 +369,9 @@ request.setCharacterEncoding("UTF-8");
 	List<Review> rv = mdao.selectReviewById((String) user);
 	List<BuyBook> bb = mdao.selectBuyListById((String) user);
 
-	out.print(user);
+// 	out.print(user);
 	// 	out.print(bk.get(0).getTitle());
-	out.print(rv);
+// 	out.print(rv);
 	//	out.print(rv.get)
 	%>
 
@@ -399,11 +399,13 @@ request.setCharacterEncoding("UTF-8");
 
 								<%
 								for (BuyBook info : bb) {
+									
+								
 								%>
-
+			
 								<td><%=info.getOrder_date()%></td>
 								<!-- 					주문내역에	책 제목 들고올 자리  -->
-								<td><%=info.getTitle()%></td>
+								<td><a href="bbs_bookDetail.jsp?title=<%=info.getTitle() %>"><%=info.getTitle()%></a></td>
 								<td><%=info.getPrice()%>원</td>
 								<td><%=info.getOrder_status()%></td>
 							</tr>
@@ -534,7 +536,9 @@ request.setCharacterEncoding("UTF-8");
 
 							<label for="customerPhone1" class="title">휴대폰 번호</label> <input type="tel"
 								name="customerPhone1" class="designSettingElement shape phoneNumber js-inputOnlyNumber"
-								maxlength="11" value="<%=cus.getPhone_num()%>">
+								maxlength="11" value="<%=cus.getPhone_num()%>" 
+								onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
+								>
 
 
 
@@ -549,7 +553,9 @@ request.setCharacterEncoding("UTF-8");
 
 
 						<label class="title">주소</label> <input type="text" name="post2"
-							class="designSettingElement shape addressInfo" value="<%=cus.getAddress()%>">
+							class="designSettingElement shape addressInfo" value="<%=cus.getAddress()%>"
+							
+							>
 
 
 					</div>

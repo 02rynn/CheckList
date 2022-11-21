@@ -34,10 +34,10 @@
 // int price = Integer.parseInt((request.getParameter("price")).toString()); 
 
 String title =  request.getParameter("title");
-
+out.print(title);
   bBsDAO dao1 = new bBsDAO();
- 	 List<Book> bList = dao1.select_bookInfo_by_title(title);
- 	 
+     List<Book> bList = dao1.select_bookInfo_by_title(title);
+     
  
 
 %>
@@ -114,40 +114,58 @@ String title =  request.getParameter("title");
             </div>
 
 
+<div id="productActionButtonDiv" class="productActionButtonDiv row">
+                                            <div class="normalButton"
+                                                style="display: flex; margin-left: 15px; margin: 20px;">
+                                                <div class="btn-wrapper buyButton">
+
+                                                    <form action="buyNowCartNo.jsp" method="get">
+                                                        <input name="isbn" value=<%=bList.get(0).getIsbn() %> type="hidden" />
+                                                        <input name="price" value=<%=bList.get(0).getPrice() %> type="hidden" />
+                                                        <input name="title" value=<%=bList.get(0).getTitle() %> type="hidden" />
+                                                        <button type="submit" id="btn_buyNow" class="btn btn-primary"
+                                                            data-is-mini-cart-available="false">구매하기</button>
+                                                    </form>
+                                                </div>
+                                                <div class="btn-wrapper cartButton " style="margin-left: 10px;">
+                                                    <!--                     원래 버튼 -->
+                                                    <form action="insertBookInCart_proc.jsp" method="post">
+                                                        <input name="isbn" value=<%=bList.get(0).getIsbn() %> type="hidden" />
+                                                        <input name="price" value=<%=bList.get(0).getPrice() %> type="hidden" />
+                                                        <input name="title" value=<%=title %> type="hidden" />
+                                                        <button type="submit" value="<%=bList.get(0).getTitle()%>" name="isbn"
+                                                            onclick="service()" id="btn_addToCart"
+                                                            class="btn btn-primary" data-is-mini-cart-available="false">
+                                                            장바구니에 담기</button>
+
+                                                        <script>
+                                                            //로그인 될때 안될때 
+                                                            function service() {
+                                                                let user = <%=user%> ;
+
+                                                                if (user == null) {
+                                                                    alert("로그인 후 이용해주세요.");
+                                                                    location.href = "main.jsp";
+                                                                } else {
+                                                                    alert("장바구니에 상품이 담겼습니다.")
+                                                                    location.href = "insertBookInCart_proc.jsp";
+                                                                }
+                                                            }
+                                                        </script>
 
 
-            <div id="productActionButtonDiv" class="productActionButtonDiv row">
-                <div class="normalButton" style="display: flex; margin-left: 15px; margin: 20px;">
-                    <div class="btn-wrapper buyButton">
-                        <button id="btn_buyNow" class="btn btn-primary
-                                          " data-is-mini-cart-available="false"
-                            onclick="require('v2/mall/service/product').detail.handlePurchase('buyNow', event)">
-                            구매하기</button>
-                    </div>
-                    <div class="btn-wrapper cartButton " style="margin-left: 10px;">
-<!--                     원래 버튼 -->
-<form action="insertBookInCart_proc.jsp" method="post">
-                     <button type="submit" value="<%=bList.get(0).getIsbn()%>" name="isbn"
-                                                onclick="alert('상품이 장바구니에 담겼습니다.')" id="btn_addToCart" class="btn btn-primary
-<!--                                           " data-is-mini-cart-available="false" 
-                            >
-                            장바구니에 담기</button>
-                              </form>
-                    
-<!--                      <form action="insertBookInCart_proc.jsp" method="post"> -->
-<!--                         <button id="btn_addToCart" class="btn btn-primary -->
-<!--                                           " data-is-mini-cart-available="false" -->
-<!--                             onclick="require('v2/mall/service/product').detail.handlePurchase('', event)"> -->
-<!--                             장바구니에 담기</button> -->
-<!--                             </form> -->
+                                                    </form>
 
-							
-                            
-                            
-                                          
-                    </div>
-                </div>
-            </div>
+                                                    <!--                      <form action="insertBookInCart_proc.jsp" method="post"> -->
+                                                    <!--                         <button id="btn_addToCart" class="btn btn-primary -->
+                                                    <!--                                           " data-is-mini-cart-available="false" -->
+                                                    <!--                             onclick="require('v2/mall/service/product').detail.handlePurchase('', event)"> -->
+                                                    <!--                             장바구니에 담기</button> -->
+                                                    <!--                             </form> -->
+
+                                                </div>
+                                            </div>
+                                        </div>
 
 
 
@@ -212,7 +230,7 @@ String title =  request.getParameter("title");
 
                 <h1 style="margin-top: 30px;">독자님들의 후기</h1>
                 <tbody style="background-color:#eeeeee;">
-          
+                    <!-- 데이터베이스에서 글번호, 책이름, 책제목, 글쓴이, 등록일, 평점 가지고와서 보여지도록  -->
                            
       <%
       
@@ -222,12 +240,12 @@ String title =  request.getParameter("title");
             <% 
             for(Review  r : rvList){
                %>
-             
+               <%=r.getReview_num()%>
                <tr>
                
                 <td><%= r.getReview_num() %></td>
-           	<td><a style="text-decoration: none;" href="bbs_bookDetail.jsp?title=<%=r.getReview_title() %>"><%=r.getReview_title() %></a></td> <!-- 상세페이지로 가도록  -->
-      			   <td><a style="text-decoration: none;" href="watchReview.jsp?writer=<%=r.getId()%>&title=<%=r.getReview_title()%>&content=<%=r.getReview_contents()%>&rate=<%=r.getReview_rate()%>&num=<%= r.getReview_num() %>"><%= r.getReview_title() %></a></td>
+              <td><a style="text-decoration : none;" href="bbs_bookDetail.jsp?title=<%=r.getReview_title() %>"><%=r.getReview_title() %>></a></td> <!-- 상세페이지로 가도록  -->
+                  <td><a  style="text-decoration : none;" href="watchReview.jsp?writer=<%=r.getId()%>&title=<%=r.getReview_title()%>&content=<%=r.getReview_contents()%>&rate=<%=r.getReview_rate()%>&num=<%= r.getReview_num() %>"><%= r.getReview_title() %></a></td>
                    <td><%= r.getId() %></td>
                     <td><%= r.getReveiw_date() %></td>
                      <td><%
@@ -256,7 +274,6 @@ String title =  request.getParameter("title");
             left: 90%;">글쓰기 </a>
         </div>
     </div>
-
 
 </body>
 

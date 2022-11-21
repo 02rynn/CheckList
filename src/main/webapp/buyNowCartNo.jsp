@@ -110,7 +110,7 @@ out.print(title);
 
 %>
 
-	<form action="Purchase_proc.jsp" method="get">
+	<form action="Purchase_proc.jsp" method="get" name="pay">
 		<input name="isbn" value=<%=isbn %> type="hidden" />
 		<input name="price" value=<%=price %> type="hidden" />
 		<input name="title" value=<%=title %> type="hidden" />
@@ -180,7 +180,7 @@ out.print(title);
 								<div class="form-group">
 									<label>이름</label>
 									<div class="input-group">
-										<input type="text" value=<%=cs.getCustomer_name() %>>
+										<input type="text" value=<%=cs.getCustomer_name() %> name="name">
 									</div>
 								</div>
 								<!-- 							<div class="form-group"> -->
@@ -198,7 +198,7 @@ out.print(title);
 									<label>주소</label>
 									<div class="input-group">
 										<div class="multiple-rows">
-											<input type="text" value=<%=cs.getAddress() %>>
+											<input type="text" value=<%=cs.getAddress() %> name="address">
 										</div>
 									</div>
 								</div>
@@ -207,10 +207,11 @@ out.print(title);
 									<label>연락처</label>
 									<div class="input-group">
 										<div class="multiple-columns">
-											<input type="tel" maxlength="3" data-form-field="phoneOne"
+											<input type="tel" maxlength="11" data-form-field="phoneOne"
 												data-scheme-type="localTel"
+													onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
 												class="designSettingElement point-color point-color-border-on-focus"
-												value=<%=cs.getPhone_num() %>>
+												value=<%=cs.getPhone_num() %> name="phone">
 
 										</div>
 										<div class="msg-stack">
@@ -286,21 +287,21 @@ out.print(title);
 												<label class="method-item" data-paymethod-type="CARD" data-radio-button>
 													<label
 														class="radio-container designSettingElement point-color point-color-radio">
-														<input class="radio-input" name="paymethodType" type="radio"
+														<input class="radio-input" name="paymethodType" id="paymethodType" type="radio"
 															value="CARD"> <span class="checkmark"></span>
 														<span class="text-label">신용 / 체크카드</span>
 													</label>
 												</label> <label class="method-item" data-paymethod-type="KAKAOPAY"
 													data-radio-button> <label
 														class="radio-container designSettingElement point-color point-color-radio">
-														<input class="radio-input" name="paymethodType" type="radio"
+														<input class="radio-input" name="paymethodType" id="paymethodType" type="radio"
 															value="KAKAOPAY"> <span class="checkmark"></span> <span
 															class="text-label">카카오페이</span>
 													</label>
 												</label> <label class="method-item" data-paymethod-type="BANK"
 													data-radio-button> <label
 														class="radio-container designSettingElement point-color point-color-radio">
-														<input class="radio-input" name="paymethodType" type="radio"
+														<input class="radio-input" name="paymethodType" id="paymethodType" type="radio"
 															value="BANK"> <span class="checkmark"></span>
 														<span class="text-label">계좌 이체</span>
 													</label>
@@ -308,7 +309,7 @@ out.print(title);
 													data-radio-button>
 													<label
 														class="radio-container designSettingElement point-color point-color-radio">
-														<input class="radio-input" name="paymethodType" type="radio"
+														<input class="radio-input" name="paymethodType" id="paymethodType" type="radio"
 															value="WITHOUT_BANK"> <span class="checkmark"></span> <span
 															class="text-label">무통장
 															입금</span>
@@ -328,7 +329,7 @@ out.print(title);
 
 										<!-- 								  <form action="Purchase_proc.jsp" method="get"> -->
 										<%-- 								   <input name="isbn" value=<%=isbn %> type="hidden"/> --%>
-										<button type="submit" data-ref-id="checkoutBtnComponent"
+										<button type="submit" data-ref-id="checkoutBtnComponent" id="paybtn"
 											class="CheckoutBtnComponent btn btn-cta designSettingElement brand-color brand-color-bg brand-color-text-reverse">
 											<span data-locale-restrict="ko"> <span
 													data-field="orderPrice"><%=bk.getPrice() %></span>원 결제하기
@@ -346,6 +347,42 @@ out.print(title);
 			</div>
 		</div>
 	</form>
+	
+	<script>
+	
+	
+
+	
+	document.getElementById('paybtn').addEventListener('click', (e) => {
+		e.preventDefault();
+		let form = document.pay;
+		if(form.paymethodType.value == "" ){
+		alert("결제 방법을 선택하세요")
+		form.paymethodType.focus();
+		return false;
+		}	else if (form.name.value == "") {
+			alert("이름은 필수입니다")
+			form.name.focus();
+			return false;
+		} else if (form.address.value == "") {
+			alert("주소는 필수입니다")
+			form.address.focus();
+			return false;
+		} else if (form.phone.value == "") {
+			alert("연락처는 필수입니다")
+			form.phone.focus();
+			return false;
+		} else {
+			if (confirm('결제하시겠습니까?')) {
+				form.action = "Purchase_proc.jsp";
+				form.submit();
+			}
+		}
+	});
+		
+	
+	</script>
+	
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">

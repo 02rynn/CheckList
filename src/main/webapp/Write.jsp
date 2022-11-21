@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 	<%@ page import="dao.bBsDAO" %>
 		<%@ page import="dao.Book" %>
-		
+		     <%request.setCharacterEncoding("UTF-8");%>
 		 <%@ page import="java.io.PrintWriter"%>
 			<%@ page import="java.util.*" %>
 				<!DOCTYPE html>
