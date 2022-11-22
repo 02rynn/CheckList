@@ -68,6 +68,10 @@
 
 
 
+   <div id="productActionButtonDiv" class="productActionButtonDiv row">
+                                            <div class="normalButton"
+                                                style="display: flex; margin-left: 15px; margin: 20px;">
+                                                <div class="btn-wrapper buyButton">
 
 
                                         <div id="productAdditionalInfo"
@@ -84,6 +88,29 @@
                                             </div>
                                         </div>
 
+                                                                if (user == null) {
+                                                                    alert("로그인 후 이용해주세요.");
+                                                                    location.href = "main.jsp";
+                                                                } else {
+                                                                    alert("장바구니에 상품이 담겼습니다.")
+                                                                    location.href = "insertBookInCart_proc.jsp";
+                                                                }
+                                                            }
+                                                        </script>
+
+
+                                                    </form>
+
+                                                    <!--                      <form action="insertBookInCart_proc.jsp" method="post"> -->
+                                                    <!--                         <button id="btn_addToCart" class="btn btn-primary -->
+                                                    <!--                                           " data-is-mini-cart-available="false" -->
+                                                    <!--                             onclick="require('v2/mall/service/product').detail.handlePurchase('', event)"> -->
+                                                    <!--                             장바구니에 담기</button> -->
+                                                    <!--                             </form> -->
+
+                                                </div>
+                                            </div>
+                                        </div>
 
 
 

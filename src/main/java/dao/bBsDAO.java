@@ -263,7 +263,7 @@ public class bBsDAO {// 정보를 빼올 수 있도록 해주는 클래스
 	}
 	
 	public List<Book> select_bookInfo_by_title(String title) {
-		String sql = "SELECT title, thumbnail, price FROM book WHERE title = ? ";
+		String sql = "SELECT title, thumbnail, price , isbn FROM book WHERE title = ? ";
 		// 사용자들이 후기를 쓰면 그걸 게시판 형태로 보여주기 위한 함수
 
 		List<Book> bList = null; // 리뷰클래스를 갖는 리스트
@@ -283,6 +283,7 @@ public class bBsDAO {// 정보를 빼올 수 있도록 해주는 클래스
 				b.setPrice(rs.getInt("price"));
 			
 				b.setThumbnail(rs.getString("thumbnail"));
+				b.setThumbnail(rs.getString("isbn"));
 				
 				bList.add(b); // 위에서 저장한 값들을 리스트에 담아서
 			}

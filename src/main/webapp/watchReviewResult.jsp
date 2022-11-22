@@ -41,21 +41,18 @@
 		int rate =Integer.parseInt(request.getParameter("rvRate"));
 		int rvNum = Integer.parseInt(request.getParameter("rvnum"));
 
-//	out.print(rate);	
+
      
 		 List<Review> rvList = dao.select_modified_review_contents(rvNum);//데이터베이스에잇는 정ㅂ3ㅗ가지고 오기 
 	 
-		// out.print(rvList.get(0).getReview_rate());	
-		 
-		 
-		
+
 	%>
 		 
-     <h1><%=  rvList.get(0).getReview_rate() %></h1>
+   
 
 <% if ((user.toString()).equals(writer)) {%>  
 <div class="container">
-		<h5><%=rvList.get(0).getReview_contents()%></h5>
+		
 		<div class="row">
 		<form method="post" action="update_review_proc.jsp?bbsID=<%= user.toString() %>">
 			<table class="table table-striped" style="text-align: center; border: 1px solid #dddddd;">

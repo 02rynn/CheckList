@@ -117,7 +117,7 @@ public class MypageDao {
 	   
 //	   마이페이지에서 주문내역 정보 불러오는 메소드 
 	   public List<BuyBook> selectBuyListById(String id){
-			String sql = " select order_date, price,order_status,title from buy_book where id = ? ";
+			String sql = " select order_date, price,order_status,title,isbn from buy_book where id = ? ";
 			List<BuyBook> bb = null;
 			
 			try {
@@ -136,6 +136,7 @@ public class MypageDao {
 					bb2.setPrice(rs.getInt("price"));
 					bb2.setOrder_status(rs.getString("order_status"));
 					bb2.setTitle(rs.getString("title"));
+					bb2.setIsbn(rs.getString("isbn"));
 					
 					
 					bb.add(bb2);

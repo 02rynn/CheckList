@@ -44,15 +44,10 @@ out.print(title);
 
 // dao2.insertBookInPurchase(cs,"K272830385",13000); 규진씨가 처음에 작성한 코드
 
+
+
+
 dao2.insertBookInPurchase(cs, isbn, price,mm,title);
-
-
-
-
-
-
-
-
 
 
 %>
