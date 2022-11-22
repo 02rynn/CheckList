@@ -81,12 +81,13 @@ public class testMain {
 
 			bBsDAO dao = new bBsDAO();
 
-		
 
-			List<Book> buyItems = dao.selectBuyBookList("asd");
+
+			List<Book> buyItems = dao.selectBuyBookList(("flsgp123"));
+			
 			
 			System.out.println(buyItems.size());
-	
+			
  
 			
 //			DataDao dao=new DataDao(); 

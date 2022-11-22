@@ -352,7 +352,7 @@
 															<!-- 						 최소값 이하로 입력하면 입력제한하고 알림창 띄우기 	, 숫자만 입력 할 수 있게 제한 				-->
 															<!-- 									<input name="cnt" id="cnt" type="number" value="1" min="1" /> -->
 															<!-- <!-- 									----------------------------------------------------- -->
-															-->
+															
 															<%-- <input name="isbn" type="hidden"
 																value=<%=info.getIsbn()%>> --%>
 																<!--                                     <input name="id" type="hidden" value="asd" /> -->

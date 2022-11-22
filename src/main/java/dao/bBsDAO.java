@@ -133,7 +133,7 @@ public class bBsDAO {// 정보를 빼올 수 있도록 해주는 클래스
 				Book ai = new Book();
 
 				ai.title = rs.getString("title");
-				ai.isbn = rs.getString("book_num");
+				ai.isbn = rs.getString("isbn");
 				
 				bookList.add(ai);
 			}
@@ -283,7 +283,7 @@ public class bBsDAO {// 정보를 빼올 수 있도록 해주는 클래스
 				b.setPrice(rs.getInt("price"));
 			
 				b.setThumbnail(rs.getString("thumbnail"));
-				b.setThumbnail(rs.getString("isbn"));
+				b.setIsbn(rs.getString("isbn"));
 				
 				bList.add(b); // 위에서 저장한 값들을 리스트에 담아서
 			}

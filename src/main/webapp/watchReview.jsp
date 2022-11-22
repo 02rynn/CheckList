@@ -134,10 +134,10 @@
 														
 														
 					
-<!-- <!-- 						<option selected value="5">★★★★★</option> --> -->
-<!-- <!-- 						<option value="4" selected>★★★★☆</option> --> -->
-<!-- <!-- 						<option value="3">★★★☆☆</option> --> -->
-<!-- <!-- 						<option value="2">★★☆☆☆</option> --> -->
+<!-- <!-- 						<option selected value="5">★★★★★</option> --> 
+<!-- <!-- 						<option value="4" selected>★★★★☆</option> --> 
+<!-- <!-- 						<option value="3">★★★☆☆</option> --> 
+<!-- <!-- 						<option value="2">★★☆☆☆</option> --> 
 						
 <!-- 					</select> -->
 				</div>
