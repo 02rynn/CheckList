@@ -297,7 +297,7 @@
 							<% String price=request.getParameter("price"); 
 							String isbn=request.getParameter("isbn"); 
 							String title = request.getParameter("title");
-							out.print(isbn);
+						
 							%>
 	
 

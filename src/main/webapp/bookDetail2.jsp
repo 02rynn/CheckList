@@ -24,7 +24,7 @@
                         <% String isbn=request.getParameter("isbn"); String title=request.getParameter("title"); String
                             nail=request.getParameter("imgUrl"); int
                             price=Integer.parseInt((request.getParameter("price")).toString()); %>
-                            <%=nail %>
+                          
                                 <div class="bookDetail" style="display: flex; align-items: center; margin-top:50px;">
                                     <div class="bookImg" style="width: 60%; margin-left: 50px; ">
                                         <div id="shopProductImgsDiv"
@@ -117,7 +117,9 @@
                                                         <input name="isbn" value=<%=isbn %> type="hidden" />
                                                         <input name="price" value=<%=price %> type="hidden" />
                                                         <input name="title" value=<%=title %> type="hidden" />
-                                                        <button type="submit" id="btn_buyNow" class="btn btn-primary"
+                                                        <button type="submit" 
+                                                        onclick="service2()"
+                                                        id="btn_buyNow" class="btn btn-primary"
                                                             data-is-mini-cart-available="false">구매하기</button>
                                                     </form>
                                                 </div>
@@ -145,6 +147,24 @@
                                                                     location.href = "insertBookInCart_proc.jsp";
                                                                 }
                                                             }
+                                                            
+                                                            function service2() {
+                                                                let user = <%=user%> ;
+
+                                                                if (user == null) {
+                                                                    alert("로그인 후 이용해주세요.");
+                                                                    location.href = "main.jsp";
+                                                                } else {
+                                                                   
+                                                                    location.href = "buyNowCartNo.jsp";
+                                                                }
+                                                            }
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
                                                         </script>
 
 
