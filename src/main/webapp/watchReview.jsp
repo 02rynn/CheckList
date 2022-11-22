@@ -41,7 +41,7 @@
 
                                  %>
 
-	<% Review r=new Review(); %>
+	<% Review r=new Review(); out.print(r.getReview_rate()); %>
 	
 	<% if ((user.toString()).equals(writer)) {%>
 	<form method="post" id="review_detail">

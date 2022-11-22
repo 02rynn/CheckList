@@ -129,8 +129,7 @@
 		  let select = document.getElementById("select");
 		  
 		  tit = (select.options[select.selectedIndex].value);
-		  let arr = tit.split("&");
-		  document.getElementById("titl").value = arr[0];
+		  document.getElementById("titl").value = tit;
 		  console.log(tit);
 		}
 	
