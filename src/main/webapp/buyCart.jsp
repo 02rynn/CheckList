@@ -99,7 +99,7 @@ cs = dao2.selectCustomerInfoInBuyPage((String)user);
 
 // out.print(isbn);
 // out.print(price);
-out.print(title);
+
 
 
 

@@ -24,7 +24,7 @@
                         <% String isbn=request.getParameter("isbn"); String title=request.getParameter("title"); String
                             nail=request.getParameter("imgUrl"); int
                             price=Integer.parseInt((request.getParameter("price")).toString()); %>
-                            <%=nail %>
+                          
                                 <div class="bookDetail" style="display: flex; align-items: center; margin-top:50px;">
                                     <div class="bookImg" style="width: 60%; margin-left: 50px; ">
                                         <div id="shopProductImgsDiv"
@@ -68,10 +68,6 @@
 
 
 
-   <div id="productActionButtonDiv" class="productActionButtonDiv row">
-                                            <div class="normalButton"
-                                                style="display: flex; margin-left: 15px; margin: 20px;">
-                                                <div class="btn-wrapper buyButton">
 
 
                                         <div id="productAdditionalInfo"
@@ -88,29 +84,6 @@
                                             </div>
                                         </div>
 
-                                                                if (user == null) {
-                                                                    alert("로그인 후 이용해주세요.");
-                                                                    location.href = "main.jsp";
-                                                                } else {
-                                                                    alert("장바구니에 상품이 담겼습니다.")
-                                                                    location.href = "insertBookInCart_proc.jsp";
-                                                                }
-                                                            }
-                                                        </script>
-
-
-                                                    </form>
-
-                                                    <!--                      <form action="insertBookInCart_proc.jsp" method="post"> -->
-                                                    <!--                         <button id="btn_addToCart" class="btn btn-primary -->
-                                                    <!--                                           " data-is-mini-cart-available="false" -->
-                                                    <!--                             onclick="require('v2/mall/service/product').detail.handlePurchase('', event)"> -->
-                                                    <!--                             장바구니에 담기</button> -->
-                                                    <!--                             </form> -->
-
-                                                </div>
-                                            </div>
-                                        </div>
 
 
 
@@ -144,7 +117,9 @@
                                                         <input name="isbn" value=<%=isbn %> type="hidden" />
                                                         <input name="price" value=<%=price %> type="hidden" />
                                                         <input name="title" value=<%=title %> type="hidden" />
-                                                        <button type="submit" id="btn_buyNow" class="btn btn-primary"
+                                                        <button type="submit" 
+                                                        onclick="service2()"
+                                                        id="btn_buyNow" class="btn btn-primary"
                                                             data-is-mini-cart-available="false">구매하기</button>
                                                     </form>
                                                 </div>
@@ -172,6 +147,24 @@
                                                                     location.href = "insertBookInCart_proc.jsp";
                                                                 }
                                                             }
+                                                            
+                                                            function service2() {
+                                                                let user = <%=user%> ;
+
+                                                                if (user == null) {
+                                                                    alert("로그인 후 이용해주세요.");
+                                                                    location.href = "main.jsp";
+                                                                } else {
+                                                                   
+                                                                    location.href = "buyNowCartNo.jsp";
+                                                                }
+                                                            }
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
                                                         </script>
 
 
